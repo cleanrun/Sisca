@@ -11,18 +11,37 @@
     android:scrollbars="none"
     android:scrollingCache="true">
 
-    <ImageView
+    <!-- Dashboard picture layout -->
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        app:srcCompat="@drawable/image_1"
-        android:scaleType="centerCrop"/>
+        android:layout_height="150dp">
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/image_1"
+            android:scaleType="centerCrop"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:text="@string/dashboard"
+            android:textColor="@android:color/white"
+            android:textSize="40sp" />
+
+    </RelativeLayout>
+
+    <!-- Users and Assets buttons -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="-43dp"
         android:weightSum="2">
 
+        <!-- Users button -->
         <android.support.v7.widget.CardView
             android:layout_width="0dp"
             android:layout_height="70dp"
@@ -75,6 +94,7 @@
 
         </android.support.v7.widget.CardView>
 
+        <!-- Assets button -->
         <android.support.v7.widget.CardView
             android:layout_width="0dp"
             android:layout_height="70dp"
@@ -126,6 +146,63 @@
             </LinearLayout>
 
         </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+    <!-- Pie chart layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey_40"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:tint="@color/grey_40"
+                app:srcCompat="@drawable/ic_label" />
+            
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
+                android:layout_gravity="center_vertical"
+                android:text="@string/assets_by_labels"
+                android:textSize="18sp"
+                android:textColor="@color/grey_40"/>
+
+        </LinearLayout>
+
+        <!-- Pie chart content -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="270dp">
+
+            <!-- Pie chart on progress -->
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/btn_see_more"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"
+            android:background="@drawable/btn_rounded"
+            android:text="@string/see_more"
+            android:textColor="@android:color/white"/>
 
     </LinearLayout>
 

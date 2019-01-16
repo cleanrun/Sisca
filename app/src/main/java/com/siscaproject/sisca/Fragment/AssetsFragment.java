@@ -1,28 +1,24 @@
 package com.siscaproject.sisca.Fragment;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
-import com.siscaproject.sisca.Activity.BluetoothActivity;
-import com.siscaproject.sisca.Activity.QRActivity;
-import com.siscaproject.sisca.Activity.ExtraActivity;
 import com.siscaproject.sisca.R;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
-public class HomeFragment extends Fragment{
-    private static final String TAG = "HomeFragment";
+/**
+ * A simple {@link Fragment} subclass.
+ * Activities that contain this fragment must implement the
+ * {@link AssetsFragment.OnFragmentInteractionListener} interface
+ * to handle interaction events.
+ * Use the {@link AssetsFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class AssetsFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -34,12 +30,21 @@ public class HomeFragment extends Fragment{
 
     private OnFragmentInteractionListener mListener;
 
-    public HomeFragment() {
+    public AssetsFragment() {
         // Required empty public constructor
     }
 
-    public static HomeFragment newInstance(String param1, String param2) {
-        HomeFragment fragment = new HomeFragment();
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment AssetsFragment.
+     */
+    // TODO: Rename and change types and number of parameters
+    public static AssetsFragment newInstance(String param1, String param2) {
+        AssetsFragment fragment = new AssetsFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -60,9 +65,7 @@ public class HomeFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
-        ButterKnife.bind(this, view);
-        return view;
+        return inflater.inflate(R.layout.fragment_assets, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -89,6 +92,16 @@ public class HomeFragment extends Fragment{
         mListener = null;
     }
 
+    /**
+     * This interface must be implemented by activities that contain this
+     * fragment to allow an interaction in this fragment to be communicated
+     * to the activity and potentially other fragments contained in that
+     * activity.
+     * <p>
+     * See the Android Training lesson <a href=
+     * "http://developer.android.com/training/basics/fragments/communicating.html"
+     * >Communicating with Other Fragments</a> for more information.
+     */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
