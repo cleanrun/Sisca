@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">Sisca</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="tab_home">Home</string>
+    <string name="tab_profile">Profile</string>
+    <string name="tab_register">Register</string>
+    <string name="tab_search">Search</string>
+    <string name="tab_scan">Scan</string>
+
+    <string name="home_features">Features</string>
+
+    <string name="todays_date">Today\'s date</string>
+    <string name="features">Features</string>
+    <string name="settings">Settings</string>
+
+    <string name="bluetooth_feature">Bluetooth Reader</string>
+    <string name="uhf_feature">UHF Reader</string>
+    <string name="qr_feature">QR Code Reader</string>
+    <string name="input_feature">Input Manually</string>
+    <string name="extra_feature">Extra Reader</string>
+
+    <string name="scan_here">Scan Here</string>
+    <string name="title_activity_bluetooth">BluetoothActivity</string>
+
+    <string name="item_detected">Items Detected</string>
+    <string name="register_all_item">Register All Items</string>
+
+    <string name="search_asset">Search Asset</string>
+    <string name="no_results">No Results</string>
+    <string name="try_another_keyword">Try searching with another keyword</string>
+    <string name="id">ID</string>
+    <string name="name">Name</string>
+
+    <string name="nav_home">Home</string>
+    <string name="nav_assets">Assets</string>
+    <string name="nav_report">Report</string>
+    <string name="nav_profile">Profile</string>
+    <string name="nav_settings">Settings</string>
+
+    <string name="users">Users</string>
+    <string name="assets">Assets</string>
+
+</resources>

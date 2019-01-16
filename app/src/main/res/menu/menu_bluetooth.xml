@@ -1,0 +1,23 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.siscaproject.sisca.Activity.BluetoothActivity">
+    <item
+        android:id="@+id/menu_item_reconnect_reader"
+        android:title="@string/reconnect_reader_menu_item_text"></item>
+    <item
+        android:id="@+id/menu_item_secure_connect_reader"
+        android:enabled="false"
+        android:title="@string/secure_connect"
+        android:visible="false" />
+    <item
+        android:id="@+id/menu_item_insecure_connect_reader"
+        android:title="@string/insecure_connect" />
+    <item
+        android:id="@+id/menu_item_disconnect_reader"
+        android:title="@string/disconnect"></item>
+    <item
+        android:id="@+id/menu_item_reset_reader"
+        android:enabled="false"
+        android:title="@string/reset_reader_menu_text"></item>
+</menu>
