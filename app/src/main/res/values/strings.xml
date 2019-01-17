@@ -56,4 +56,13 @@
     <string name="quantity">Quantity :</string>
     <string name="view">View</string>
 
+    <string name="person_name">Person Name</string>
+    <string name="position">Position</string>
+    <string name="website">Website</string>
+    <string name="phone">Phone</string>
+    <string name="zip_code">Zip Code</string>
+    <string name="email">Email</string>
+    <string name="location">Location</string>
+    <string name="address">Address</string>
+
 </resources>
