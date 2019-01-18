@@ -65,4 +65,9 @@
     <string name="location">Location</string>
     <string name="address">Address</string>
 
+    <string name="activity_report">Activity Report</string>
+    <string name="audit_log">Audit Log</string>
+    <string name="depreciation">Depreciation</string>
+    <string name="assets_maintenance">Assets Maintenance</string>
+
 </resources>
