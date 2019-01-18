@@ -132,7 +132,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.lyt_extra_feature:
                 Log.d(TAG, "onCLickFeatures: Extra Reader clicked");
-                Intent testIntent = new Intent(HomeActivity.this, ExtraActivity.class);
+                Intent testIntent = new Intent(HomeActivity.this, HomeNavigationActivity.class);
                 startActivity(testIntent);
                 break;
             case R.id.btn_back:

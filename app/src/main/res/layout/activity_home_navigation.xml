@@ -7,6 +7,22 @@
     android:layout_height="match_parent"
     tools:context=".Activity.HomeNavigationActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/nsv_container_home"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"
+            android:scrollingCache="true">
+
+        </android.support.v4.widget.NestedScrollView>
+
+    </LinearLayout>
+
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/btm_navigation"
         android:layout_width="match_parent"

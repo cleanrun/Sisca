@@ -43,7 +43,6 @@ public class LoginActivity extends AppCompatActivity{
     @BindView(R.id.textinput_password) ShowHidePasswordEditText password;
 
     @BindView(R.id.textview_forgot_password) TextView forgotPassword;
-    @BindView(R.id.textview_sign_up) TextView signUp;
 
     @BindView(R.id.btn_login) Button btnLogin;
 
@@ -61,7 +60,7 @@ public class LoginActivity extends AppCompatActivity{
         userService = APIProperties.getUserService();
     }
 
-    @OnClick ({R.id.btn_login, R.id.textview_forgot_password, R.id.textview_sign_up})
+    @OnClick ({R.id.btn_login, R.id.textview_forgot_password})
     public void onClickBind(View view){
         int id = view.getId();
 
@@ -72,9 +71,6 @@ public class LoginActivity extends AppCompatActivity{
                 break;
             case R.id.textview_forgot_password:
                 Snackbar.make(parent_view, "Forgot Password", Snackbar.LENGTH_SHORT).show();
-                break;
-            case R.id.textview_sign_up:
-                Snackbar.make(parent_view, "Sign Up", Snackbar.LENGTH_SHORT).show();
                 break;
             default:
                 Snackbar.make(parent_view, "???", Snackbar.LENGTH_SHORT).show();
