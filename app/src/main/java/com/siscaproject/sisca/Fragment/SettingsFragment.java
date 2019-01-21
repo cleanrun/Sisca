@@ -10,16 +10,16 @@ import android.view.ViewGroup;
 
 import com.siscaproject.sisca.R;
 
-public class AssetsFragment extends Fragment {
+public class SettingsFragment extends Fragment {
+
     private OnFragmentInteractionListener mListener;
 
-    public AssetsFragment() {
-        // Required empty public constructor
-    }
-
-    public static AssetsFragment newInstance() {
-        AssetsFragment fragment = new AssetsFragment();
+    public static SettingsFragment newInstance() {
+        SettingsFragment fragment = new SettingsFragment();
         return fragment;
+    }
+    public SettingsFragment() {
+        // Required empty public constructor
     }
 
     @Override
@@ -32,7 +32,7 @@ public class AssetsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_assets, container, false);
+        return inflater.inflate(R.layout.fragment_settings, container, false);
     }
 
     public void onButtonPressed(Uri uri) {

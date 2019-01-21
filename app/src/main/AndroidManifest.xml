@@ -50,7 +50,10 @@
             android:label="@string/title_activity_bluetooth"
             android:theme="@style/AppTheme" />
         <activity android:name=".Activity.ExtraActivity" />
-        <activity android:name=".Activity.HomeNavigationActivity"></activity>
+        <activity
+            android:name=".Activity.HomeNavigationActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".Activity.DetailAssetsActivity"></activity>
     </application>
 
 </manifest>

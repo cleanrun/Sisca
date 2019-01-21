@@ -70,4 +70,22 @@
     <string name="depreciation">Depreciation</string>
     <string name="assets_maintenance">Assets Maintenance</string>
 
+    <string name="category_of_assets">Category of Assets</string>
+    <string name="all">All</string>
+    <string name="deployed">Deployed</string>
+    <string name="deployable">Deployable</string>
+    <string name="pending">Pending</string>
+    <string name="undeployable">Undeployable</string>
+    <string name="archived">Archived</string>
+
+    <string name="status_label">Status Label</string>
+    <string name="supplier">Supplier</string>
+    <string name="asset_model">Asset Model</string>
+    <string name="category">Category</string>
+    <string name="company">Company</string>
+    <string name="manufacturer">Manufacturer</string>
+
+    <string name="list_asset">List Asset</string>
+    <string name="view_detail">View Detail</string>
+
 </resources>

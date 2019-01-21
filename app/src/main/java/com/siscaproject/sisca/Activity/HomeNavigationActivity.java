@@ -12,16 +12,17 @@ import com.siscaproject.sisca.Fragment.AssetsFragment;
 import com.siscaproject.sisca.Fragment.HomeFragment;
 import com.siscaproject.sisca.Fragment.ProfileFragment;
 import com.siscaproject.sisca.Fragment.ReportFragment;
+import com.siscaproject.sisca.Fragment.SettingsFragment;
 import com.siscaproject.sisca.R;
 
 public class HomeNavigationActivity extends AppCompatActivity
     implements AssetsFragment.OnFragmentInteractionListener, HomeFragment.OnFragmentInteractionListener,
-                ProfileFragment.OnFragmentInteractionListener, ReportFragment.OnFragmentInteractionListener{
+                ProfileFragment.OnFragmentInteractionListener, ReportFragment.OnFragmentInteractionListener,
+                SettingsFragment.OnFragmentInteractionListener{
 
     private static final String TAG = "HomeNavigationActivity";
 
     private BottomNavigationView navigationView;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +37,6 @@ public class HomeNavigationActivity extends AppCompatActivity
     }
 
     public void initComponents(){
-
         navigationView = findViewById(R.id.btm_navigation);
         navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -48,24 +48,31 @@ public class HomeNavigationActivity extends AppCompatActivity
                         selectedFragment = HomeFragment.newInstance();
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.nsv_container_home, selectedFragment).commit();
+                        setTitle("Dashboard");
                         break;
                     case R.id.nav_assets:
                         selectedFragment = AssetsFragment.newInstance();
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.nsv_container_home, selectedFragment).commit();
+                        setTitle("Assets");
                         break;
                     case R.id.nav_report:
                         selectedFragment = ReportFragment.newInstance();
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.nsv_container_home, selectedFragment).commit();
+                        setTitle("Report");
                         break;
                     case R.id.nav_profile:
                         selectedFragment = ProfileFragment.newInstance();
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.nsv_container_home, selectedFragment).commit();
+                        setTitle("Profile");
                         break;
                     case R.id.nav_settings:
-                        // Settings fragment has yet to be created
+                        selectedFragment = SettingsFragment.newInstance();
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.nsv_container_home, selectedFragment).commit();
+                        setTitle("Settings");
                         break;
                 }
                 return true;
