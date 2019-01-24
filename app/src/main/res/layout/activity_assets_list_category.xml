@@ -6,9 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activity.AllAssetsActivity">
+    tools:context=".Activity.AssetsListCategoryActivity">
 
-    <!-- Dashboard picture layout -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="150dp">
@@ -22,45 +21,37 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
+            android:layout_marginTop="30dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:text="@string/all_assets"
+            android:text="@string/assets"
             android:textColor="@android:color/white"
-            android:textSize="40sp" />
-
-    </RelativeLayout>
-
-    <!-- Assets list layout -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginTop="-70dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp">
+            android:textSize="35sp" />
 
         <!-- Create new asset button -->
         <com.balysv.materialripple.MaterialRippleLayout
             android:layout_width="150dp"
-            android:layout_height="40dp">
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="7dp"
+            android:layout_marginBottom="10dp">
 
             <LinearLayout
                 android:id="@+id/btn_create_new"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@drawable/btn_rounded"
                 android:orientation="horizontal"
                 android:paddingBottom="5dp"
                 android:paddingTop="5dp"
-                android:weightSum="3"
-                android:background="@drawable/btn_rounded">
+                android:weightSum="3">
 
                 <ImageView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:padding="2dp"
-                    app:srcCompat="@drawable/ic_add"/>
+                    app:srcCompat="@drawable/ic_add" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -69,12 +60,19 @@
                     android:gravity="center_vertical"
                     android:text="@string/create_new"
                     android:textColor="@android:color/white"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
         </com.balysv.materialripple.MaterialRippleLayout>
 
-    </LinearLayout>
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_list_asset"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
 
 </LinearLayout>

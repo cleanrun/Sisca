@@ -88,4 +88,21 @@
     <string name="list_asset">List Asset</string>
     <string name="view_detail">View Detail</string>
 
+    <string name="form_create_new_asset">Form Create New Asset</string>
+    <string name="save">Save</string>
+
+    <string name="asset_name">Asset Name</string>
+    <string name="asset_tag_1">Asset Tag</string>
+    <string name="model">Model</string>
+    <string name="serial_1">Serial</string>
+    <string name="purchase_date">Purchase Date</string>
+    <string name="order_number">Order Number</string>
+    <string name="purchase_cost">Purchase Cost</string>
+    <string name="warranty_months">Warranty Months</string>
+    <string name="notes">Notes</string>
+    <string name="image">Image</string>
+    <string name="upload">Upload</string>
+    
+    <string name="form_status_label">Form Status Label</string>
+
 </resources>

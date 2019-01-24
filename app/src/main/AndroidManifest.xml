@@ -53,7 +53,10 @@
         <activity
             android:name=".Activity.HomeNavigationActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Activity.DetailAssetsActivity"></activity>
+        <activity android:name=".Activity.DetailAssetsActivity" />
+        <activity android:name=".Activity.AssetsListCategoryActivity" />
+        <activity android:name=".Activity.FormNewAssetActivity" />
+        <activity android:name=".Activity.FormNewStatusLabelActivity"></activity>
     </application>
 
 </manifest>
