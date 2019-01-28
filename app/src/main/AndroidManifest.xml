@@ -59,7 +59,11 @@
         <activity android:name=".Activity.FormNewStatusLabelActivity" />
         <activity android:name=".Activity.FormNewAssetsModelActivity" />
         <activity android:name=".Activity.FormNewCategoryActivity" />
-        <activity android:name=".Activity.FormNewManufacturerActivity"></activity>
+        <activity android:name=".Activity.FormNewManufacturerActivity" />
+        <activity android:name=".Activity.FormNewSupplierActivity" />
+        <activity android:name=".Activity.SplashScreenActivity" />
+        <activity android:name=".Activity.StatusLabelActivity" />
+        <activity android:name=".Activity.ModelAssetsActivity"></activity>
     </application>
 
 </manifest>

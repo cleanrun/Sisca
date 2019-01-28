@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "D:\\Documents\\Projects\\SISCAProject\\Sisca\\DeviceList\\build\\intermediates\\res\\merged\\release\\layout-v21\\notification_template_icon_group.xml",
+        "source": "C:\\Users\\ASUS\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.3.1.aar\\fa499a062c67b74a5cd43991f708c623\\res\\layout-v21\\notification_template_icon_group.xml"
+    },
+    {
+        "merged": "D:\\Documents\\Projects\\SISCAProject\\Sisca\\DeviceList\\build\\intermediates\\res\\merged\\release\\layout-v21\\notification_action.xml",
+        "source": "C:\\Users\\ASUS\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.3.1.aar\\fa499a062c67b74a5cd43991f708c623\\res\\layout-v21\\notification_action.xml"
+    },
+    {
+        "merged": "D:\\Documents\\Projects\\SISCAProject\\Sisca\\DeviceList\\build\\intermediates\\res\\merged\\release\\layout-v21\\notification_action_tombstone.xml",
+        "source": "C:\\Users\\ASUS\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.3.1.aar\\fa499a062c67b74a5cd43991f708c623\\res\\layout-v21\\notification_action_tombstone.xml"
+    },
+    {
+        "merged": "D:\\Documents\\Projects\\SISCAProject\\Sisca\\DeviceList\\build\\intermediates\\res\\merged\\release\\layout-v21\\notification_template_custom_big.xml",
+        "source": "C:\\Users\\ASUS\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.3.1.aar\\fa499a062c67b74a5cd43991f708c623\\res\\layout-v21\\notification_template_custom_big.xml"
+    }
+]
