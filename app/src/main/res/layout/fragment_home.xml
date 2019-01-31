@@ -190,7 +190,13 @@
             android:layout_width="match_parent"
             android:layout_height="270dp">
 
-            <!-- Pie chart on progress -->
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/pie_chart"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+            </com.github.mikephil.charting.charts.PieChart>
 
         </RelativeLayout>
 

@@ -14,7 +14,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.pixplicity.easyprefs.library.Prefs;
 import com.siscaproject.sisca.R;
+import com.siscaproject.sisca.Utilities.Config;
 import com.siscaproject.sisca.Utilities.ViewAnimation;
 
 import java.text.SimpleDateFormat;
@@ -41,6 +43,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     @BindView(R.id.lyt_extra_feature) LinearLayout lytExtraFeature;
 
     @BindView(R.id.tv_todays_date) TextView todaysDate;
+    @BindView(R.id.tv_welcome_user) TextView welcomeUser;
 
     @BindView(R.id.toolbar_home) Toolbar toolbar;
 
@@ -57,6 +60,15 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         btnToggleFeatures.setOnClickListener(this);
         btnToggleProfile.setOnClickListener(this);
         btnToggleSettings.setOnClickListener(this);
+
+        new Prefs.Builder()
+                .setContext(this)
+                .setMode(android.content.ContextWrapper.MODE_PRIVATE)
+                .setPrefsName(getPackageName())
+                .setUseDefaultSharedPreference(true)
+                .build();
+
+        //welcomeUser.setText(Prefs.getString("access_token", "null"));
 
         continuousDate();
     }

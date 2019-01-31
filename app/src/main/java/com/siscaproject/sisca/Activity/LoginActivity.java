@@ -1,6 +1,7 @@
 package com.siscaproject.sisca.Activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.design.widget.Snackbar;
@@ -17,11 +18,13 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.GravityEnum;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.pixplicity.easyprefs.library.Prefs;
 import com.scottyab.showhidepasswordedittext.ShowHidePasswordEditText;
 import com.siscaproject.sisca.Model.Account;
 import com.siscaproject.sisca.Model.LoginAuth;
 import com.siscaproject.sisca.R;
 import com.siscaproject.sisca.Utilities.APIProperties;
+import com.siscaproject.sisca.Utilities.Config;
 import com.siscaproject.sisca.Utilities.UserService;
 
 import butterknife.BindView;
@@ -58,6 +61,13 @@ public class LoginActivity extends AppCompatActivity{
         ButterKnife.bind(this);
 
         userService = APIProperties.getUserService();
+
+        new Prefs.Builder()
+                .setContext(this)
+                .setMode(android.content.ContextWrapper.MODE_PRIVATE)
+                .setPrefsName(getPackageName())
+                .setUseDefaultSharedPreference(true)
+                .build();
     }
 
     @OnClick ({R.id.btn_login, R.id.textview_forgot_password})
@@ -66,8 +76,8 @@ public class LoginActivity extends AppCompatActivity{
 
         switch(id){
             case R.id.btn_login:
-                //logIn();
-                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                logIn();
+                //startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                 break;
             case R.id.textview_forgot_password:
                 Snackbar.make(parent_view, "Forgot Password", Snackbar.LENGTH_SHORT).show();
@@ -116,12 +126,20 @@ public class LoginActivity extends AppCompatActivity{
                     if (response.body().getToken_type().equals("Bearer")) {
                         Log.i(TAG, "getLogin, Authorized access");
                         Log.i(TAG, "getLogin, access_token: " + response.body().getAccess_token().toString());
-                        Log.i(TAG, "getLogin, expires_at" + response.body().getExpires_at().toString());
+                        Log.i(TAG, "getLogin, expires_at: " + response.body().getExpires_at().toString());
+
+                        Prefs.putString("access_token", response.body().getAccess_token().toString());
+                        Prefs.putString("token_type", response.body().getToken_type().toString());
+                        Prefs.putString("expires_at", response.body().getExpires_at().toString());
+
+                        startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                        finish();
                     } else {
                         Log.e(TAG, "getLogin, Unauthorized access" + response.body().getToken_type().toString());
                     }
                 } catch (Exception e) {
                     Log.e(TAG, "getLogin exception " + e.getMessage());
+                    Toast.makeText(LoginActivity.this, "Wrong Email or Password", Toast.LENGTH_SHORT).show();
                 }
                 dismissDialog();
             }
