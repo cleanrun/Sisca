@@ -14,21 +14,14 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
-import com.siscaproject.sisca.Activity.BluetoothActivity;
-import com.siscaproject.sisca.Activity.QRActivity;
-import com.siscaproject.sisca.Activity.ExtraActivity;
 import com.siscaproject.sisca.R;
 
 import java.util.ArrayList;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class HomeFragment extends Fragment{
     private static final String TAG = "HomeFragment";

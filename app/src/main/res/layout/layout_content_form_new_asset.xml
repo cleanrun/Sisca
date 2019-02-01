@@ -10,7 +10,7 @@
     <!-- Assets Name layout -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:orientation="horizontal"
         android:weightSum="5">
 
@@ -25,14 +25,15 @@
             android:id="@+id/et_asset_name"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="3.3"/>
+            android:layout_weight="3.3"
+            android:textSize="12sp"/>
 
     </LinearLayout>
 
     <!-- Assets Tag layout -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:orientation="horizontal"
         android:weightSum="5">
 
@@ -41,20 +42,22 @@
             android:layout_height="match_parent"
             android:layout_weight="1.7"
             android:gravity="center_vertical"
-            android:text="@string/asset_tag_1"/>
+            android:text="@string/asset_tag_1"
+            />
 
         <EditText
             android:id="@+id/et_asset_tag"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="3.3"/>
+            android:layout_weight="3.3"
+            android:textSize="12sp"/>
 
     </LinearLayout>
 
     <!-- Company layout -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:orientation="horizontal"
         android:weightSum="5">
 
@@ -78,7 +81,7 @@
     <!-- Model layout -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:orientation="horizontal"
         android:weightSum="5">
 
@@ -102,7 +105,7 @@
     <!-- Status Label layout -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:orientation="horizontal"
         android:weightSum="5">
 
@@ -126,7 +129,7 @@
     <!-- Serial layout -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:orientation="horizontal"
         android:weightSum="5">
 
@@ -141,14 +144,15 @@
             android:id="@+id/et_serial"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="3.3"/>
+            android:layout_weight="3.3"
+            android:textSize="12sp"/>
 
     </LinearLayout>
 
     <!-- Purchase Date layout -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:orientation="horizontal"
         android:weightSum="5">
 
@@ -163,14 +167,15 @@
             android:id="@+id/et_purchase_date"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="3.3"/>
+            android:layout_weight="3.3"
+            android:textSize="12sp"/>
 
     </LinearLayout>
 
     <!-- Supplier layout -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:orientation="horizontal"
         android:weightSum="5">
 
@@ -185,14 +190,15 @@
             android:id="@+id/et_supplier"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="3.3"/>
+            android:layout_weight="3.3"
+            android:textSize="12sp"/>
 
     </LinearLayout>
 
     <!-- Order Number layout -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:orientation="horizontal"
         android:weightSum="5">
 
@@ -207,14 +213,15 @@
             android:id="@+id/et_order_number"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="3.3"/>
+            android:layout_weight="3.3"
+            android:textSize="12sp"/>
 
     </LinearLayout>
 
     <!-- Purchase Cost layout -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:orientation="horizontal"
         android:weightSum="5">
 
@@ -229,14 +236,15 @@
             android:id="@+id/et_purchase_cost"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="3.3"/>
+            android:layout_weight="3.3"
+            android:textSize="12sp"/>
 
     </LinearLayout>
 
     <!-- Warranty Months layout -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:orientation="horizontal"
         android:weightSum="5">
 
@@ -251,7 +259,8 @@
             android:id="@+id/et_warranty_months"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="3.3"/>
+            android:layout_weight="3.3"
+            android:textSize="12sp"/>
 
     </LinearLayout>
 
@@ -266,7 +275,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1.7"
-            android:layout_marginTop="5dp"
+            android:paddingTop="10dp"
             android:text="@string/notes"/>
 
         <EditText
@@ -276,14 +285,15 @@
             android:layout_weight="3.3"
             android:inputType="textMultiLine"
             android:maxLines="8"
-            android:scrollbars="vertical"/>
+            android:scrollbars="vertical"
+            android:textSize="12sp"/>
 
     </LinearLayout>
 
     <!-- Location layout -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:orientation="horizontal"
         android:weightSum="5">
 
@@ -307,7 +317,7 @@
     <!-- Image layout -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:orientation="horizontal"
         android:weightSum="5">
 
@@ -321,12 +331,13 @@
         <Button
             android:id="@+id/btn_upload"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="30dp"
             android:layout_weight="1.5"
+            android:layout_gravity="center_vertical"
             android:background="@drawable/btn_rounded"
             android:text="@string/upload"
             android:textColor="@android:color/white"
-            android:textSize="12sp"/>
+            android:textSize="12sp" />
 
     </LinearLayout>
 

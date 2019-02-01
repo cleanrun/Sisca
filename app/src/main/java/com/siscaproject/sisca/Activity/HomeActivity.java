@@ -68,7 +68,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 .setUseDefaultSharedPreference(true)
                 .build();
 
-        //welcomeUser.setText(Prefs.getString("access_token", "null"));
+        welcomeUser.setText(Prefs.getString("access_token", "null"));
 
         continuousDate();
     }

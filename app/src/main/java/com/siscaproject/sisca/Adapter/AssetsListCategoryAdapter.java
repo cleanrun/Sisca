@@ -16,8 +16,8 @@ import com.siscaproject.sisca.R;
 
 import java.util.ArrayList;
 
-
-public class AssetsListCategoryAdapter extends RecyclerView.Adapter<AssetsListCategoryAdapter.ItemHolder> implements View.OnClickListener{
+public class AssetsListCategoryAdapter extends RecyclerView.Adapter<AssetsListCategoryAdapter.ItemHolder>
+        implements View.OnClickListener{
     private static final String TAG = "AssetsListCategoryAdapter";
 
     private ArrayList<AssetStock> listData;

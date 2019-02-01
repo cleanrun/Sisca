@@ -15,7 +15,6 @@ public class APIProperties {
     public static final String SETTING_MANUFACTURER_URL = Config.API_URL + "setting/manufacturer";
     public static final String SETTING_DEPRECIATION_URL = Config.API_URL + "setting/depreciation";
 
-
     public static UserService getUserService(){
         return RetrofitClient.getClient(Config.API_URL).create(UserService.class);
     }
