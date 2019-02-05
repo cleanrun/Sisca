@@ -42,4 +42,9 @@ public class Label {
     public String getNotes() {
         return notes;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

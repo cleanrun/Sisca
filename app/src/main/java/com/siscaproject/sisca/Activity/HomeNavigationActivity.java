@@ -12,13 +12,14 @@ import com.siscaproject.sisca.Fragment.AssetsFragment;
 import com.siscaproject.sisca.Fragment.HomeFragment;
 import com.siscaproject.sisca.Fragment.ProfileFragment;
 import com.siscaproject.sisca.Fragment.ReportFragment;
+import com.siscaproject.sisca.Fragment.SearchAssetFragment;
 import com.siscaproject.sisca.Fragment.SettingsFragment;
 import com.siscaproject.sisca.R;
 
 public class HomeNavigationActivity extends AppCompatActivity
     implements AssetsFragment.OnFragmentInteractionListener, HomeFragment.OnFragmentInteractionListener,
                 ProfileFragment.OnFragmentInteractionListener, ReportFragment.OnFragmentInteractionListener,
-                SettingsFragment.OnFragmentInteractionListener{
+                SettingsFragment.OnFragmentInteractionListener, SearchAssetFragment.OnFragmentInteractionListener{
 
     private static final String TAG = "HomeNavigationActivity";
 
@@ -52,6 +53,7 @@ public class HomeNavigationActivity extends AppCompatActivity
                         break;
                     case R.id.nav_assets:
                         selectedFragment = AssetsFragment.newInstance();
+                        //selectedFragment = SearchAssetFragment.newInstance();
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.nsv_container_home, selectedFragment).commit();
                         setTitle("Assets");

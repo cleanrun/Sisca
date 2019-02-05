@@ -55,7 +55,8 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".Activity.DetailAssetsActivity" />
         <activity android:name=".Activity.AssetsListCategoryActivity" />
-        <activity android:name=".Activity.FormNewAssetActivity" />
+        <activity android:name=".Activity.FormNewAssetActivity"
+            android:theme="@style/StandardTheme"/>
         <activity android:name=".Activity.FormNewStatusLabelActivity" />
         <activity android:name=".Activity.FormNewAssetsModelActivity" />
         <activity android:name=".Activity.FormNewCategoryActivity" />

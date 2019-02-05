@@ -28,6 +28,15 @@ public class AssetsListCategoryAdapter extends RecyclerView.Adapter<AssetsListCa
         this.activityContext = activityContext;
     }
 
+    public AssetsListCategoryAdapter(Context activityContext) {
+        this.activityContext = activityContext;
+    }
+
+    public void setListData(ArrayList<Asset> listData) {
+        this.listData = listData;
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public ItemHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -51,7 +60,8 @@ public class AssetsListCategoryAdapter extends RecyclerView.Adapter<AssetsListCa
 
     @Override
     public int getItemCount() {
-        return listData.size();
+        if(listData.isEmpty()) return 0;
+        else return listData.size();
     }
 
     @Override

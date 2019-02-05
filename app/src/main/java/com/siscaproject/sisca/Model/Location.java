@@ -97,4 +97,9 @@ public class Location {
     public String getZip() {
         return zip;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

@@ -11,6 +11,10 @@ import com.siscaproject.sisca.Model.LoginAuth;
 import com.siscaproject.sisca.Model.Manufacturer;
 import com.siscaproject.sisca.Model.Model;
 import com.siscaproject.sisca.Model.ResponseAsset;
+import com.siscaproject.sisca.Model.ResponseCompany;
+import com.siscaproject.sisca.Model.ResponseLabel;
+import com.siscaproject.sisca.Model.ResponseLocation;
+import com.siscaproject.sisca.Model.ResponseModel;
 import com.siscaproject.sisca.Model.Supplier;
 import com.siscaproject.sisca.Model.User;
 
@@ -122,7 +126,7 @@ public interface UserService {
 
     // Company Calls -------------------------------------------------------------------------------
     @GET("setting/company")
-    Call<Company> indexCompany();
+    Call<ResponseCompany> indexCompany(@Header("Authorization") String auth, @Header("Accept") String accept);
 
     @FormUrlEncoded
     @POST("setting/company")
@@ -139,7 +143,7 @@ public interface UserService {
 
     // Label Calls ---------------------------------------------------------------------------------
     @GET("setting/label")
-    Call<Label> indexLabel();
+    Call<ResponseLabel> indexLabel(@Header("Authorization") String auth, @Header("Accept") String accept);
 
     @FormUrlEncoded
     @POST("setting/label")
@@ -156,7 +160,7 @@ public interface UserService {
 
     // Model Calls ---------------------------------------------------------------------------------
     @GET("setting/model")
-    Call<Model> indexModel();
+    Call<ResponseModel> indexModel(@Header("Authorization") String auth, @Header("Accept") String accept);
 
     @FormUrlEncoded
     @POST("setting/model")
@@ -173,7 +177,7 @@ public interface UserService {
 
     // Location Calls ------------------------------------------------------------------------------
     @GET("setting/location")
-    Call<Location> indexLocation();
+    Call<ResponseLocation> indexLocation(@Header("Authorization") String auth, @Header("Accept") String accept);
 
     @FormUrlEncoded
     @POST("setting/location")
