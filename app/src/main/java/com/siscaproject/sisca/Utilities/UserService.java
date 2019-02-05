@@ -1,6 +1,5 @@
 package com.siscaproject.sisca.Utilities;
 
-import com.pixplicity.easyprefs.library.Prefs;
 import com.siscaproject.sisca.Model.Asset;
 import com.siscaproject.sisca.Model.AssetStock;
 import com.siscaproject.sisca.Model.Category;
@@ -11,18 +10,20 @@ import com.siscaproject.sisca.Model.Location;
 import com.siscaproject.sisca.Model.LoginAuth;
 import com.siscaproject.sisca.Model.Manufacturer;
 import com.siscaproject.sisca.Model.Model;
-import com.siscaproject.sisca.Model.ResponseAssetStock;
+import com.siscaproject.sisca.Model.ResponseAsset;
 import com.siscaproject.sisca.Model.Supplier;
 import com.siscaproject.sisca.Model.User;
+
+import java.util.HashMap;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.Field;
+import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
-import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Query;
@@ -52,11 +53,12 @@ public interface UserService {
 
     // Asset Fixed Calls ---------------------------------------------------------------------------
     @GET("asset/fixed")
-    Call<Asset> indexFixed();
+    Call<ResponseAsset> indexFixed(@Header("Authorization") String auth, @Header("Accept") String accept);
 
     @FormUrlEncoded
     @POST("asset/fixed")
-    Call<Asset> storeFixed(@Body Asset asset);
+    Call<Asset> storeFixed(@Header("Authorization") String auth, @Header("Accept") String accept,
+                           @FieldMap HashMap<String, String> asset);
 
     @GET("asset/fixed/{fixed}")
     Call<Asset> showFixed();
@@ -86,7 +88,7 @@ public interface UserService {
 
     // Asset Stock Calls ---------------------------------------------------------------------------
     @GET("asset/stock")
-    Call<ResponseAssetStock> indexStock(@Header("Authorization") String auth, @Header("Accept") String accept);
+    Call<ResponseAsset> indexStock(@Header("Authorization") String auth, @Header("Accept") String accept);
 
     @FormUrlEncoded
     @POST("asset/stock")

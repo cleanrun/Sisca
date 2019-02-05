@@ -31,6 +31,7 @@
     <string name="register_all_item">Register All Items</string>
 
     <string name="search_asset">Search Asset</string>
+    <string name="filter_asset">Filter Asset</string>
     <string name="no_results">No Results</string>
     <string name="try_another_keyword">Try searching with another keyword</string>
     <string name="id">ID</string>

@@ -4,6 +4,10 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Label {
+    @SerializedName("id")
+    @Expose
+    private String id;
+
     @SerializedName("name")
     @Expose
     private String name;
@@ -16,10 +20,15 @@ public class Label {
     @Expose
     private String notes;
 
-    public Label(String name, String type, String notes) {
+    public Label(String id, String name, String type, String notes) {
+        this.id = id;
         this.name = name;
         this.type = type;
         this.notes = notes;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getName() {

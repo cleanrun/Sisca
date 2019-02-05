@@ -8,9 +8,9 @@ public class Asset {
     @Expose
     private String name;
 
-    @SerializedName("asset_tag")
+    @SerializedName("asset_id")
     @Expose
-    private String asset_tag;
+    private String asset_id;
 
     @SerializedName("company_id")
     @Expose
@@ -64,11 +64,12 @@ public class Asset {
     @Expose
     private String assigned_to;
 
-    public Asset(String name, String asset_tag, String company_id, String model_id, String label_id, String serial,
-                 String purchase_date, String supplier_id, String order_number, String purchase_cost, String warranty_months,
-                 String notes, String location_id, String image, String assigned_to) {
+    public Asset(String name, String asset_id, String company_id, String model_id, String label_id,
+                 String serial, String purchase_date, String supplier_id, String order_number,
+                 String purchase_cost, String warranty_months, String notes, String location_id,
+                 String image, String assigned_to) {
         this.name = name;
-        this.asset_tag = asset_tag;
+        this.asset_id = asset_id;
         this.company_id = company_id;
         this.model_id = model_id;
         this.label_id = label_id;
@@ -88,8 +89,8 @@ public class Asset {
         return name;
     }
 
-    public String getAsset_tag() {
-        return asset_tag;
+    public String getAsset_id() {
+        return asset_id;
     }
 
     public String getCompany_id() {

@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.siscaproject.sisca.Model.AssetStock;
+import com.siscaproject.sisca.Model.Asset;
 import com.siscaproject.sisca.R;
 
 import java.util.ArrayList;
@@ -20,10 +20,10 @@ public class AssetsListCategoryAdapter extends RecyclerView.Adapter<AssetsListCa
         implements View.OnClickListener{
     private static final String TAG = "AssetsListCategoryAdapter";
 
-    private ArrayList<AssetStock> listData;
+    private ArrayList<Asset> listData;
     private Context activityContext;
 
-    public AssetsListCategoryAdapter(ArrayList<AssetStock> listData, Context activityContext) {
+    public AssetsListCategoryAdapter(ArrayList<Asset> listData, Context activityContext) {
         this.listData = listData;
         this.activityContext = activityContext;
     }
@@ -41,9 +41,9 @@ public class AssetsListCategoryAdapter extends RecyclerView.Adapter<AssetsListCa
         // holder.iv_asset.setImageDrawable(); On progress
 
         holder.tv_name.setText(listData.get(position).getName());
-        holder.tv_manufacturer.setText(listData.get(position).getManufacturer_id());
-        holder.tv_quantity.setText(listData.get(position).getQuantity());
-        holder.tv_status.setText(listData.get(position).getModel_no()); // Still on Progress
+        holder.tv_manufacturer.setText(listData.get(position).getAsset_id());
+        holder.tv_quantity.setText(listData.get(position).getPurchase_cost());
+        //holder.tv_status.setText(listData.get(position).getModel_no()); // Still on Progress
 
         holder.btn_delete.setOnClickListener(this);
         holder.btn_edit.setOnClickListener(this);

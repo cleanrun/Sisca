@@ -4,6 +4,10 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Supplier {
+    @SerializedName("id")
+    @Expose
+    private String id;
+
     @SerializedName("name")
     @Expose
     private String name;
@@ -56,8 +60,9 @@ public class Supplier {
     @Expose
     private String image;
 
-    public Supplier(String name, String address, String city, String state, String country, String phone, String fax,
-                    String email, String contact, String notes, String zip, String url, String image) {
+    public Supplier(String id, String name, String address, String city, String state, String country,
+                    String phone, String fax, String email, String contact, String notes, String zip, String url, String image) {
+        this.id = id;
         this.name = name;
         this.address = address;
         this.city = city;
@@ -71,6 +76,10 @@ public class Supplier {
         this.zip = zip;
         this.url = url;
         this.image = image;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getName() {

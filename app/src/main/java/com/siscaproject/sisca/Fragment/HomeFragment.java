@@ -22,7 +22,6 @@ import com.siscaproject.sisca.R;
 
 import java.util.ArrayList;
 
-
 public class HomeFragment extends Fragment{
     private static final String TAG = "HomeFragment";
 

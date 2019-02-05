@@ -4,6 +4,10 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Model {
+    @SerializedName("id")
+    @Expose
+    private String id;
+
     @SerializedName("name")
     @Expose
     private String name;
@@ -32,8 +36,9 @@ public class Model {
     @Expose
     private String image;
 
-    public Model(String name, String model_number, String manufacturer_id, String category_id, String depreciation_id,
-                 String notes, String image) {
+    public Model(String id, String name, String model_number, String manufacturer_id, String category_id,
+                 String depreciation_id, String notes, String image) {
+        this.id = id;
         this.name = name;
         this.model_number = model_number;
         this.manufacturer_id = manufacturer_id;
@@ -41,6 +46,10 @@ public class Model {
         this.depreciation_id = depreciation_id;
         this.notes = notes;
         this.image = image;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getName() {

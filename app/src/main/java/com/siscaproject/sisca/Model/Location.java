@@ -4,6 +4,10 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Location {
+    @SerializedName("id")
+    @Expose
+    private String id;
+
     @SerializedName("name")
     @Expose
     private String name;
@@ -40,8 +44,9 @@ public class Location {
     @Expose
     private String zip;
 
-    public Location(String name, String parent_id, String manager_id, String address, String city, String state,
-                    String country, String phone, String zip) {
+    public Location(String id, String name, String parent_id, String manager_id, String address, String city,
+                    String state, String country, String phone, String zip) {
+        this.id = id;
         this.name = name;
         this.parent_id = parent_id;
         this.manager_id = manager_id;
@@ -51,6 +56,10 @@ public class Location {
         this.country = country;
         this.phone = phone;
         this.zip = zip;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getName() {

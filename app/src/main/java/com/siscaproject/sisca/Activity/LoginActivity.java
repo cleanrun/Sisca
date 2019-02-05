@@ -77,7 +77,7 @@ public class LoginActivity extends AppCompatActivity{
         switch(id){
             case R.id.btn_login:
                 logIn();
-                //startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                //startActivity(new Intent(LoginActivity.this, HomeNavigationActivity.class));
                 break;
             case R.id.textview_forgot_password:
                 Snackbar.make(parent_view, "Forgot Password", Snackbar.LENGTH_SHORT).show();

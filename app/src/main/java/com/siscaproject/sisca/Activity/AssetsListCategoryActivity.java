@@ -1,6 +1,8 @@
 package com.siscaproject.sisca.Activity;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,13 +13,18 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.GravityEnum;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.siscaproject.sisca.Adapter.AssetsListCategoryAdapter;
-import com.siscaproject.sisca.Model.AssetStock;
-import com.siscaproject.sisca.Model.ResponseAssetStock;
+import com.siscaproject.sisca.Model.Asset;
+import com.siscaproject.sisca.Model.ResponseAsset;
 import com.siscaproject.sisca.R;
 import com.siscaproject.sisca.Utilities.APIProperties;
 import com.siscaproject.sisca.Utilities.UserService;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,6 +40,9 @@ public class AssetsListCategoryActivity extends AppCompatActivity {
     @BindView(R.id.btn_create_new) LinearLayout btn_create_new;
     @BindView(R.id.rv_list_asset) RecyclerView recyclerView;
     @BindView(R.id.progress_bar) ProgressBar progressBar;
+    @BindView(R.id.swprefresh) SwipeRefreshLayout refresh;
+
+    private MaterialDialog createDialog;
 
     private AssetsListCategoryAdapter adapter;
 
@@ -53,6 +63,15 @@ public class AssetsListCategoryActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        getAsset();
+
+        refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getAsset();
+            }
+        });
+
         new Prefs.Builder()
                 .setContext(this)
                 .setMode(android.content.ContextWrapper.MODE_PRIVATE)
@@ -65,14 +84,38 @@ public class AssetsListCategoryActivity extends AppCompatActivity {
     public void onClick(View view){
         if(view.getId() == R.id.btn_create_new){
             try{
-                //getAsset();
-                Intent intent = new Intent(AssetsListCategoryActivity.this, FormNewAssetActivity.class);
-                //intent.putExtra("asset_tag", "1234567");
-                startActivity(intent);
+                showCreateDialog();
             }catch(Exception e){
                 Log.e(TAG, "onClick: exception = " + e.getMessage() );
             }
         }
+    }
+
+    private void showCreateDialog(){
+        Log.i(TAG, "showCreateDialog: called");
+        
+        MaterialDialog.Builder builder = new MaterialDialog.Builder(AssetsListCategoryActivity.this)
+                .content("Please select create method.")
+                .contentGravity(GravityEnum.CENTER)
+                .autoDismiss(true)
+                .positiveText("Bluetooth Reader")
+                .negativeText("Asset Form")
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        startActivity(new Intent(AssetsListCategoryActivity.this, BluetoothActivity.class));
+                    }
+                })
+                .onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        startActivity(new Intent(AssetsListCategoryActivity.this, FormNewAssetActivity.class));
+                    }
+                })
+                .canceledOnTouchOutside(true);
+
+        createDialog = builder.build();
+        createDialog.show();
     }
 
     private void showProgressBar(){
@@ -92,26 +135,29 @@ public class AssetsListCategoryActivity extends AppCompatActivity {
         String accept = "application/json";
 
         showProgressBar();
-
-        Call<ResponseAssetStock> call = userService.indexStock(auth, accept);
-        call.enqueue(new Callback<ResponseAssetStock>() {
+        Call<ResponseAsset> call = userService.indexFixed(auth, accept);
+        call.enqueue(new Callback<ResponseAsset>() {
             @Override
-            public void onResponse(Call<ResponseAssetStock> call, Response<ResponseAssetStock> response) {
+            public void onResponse(Call<ResponseAsset> call, Response<ResponseAsset> response) {
                 if(response.isSuccessful()){
                     int total = response.body().getTotal();
                     Log.i(TAG, "onResponse: total " + total);
+
+                    ArrayList<Asset> rows = response.body().getRows();
+                    AssetsListCategoryAdapter rvAdapter = new AssetsListCategoryAdapter(rows, getApplicationContext());
+                    recyclerView.setAdapter(rvAdapter);
                 }
                 else{
-                    Log.i(TAG, "onResponse: else isSuccessful");
+                    Log.i(TAG, "onResponse: else");
                 }
                 hideProgressBar();
+                refresh.setRefreshing(false);
             }
 
             @Override
-            public void onFailure(Call<ResponseAssetStock> call, Throwable t) {
+            public void onFailure(Call<ResponseAsset> call, Throwable t) {
                 Log.e(TAG, "onFailure: " + t.getMessage() );
             }
         });
     }
-
 }

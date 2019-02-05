@@ -205,7 +205,7 @@
             android:layout_marginRight="35dp"
             android:background="@drawable/btn_rounded"
             android:text="@string/see_more"
-            android:textColor="@android:color/white"/>
+            android:textColor="@android:color/white" />
 
     </LinearLayout>
 
