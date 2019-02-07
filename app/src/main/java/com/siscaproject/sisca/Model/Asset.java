@@ -85,6 +85,10 @@ public class Asset {
         this.assigned_to = assigned_to;
     }
 
+    public Asset(){
+
+    }
+
     public String getName() {
         return name;
     }
@@ -143,5 +147,65 @@ public class Asset {
 
     public String getAssigned_to() {
         return assigned_to;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAsset_id(String asset_id) {
+        this.asset_id = asset_id;
+    }
+
+    public void setCompany_id(String company_id) {
+        this.company_id = company_id;
+    }
+
+    public void setModel_id(String model_id) {
+        this.model_id = model_id;
+    }
+
+    public void setLabel_id(String label_id) {
+        this.label_id = label_id;
+    }
+
+    public void setSerial(String serial) {
+        this.serial = serial;
+    }
+
+    public void setPurchase_date(String purchase_date) {
+        this.purchase_date = purchase_date;
+    }
+
+    public void setSupplier_id(String supplier_id) {
+        this.supplier_id = supplier_id;
+    }
+
+    public void setOrder_number(String order_number) {
+        this.order_number = order_number;
+    }
+
+    public void setPurchase_cost(String purchase_cost) {
+        this.purchase_cost = purchase_cost;
+    }
+
+    public void setWarranty_months(String warranty_months) {
+        this.warranty_months = warranty_months;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+    public void setLocation_id(String location_id) {
+        this.location_id = location_id;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public void setAssigned_to(String assigned_to) {
+        this.assigned_to = assigned_to;
     }
 }

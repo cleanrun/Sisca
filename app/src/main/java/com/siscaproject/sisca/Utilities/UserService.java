@@ -59,10 +59,9 @@ public interface UserService {
     @GET("asset/fixed")
     Call<ResponseAsset> indexFixed(@Header("Authorization") String auth, @Header("Accept") String accept);
 
-    @FormUrlEncoded
+    //@FormUrlEncoded
     @POST("asset/fixed")
-    Call<Asset> storeFixed(@Header("Authorization") String auth, @Header("Accept") String accept,
-                           @FieldMap HashMap<String, String> asset);
+    Call<Asset> storeFixed(@Header("Authorization") String auth, @Header("Accept") String accept, @Body Asset asset);
 
     @GET("asset/fixed/{fixed}")
     Call<Asset> showFixed();

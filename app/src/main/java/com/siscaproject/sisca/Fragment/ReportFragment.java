@@ -7,11 +7,21 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.siscaproject.sisca.R;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class ReportFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
+
+    @BindView(R.id.btn_audit_log) LinearLayout btn_audit_log;
+    @BindView(R.id.btn_depreciation) LinearLayout btn_depreciation;
+    @BindView(R.id.btn_assets_maintenance) LinearLayout btn_assets_maintenance;
 
     public ReportFragment() {
         // Required empty public constructor
@@ -28,10 +38,29 @@ public class ReportFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_report, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_report, container, false);
+        ButterKnife.bind(this, view);
+
+        return view;
+    }
+
+    @OnClick({R.id.btn_audit_log, R.id.btn_assets_maintenance, R.id.btn_depreciation})
+    public void onClick(View view){
+        int id = view.getId();
+        switch(id){
+            case R.id.btn_audit_log:
+                Toast.makeText(getActivity(), "Audit Log", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.btn_depreciation:
+                Toast.makeText(getActivity(), "Depreciation", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.btn_assets_maintenance:
+                Toast.makeText(getActivity(), "Assets Maintenance", Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                break;
+        }
     }
 
     public void onButtonPressed(Uri uri) {

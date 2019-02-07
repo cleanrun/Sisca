@@ -160,4 +160,10 @@ public class AssetsListCategoryActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getAsset();
+    }
 }

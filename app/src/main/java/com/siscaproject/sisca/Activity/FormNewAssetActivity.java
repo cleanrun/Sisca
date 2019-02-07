@@ -4,11 +4,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.afollestad.materialdialogs.GravityEnum;
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -27,8 +27,6 @@ import com.siscaproject.sisca.Utilities.APIProperties;
 import com.siscaproject.sisca.Utilities.UserService;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -118,7 +116,7 @@ public class FormNewAssetActivity extends AppCompatActivity {
 
     private void showDialog(){
         MaterialDialog.Builder builder = new MaterialDialog.Builder(FormNewAssetActivity.this)
-                .content("Logging in..")
+                .content("Sending data..")
                 .progress(true, 0)
                 .contentGravity(GravityEnum.CENTER)
                 .autoDismiss(true)
@@ -153,35 +151,43 @@ public class FormNewAssetActivity extends AppCompatActivity {
         String statusLabel = labelObject.getId();
         String location = locationObject.getId();
 
-        HashMap<String, String> params = new HashMap<>();
-        params.put("name", name);
-        params.put("asset_tag", assetTag);
-        params.put("company_id", company);
-        params.put("model_id", model);
-        params.put("label_id", statusLabel);
-        params.put("serial", serial);
-        params.put("purchase_date", purchaseDate);
-        params.put("supplier_id", supplier);
-        params.put("order_number", orderNumber);
-        params.put("purchase_cost", purchaseCost);
-        params.put("warranty_months", warrantyMonths);
-        params.put("notes", notes);
-        params.put("location_id", location);
-        //params.put("image", "image.png");
-        params.put("assigned_to", "admin");
+        Asset asset = new Asset();
+        asset.setName(name);
+        asset.setAsset_id(assetTag);
+        asset.setSerial(serial);
+        asset.setPurchase_date(purchaseDate);
+        asset.setSupplier_id(supplier);
+        asset.setOrder_number(orderNumber);
+        asset.setPurchase_cost(purchaseCost);
+        asset.setWarranty_months(warrantyMonths);
+        asset.setNotes(notes);
+        asset.setCompany_id(company);
+        asset.setModel_id(model);
+        asset.setLabel_id(statusLabel);
+        asset.setLocation_id(location);
 
-        addAsset(params);
+        addAsset(asset);
     }
 
-    // On progress
-    private void addAsset(HashMap<String, String> params){
+    // TODO : On progress, success message still false. Check frequently for updates
+    private void addAsset(Asset asset){
         showDialog();
-        Call<Asset> call = userService.storeFixed(auth, accept, params);
+        Call<Asset> call = userService.storeFixed(auth, accept, asset);
         call.enqueue(new Callback<Asset>() {
             @Override
             public void onResponse(Call<Asset> call, Response<Asset> response) {
                 dismissDialog();
-                Log.i(TAG, "onResponse: " + response.toString());
+                if(response.isSuccessful()){
+                    Log.i(TAG, "addAsset onResponse: successful" + response.body());
+                    Toast.makeText(FormNewAssetActivity.this, "Data successfully inputted!", Toast.LENGTH_SHORT).show();
+                }else{
+                    try {
+                        Log.e(TAG, "addAsset onResponse: not successful " + response.errorBody().string());
+                        Toast.makeText(FormNewAssetActivity.this, "Something wrong just happened :(", Toast.LENGTH_SHORT).show();
+                    }catch(Exception e){
+                        Log.e(TAG, "onResponse: exception");
+                    }
+                }
             }
 
             @Override
@@ -209,6 +215,7 @@ public class FormNewAssetActivity extends AppCompatActivity {
                 }
                 else{
                     Log.e(TAG, "onResponse company: else");
+
                 }
             }
 
@@ -254,7 +261,6 @@ public class FormNewAssetActivity extends AppCompatActivity {
                 if(response.isSuccessful()){
                     Log.i(TAG, "onResponse label: label total " + response.body().getTotal());
                     listLabel = response.body().getRows();
-                    //Log.i(TAG, listLabel.get(1).getName());
 
                     ArrayAdapter<Label> arrayAdapter = new ArrayAdapter<Label>(FormNewAssetActivity.this,
                             android.R.layout.simple_spinner_item, listLabel);
@@ -281,7 +287,6 @@ public class FormNewAssetActivity extends AppCompatActivity {
                 if(response.isSuccessful()){
                     Log.i(TAG, "onResponse location: location total " + response.body().getTotal());
                     listLocation = response.body().getRows();
-                    //Log.i(TAG, listLocation.get(1).getName());
 
                     ArrayAdapter<Location> arrayAdapter = new ArrayAdapter<Location>(FormNewAssetActivity.this,
                             android.R.layout.simple_spinner_item, listLocation);
@@ -299,5 +304,4 @@ public class FormNewAssetActivity extends AppCompatActivity {
             }
         });
     }
-
 }
