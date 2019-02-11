@@ -55,8 +55,9 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".Activity.DetailAssetsActivity" />
         <activity android:name=".Activity.AssetsListCategoryActivity" />
-        <activity android:name=".Activity.FormNewAssetActivity"
-            android:theme="@style/StandardTheme"/>
+        <activity
+            android:name=".Activity.FormNewAssetActivity"
+            android:theme="@style/StandardTheme" />
         <activity android:name=".Activity.FormNewStatusLabelActivity" />
         <activity android:name=".Activity.FormNewAssetsModelActivity" />
         <activity android:name=".Activity.FormNewCategoryActivity" />
@@ -64,7 +65,9 @@
         <activity android:name=".Activity.FormNewSupplierActivity" />
         <activity android:name=".Activity.SplashScreenActivity" />
         <activity android:name=".Activity.StatusLabelActivity" />
-        <activity android:name=".Activity.ModelAssetsActivity"></activity>
+        <activity android:name=".Activity.ModelAssetsActivity" />
+        <activity android:name=".Activity.CategoryActivity" />
+        <activity android:name=".Activity.ManufacturerActivity"></activity>
     </application>
 
 </manifest>

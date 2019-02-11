@@ -11,6 +11,7 @@ import com.siscaproject.sisca.Model.LoginAuth;
 import com.siscaproject.sisca.Model.Manufacturer;
 import com.siscaproject.sisca.Model.Model;
 import com.siscaproject.sisca.Model.ResponseAsset;
+import com.siscaproject.sisca.Model.ResponseCategory;
 import com.siscaproject.sisca.Model.ResponseCompany;
 import com.siscaproject.sisca.Model.ResponseLabel;
 import com.siscaproject.sisca.Model.ResponseLocation;
@@ -108,7 +109,7 @@ public interface UserService {
 
     // Category Calls ------------------------------------------------------------------------------
     @GET("setting/category")
-    Call<Category> indexCategory();
+    Call<ResponseCategory> indexCategory(@Header("Authorization") String auth, @Header("Accept") String accept);
 
     @FormUrlEncoded
     @POST("setting/category")

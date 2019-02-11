@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activity.CategoryActivity">
+
+    <!-- Dashboard picture layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/image_1"
+            android:scaleType="centerCrop"/>
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="25dp"
+            android:text="@string/category"
+            android:textColor="@android:color/white"
+            android:textSize="35sp" />
+
+        <!-- Search Bar -->
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="35dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp"
+            android:layout_below="@id/tv_title"
+            android:layout_centerHorizontal="true"
+            android:weightSum="7"
+            android:background="@drawable/btn_rounded_white">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="7dp"
+                android:tint="@color/grey_60"
+                app:srcCompat="@drawable/ic_search"/>
+
+            <EditText
+                android:id="@+id/et_search"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5.5"
+                android:textSize="15sp"
+                android:hint="Search Category"
+                android:background="@color/transparent"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="5dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swprefresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_list_category"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/swprefresh"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="12dp"
+            app:rippleColor="@android:color/white"
+            app:backgroundTint="@color/colorRedPrimary"
+            app:srcCompat="@drawable/ic_add" />
+
+    </RelativeLayout>
+
+</LinearLayout>
