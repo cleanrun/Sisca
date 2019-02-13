@@ -33,9 +33,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activity.BluetoothTestActivity"
-            android:theme="@style/StandardTheme" />
-        <activity
             android:name=".Activity.HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme" />
@@ -56,18 +53,19 @@
         <activity android:name=".Activity.DetailAssetsActivity" />
         <activity android:name=".Activity.AssetsListCategoryActivity" />
         <activity
-            android:name=".Activity.FormNewAssetActivity"
+            android:name=".ActivityForm.FormNewAssetActivity"
             android:theme="@style/StandardTheme" />
-        <activity android:name=".Activity.FormNewStatusLabelActivity" />
-        <activity android:name=".Activity.FormNewAssetsModelActivity" />
-        <activity android:name=".Activity.FormNewCategoryActivity" />
-        <activity android:name=".Activity.FormNewManufacturerActivity" />
-        <activity android:name=".Activity.FormNewSupplierActivity" />
+        <activity android:name=".ActivityForm.FormNewStatusLabelActivity" />
+        <activity android:name=".ActivityForm.FormNewAssetsModelActivity" />
+        <activity android:name=".ActivityForm.FormNewCategoryActivity" />
+        <activity android:name=".ActivityForm.FormNewManufacturerActivity" />
+        <activity android:name=".ActivityForm.FormNewSupplierActivity" />
         <activity android:name=".Activity.SplashScreenActivity" />
         <activity android:name=".Activity.StatusLabelActivity" />
         <activity android:name=".Activity.ModelAssetsActivity" />
         <activity android:name=".Activity.CategoryActivity" />
-        <activity android:name=".Activity.ManufacturerActivity"></activity>
+        <activity android:name=".Activity.ManufacturerActivity" />
+        <activity android:name=".Activity.SupplierActivity"></activity>
     </application>
 
 </manifest>

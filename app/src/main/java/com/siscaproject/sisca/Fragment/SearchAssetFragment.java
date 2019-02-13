@@ -4,10 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,18 +16,16 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.GravityEnum;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.siscaproject.sisca.Activity.BluetoothActivity;
-import com.siscaproject.sisca.Activity.FormNewAssetActivity;
-import com.siscaproject.sisca.Activity.LoginActivity;
+import com.siscaproject.sisca.ActivityForm.FormNewAssetActivity;
 import com.siscaproject.sisca.Adapter.AssetsListCategoryAdapter;
 import com.siscaproject.sisca.Model.Asset;
-import com.siscaproject.sisca.Model.ResponseAsset;
+import com.siscaproject.sisca.Model.ResponseIndex;
 import com.siscaproject.sisca.R;
 import com.siscaproject.sisca.Utilities.APIProperties;
 import com.siscaproject.sisca.Utilities.UserService;
@@ -39,7 +34,6 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -161,10 +155,10 @@ public class SearchAssetFragment extends Fragment {
         String accept = "application/json";
 
         showProgressBar();
-        Call<ResponseAsset> call = userService.indexFixed(auth, accept);
-        call.enqueue(new Callback<ResponseAsset>() {
+        Call<ResponseIndex<Asset>> call = userService.indexFixed(auth, accept);
+        call.enqueue(new Callback<ResponseIndex<Asset>>() {
             @Override
-            public void onResponse(Call<ResponseAsset> call, Response<ResponseAsset> response) {
+            public void onResponse(Call<ResponseIndex<Asset>> call, Response<ResponseIndex<Asset>> response) {
                 if(response.isSuccessful()){
                     int total = response.body().getTotal();
                     Log.i(TAG, "onResponse: total " + total);
@@ -186,7 +180,7 @@ public class SearchAssetFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<ResponseAsset> call, Throwable t) {
+            public void onFailure(Call<ResponseIndex<Asset>> call, Throwable t) {
                 Log.e(TAG, "onFailure: " + t.getMessage() );
             }
         });

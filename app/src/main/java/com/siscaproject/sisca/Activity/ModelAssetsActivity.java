@@ -14,7 +14,7 @@ import android.widget.Toast;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.siscaproject.sisca.Adapter.ModelAssetsAdapter;
 import com.siscaproject.sisca.Model.Model;
-import com.siscaproject.sisca.Model.ResponseModel;
+import com.siscaproject.sisca.Model.ResponseIndex;
 import com.siscaproject.sisca.R;
 import com.siscaproject.sisca.Utilities.APIProperties;
 import com.siscaproject.sisca.Utilities.UserService;
@@ -75,10 +75,10 @@ public class ModelAssetsActivity extends AppCompatActivity {
     private void getModel(){
         refresh.setRefreshing(true);
 
-        Call<ResponseModel> call = userService.indexModel(auth, accept);
-        call.enqueue(new Callback<ResponseModel>() {
+        Call<ResponseIndex<Model>> call = userService.indexModel(auth, accept);
+        call.enqueue(new Callback<ResponseIndex<Model>>() {
             @Override
-            public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+            public void onResponse(Call<ResponseIndex<Model>> call, Response<ResponseIndex<Model>> response) {
                 refresh.setRefreshing(false);
 
                 if(response.isSuccessful()){
@@ -90,15 +90,20 @@ public class ModelAssetsActivity extends AppCompatActivity {
                 }
                 else{
                     Log.e(TAG, "onResponse model: else");
+                    errorToast();
                 }
             }
 
             @Override
-            public void onFailure(Call<ResponseModel> call, Throwable t) {
+            public void onFailure(Call<ResponseIndex<Model>> call, Throwable t) {
                 refresh.setRefreshing(false);
                 Log.e(TAG, "onFailure model: " + t.getMessage() );
-                Toast.makeText(ModelAssetsActivity.this, "Something went wrong :(", Toast.LENGTH_SHORT).show();
+                errorToast();
             }
         });
+    }
+
+    private void errorToast(){
+        Toast.makeText(ModelAssetsActivity.this, "Something went wrong :(", Toast.LENGTH_SHORT).show();
     }
 }

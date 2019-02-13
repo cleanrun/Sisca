@@ -11,8 +11,14 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.siscaproject.sisca.Activity.CategoryActivity;
+import com.siscaproject.sisca.Activity.ManufacturerActivity;
 import com.siscaproject.sisca.Activity.ModelAssetsActivity;
 import com.siscaproject.sisca.Activity.StatusLabelActivity;
+import com.siscaproject.sisca.Activity.SupplierActivity;
+import com.siscaproject.sisca.Model.Location;
+import com.siscaproject.sisca.Model.Manufacturer;
+import com.siscaproject.sisca.Model.Supplier;
 import com.siscaproject.sisca.R;
 
 import butterknife.BindView;
@@ -69,13 +75,16 @@ public class SettingsFragment extends Fragment {
                 startActivity(new Intent(getActivity(), ModelAssetsActivity.class));
                 break;
             case R.id.btn_category:
-                Toast.makeText(getActivity(), "Category", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "Category", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getActivity(), CategoryActivity.class));
                 break;
             case R.id.btn_manufacturer:
-                Toast.makeText(getActivity(), "Manufacturer", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "Manufacturer", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getActivity(), ManufacturerActivity.class));
                 break;
             case R.id.btn_supplier:
-                Toast.makeText(getActivity(), "Supplier", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "Supplier", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getActivity(), SupplierActivity.class));
                 break;
             case R.id.btn_location:
                 Toast.makeText(getActivity(), "Location", Toast.LENGTH_SHORT).show();

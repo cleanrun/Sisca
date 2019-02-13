@@ -14,7 +14,7 @@ import android.widget.Toast;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.siscaproject.sisca.Adapter.CategoryAdapter;
 import com.siscaproject.sisca.Model.Category;
-import com.siscaproject.sisca.Model.ResponseCategory;
+import com.siscaproject.sisca.Model.ResponseIndex;
 import com.siscaproject.sisca.R;
 import com.siscaproject.sisca.Utilities.APIProperties;
 import com.siscaproject.sisca.Utilities.UserService;
@@ -75,11 +75,11 @@ public class CategoryActivity extends AppCompatActivity {
     private void getCategory(){
         refresh.setRefreshing(true);
 
-        Call<ResponseCategory> call = userService.indexCategory(auth, accept);
-        call.enqueue(new Callback<ResponseCategory>() {
+        Call<ResponseIndex<Category>> call = userService.indexCategory(auth, accept);
+        call.enqueue(new Callback<ResponseIndex<Category>>() {
             @Override
-            public void onResponse(Call<ResponseCategory> call, Response<ResponseCategory> response) {
-                refresh.setRefreshing(true);
+            public void onResponse(Call<ResponseIndex<Category>> call, Response<ResponseIndex<Category>> response) {
+                refresh.setRefreshing(false);
                 
                 if(response.isSuccessful()){
                     Log.i(TAG, "onResponse category: total " + response.body().getTotal());
@@ -91,16 +91,20 @@ public class CategoryActivity extends AppCompatActivity {
                 }
                 else{
                     Log.e(TAG, "onResponse label: else");
-                    Toast.makeText(CategoryActivity.this, "Something went wrong :(", Toast.LENGTH_SHORT).show();
+                    errorToast();
                 }
             }
 
             @Override
-            public void onFailure(Call<ResponseCategory> call, Throwable t) {
+            public void onFailure(Call<ResponseIndex<Category>> call, Throwable t) {
                 refresh.setRefreshing(false);
-                Log.e(TAG, "onFailure label: " + t.getMessage() );
-                Toast.makeText(CategoryActivity.this, "Something went wrong :(", Toast.LENGTH_SHORT).show();
+                Log.e(TAG, "onFailure category: " + t.getMessage() );
+                errorToast();
             }
         });
+    }
+
+    private void errorToast(){
+        Toast.makeText(CategoryActivity.this, "Something went wrong :(", Toast.LENGTH_SHORT).show();
     }
 }

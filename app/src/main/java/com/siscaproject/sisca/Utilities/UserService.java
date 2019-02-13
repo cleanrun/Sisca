@@ -10,22 +10,14 @@ import com.siscaproject.sisca.Model.Location;
 import com.siscaproject.sisca.Model.LoginAuth;
 import com.siscaproject.sisca.Model.Manufacturer;
 import com.siscaproject.sisca.Model.Model;
-import com.siscaproject.sisca.Model.ResponseAsset;
-import com.siscaproject.sisca.Model.ResponseCategory;
-import com.siscaproject.sisca.Model.ResponseCompany;
-import com.siscaproject.sisca.Model.ResponseLabel;
-import com.siscaproject.sisca.Model.ResponseLocation;
-import com.siscaproject.sisca.Model.ResponseModel;
+import com.siscaproject.sisca.Model.ResponseIndex;
 import com.siscaproject.sisca.Model.Supplier;
 import com.siscaproject.sisca.Model.User;
-
-import java.util.HashMap;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.Field;
-import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
@@ -58,7 +50,7 @@ public interface UserService {
 
     // Asset Fixed Calls ---------------------------------------------------------------------------
     @GET("asset/fixed")
-    Call<ResponseAsset> indexFixed(@Header("Authorization") String auth, @Header("Accept") String accept);
+    Call<ResponseIndex<Asset>> indexFixed(@Header("Authorization") String auth, @Header("Accept") String accept);
 
     //@FormUrlEncoded
     @POST("asset/fixed")
@@ -92,7 +84,7 @@ public interface UserService {
 
     // Asset Stock Calls ---------------------------------------------------------------------------
     @GET("asset/stock")
-    Call<ResponseAsset> indexStock(@Header("Authorization") String auth, @Header("Accept") String accept);
+    Call<ResponseIndex<Asset>> indexStock(@Header("Authorization") String auth, @Header("Accept") String accept);
 
     @FormUrlEncoded
     @POST("asset/stock")
@@ -109,7 +101,7 @@ public interface UserService {
 
     // Category Calls ------------------------------------------------------------------------------
     @GET("setting/category")
-    Call<ResponseCategory> indexCategory(@Header("Authorization") String auth, @Header("Accept") String accept);
+    Call<ResponseIndex<Category>> indexCategory(@Header("Authorization") String auth, @Header("Accept") String accept);
 
     @FormUrlEncoded
     @POST("setting/category")
@@ -126,7 +118,7 @@ public interface UserService {
 
     // Company Calls -------------------------------------------------------------------------------
     @GET("setting/company")
-    Call<ResponseCompany> indexCompany(@Header("Authorization") String auth, @Header("Accept") String accept);
+    Call<ResponseIndex<Company>> indexCompany(@Header("Authorization") String auth, @Header("Accept") String accept);
 
     @FormUrlEncoded
     @POST("setting/company")
@@ -143,7 +135,7 @@ public interface UserService {
 
     // Label Calls ---------------------------------------------------------------------------------
     @GET("setting/label")
-    Call<ResponseLabel> indexLabel(@Header("Authorization") String auth, @Header("Accept") String accept);
+    Call<ResponseIndex<Label>> indexLabel(@Header("Authorization") String auth, @Header("Accept") String accept);
 
     @FormUrlEncoded
     @POST("setting/label")
@@ -160,7 +152,7 @@ public interface UserService {
 
     // Model Calls ---------------------------------------------------------------------------------
     @GET("setting/model")
-    Call<ResponseModel> indexModel(@Header("Authorization") String auth, @Header("Accept") String accept);
+    Call<ResponseIndex<Model>> indexModel(@Header("Authorization") String auth, @Header("Accept") String accept);
 
     @FormUrlEncoded
     @POST("setting/model")
@@ -177,7 +169,7 @@ public interface UserService {
 
     // Location Calls ------------------------------------------------------------------------------
     @GET("setting/location")
-    Call<ResponseLocation> indexLocation(@Header("Authorization") String auth, @Header("Accept") String accept);
+    Call<ResponseIndex<Location>> indexLocation(@Header("Authorization") String auth, @Header("Accept") String accept);
 
     @FormUrlEncoded
     @POST("setting/location")
@@ -194,7 +186,7 @@ public interface UserService {
 
     // Supplier Calls ------------------------------------------------------------------------------
     @GET("setting/supplier")
-    Call<Supplier> indexSupplier();
+    Call<ResponseIndex<Supplier>> indexSupplier(@Header("Authorization") String auth, @Header("Accept") String accept);
 
     @FormUrlEncoded
     @POST("setting/supplier")
@@ -211,7 +203,7 @@ public interface UserService {
 
     // Manufacturer Calls --------------------------------------------------------------------------
     @GET("setting/manufacturer")
-    Call<Manufacturer> indexManufacturer();
+    Call<ResponseIndex<Manufacturer>> indexManufacturer(@Header("Authorization") String auth, @Header("Accept") String accept);
 
     @FormUrlEncoded
     @POST("setting/manufacturer")
