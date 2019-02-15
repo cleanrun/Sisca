@@ -11,8 +11,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.siscaproject.sisca.Activity.AllAssetsActivity;
-import com.siscaproject.sisca.Activity.AssetsListCategoryActivity;
+import com.siscaproject.sisca.Activity.AssetsActivity;
 import com.siscaproject.sisca.R;
 
 import butterknife.BindView;
@@ -55,7 +54,7 @@ public class AssetsFragment extends Fragment {
     public void onClick(View view){
         switch(view.getId()){
             case R.id.btn_all:
-                Intent intent = new Intent(getActivity(), AssetsListCategoryActivity.class);
+                Intent intent = new Intent(getActivity(), AssetsActivity.class);
                 intent.putExtra("title", "All Assets");
                 startActivity(intent);
                 break;

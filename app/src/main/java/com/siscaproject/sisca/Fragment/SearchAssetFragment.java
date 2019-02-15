@@ -23,7 +23,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.siscaproject.sisca.Activity.BluetoothActivity;
 import com.siscaproject.sisca.ActivityForm.FormNewAssetActivity;
-import com.siscaproject.sisca.Adapter.AssetsListCategoryAdapter;
+import com.siscaproject.sisca.Adapter.AssetsAdapter;
 import com.siscaproject.sisca.Model.Asset;
 import com.siscaproject.sisca.Model.ResponseIndex;
 import com.siscaproject.sisca.R;
@@ -51,13 +51,15 @@ public class SearchAssetFragment extends Fragment {
 
     private MaterialDialog createDialog;
 
-    private AssetsListCategoryAdapter adapter;
+    private AssetsAdapter adapter;
 
     private ArrayList<Asset> listData = new ArrayList<>();
 
     private UserService userService;
 
     private OnFragmentInteractionListener mListener;
+
+    private AssetsAdapter.OnButtonClickListener listener;
 
     public SearchAssetFragment() {
         // Required empty public constructor
@@ -83,7 +85,7 @@ public class SearchAssetFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        adapter = new AssetsListCategoryAdapter(listData, getActivity());
+        adapter = new AssetsAdapter(listData, getActivity(), userService, listener);
         recyclerView.setAdapter(adapter);
 
         getAsset();
@@ -164,7 +166,7 @@ public class SearchAssetFragment extends Fragment {
                     Log.i(TAG, "onResponse: total " + total);
 
                     ArrayList<Asset> rows = response.body().getRows();
-                    //adapter = new AssetsListCategoryAdapter(rows, getActivity());
+                    //adapter = new AssetsAdapter(rows, getActivity());
                     //recyclerView.setAdapter(adapter);
 
                     //listData = response.body().getRows();

@@ -10,6 +10,7 @@ import com.siscaproject.sisca.Model.Location;
 import com.siscaproject.sisca.Model.LoginAuth;
 import com.siscaproject.sisca.Model.Manufacturer;
 import com.siscaproject.sisca.Model.Model;
+import com.siscaproject.sisca.Model.ResponseDelete;
 import com.siscaproject.sisca.Model.ResponseIndex;
 import com.siscaproject.sisca.Model.Supplier;
 import com.siscaproject.sisca.Model.User;
@@ -23,6 +24,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface UserService {
@@ -63,7 +65,7 @@ public interface UserService {
     Call<Asset> putFixed(@Body Asset asset);
 
     @DELETE("asset/fixed/{fixed}")
-    Call<Asset> deleteFixed(@Query("id") String id);
+    Call<ResponseDelete> deleteFixed(@Header("Authorization") String auth, @Header("Accept") String accept, @Path("fixed") int id);
 
     // Asset IT Calls ------------------------------------------------------------------------------
     @GET("asset/it")

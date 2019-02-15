@@ -51,7 +51,7 @@
             android:name=".Activity.HomeNavigationActivity"
             android:theme="@style/AppTheme" />
         <activity android:name=".Activity.DetailAssetsActivity" />
-        <activity android:name=".Activity.AssetsListCategoryActivity" />
+        <activity android:name=".Activity.AssetsActivity" />
         <activity
             android:name=".ActivityForm.FormNewAssetActivity"
             android:theme="@style/StandardTheme" />

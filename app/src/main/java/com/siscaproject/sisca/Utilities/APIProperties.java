@@ -1,5 +1,7 @@
 package com.siscaproject.sisca.Utilities;
 
+import com.pixplicity.easyprefs.library.Prefs;
+
 public class APIProperties {
     public static final String LOGIN_URL = Config.API_URL + "login";
     public static final String USER_URL = Config.API_URL + "users";
@@ -14,6 +16,10 @@ public class APIProperties {
     public static final String SETTING_SUPPLIER_URL = Config.API_URL + "setting/supplier";
     public static final String SETTING_MANUFACTURER_URL = Config.API_URL + "setting/manufacturer";
     public static final String SETTING_DEPRECIATION_URL = Config.API_URL + "setting/depreciation";
+
+    public String auth = Prefs.getString("token_type", "null")
+            + " " + Prefs.getString("access_token", "null");
+    public String accept = "application/json";
 
     public static UserService getUserService(){
         return RetrofitClient.getClient(Config.API_URL).create(UserService.class);
