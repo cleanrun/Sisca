@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:textColorHint="@color/grey_40">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/et_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/name" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:textColorHint="@color/grey_40">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/et_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/asset_tag_1" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:textColorHint="@color/grey_40">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/et_serial"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/serial_1" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:textColorHint="@color/grey_40">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/et_purchase_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/purchase_date" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:textColorHint="@color/grey_40">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/et_order_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/order_number" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:textColorHint="@color/grey_40">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/et_purchase_cost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/purchase_cost" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:textColorHint="@color/grey_40">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/et_warranty_months"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/warranty_months" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+
+</LinearLayout>

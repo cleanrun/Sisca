@@ -20,8 +20,7 @@ public class Label {
     @Expose
     private String notes;
 
-    public Label(String id, String name, String type, String notes) {
-        this.id = id;
+    public Label(String name, String type, String notes) {
         this.name = name;
         this.type = type;
         this.notes = notes;

@@ -62,7 +62,7 @@ public interface UserService {
     Call<Asset> showFixed();
 
     @PUT("asset/fixed/{fixed}")
-    Call<Asset> putFixed(@Body Asset asset);
+    Call<Asset> putFixed(@Header("Authorization") String auth, @Header("Accept") String accept, @Path("fixed") int id, @Body Asset asset);
 
     @DELETE("asset/fixed/{fixed}")
     Call<ResponseDelete> deleteFixed(@Header("Authorization") String auth, @Header("Accept") String accept, @Path("fixed") int id);
@@ -141,7 +141,7 @@ public interface UserService {
 
     @FormUrlEncoded
     @POST("setting/label")
-    Call<Label> storeLabel(@Body Label label);
+    Call<Label> storeLabel(@Header("Authorization") String auth, @Header("Accept") String accept, @Body Label label);
 
     @GET("setting/label/{label}")
     Call<Label> showLabel();

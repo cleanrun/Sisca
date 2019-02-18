@@ -1,5 +1,6 @@
 package com.siscaproject.sisca.Activity;
 
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.pixplicity.easyprefs.library.Prefs;
+import com.siscaproject.sisca.ActivityForm.FormNewStatusLabelActivity;
 import com.siscaproject.sisca.Adapter.StatusLabelAdapter;
 import com.siscaproject.sisca.Model.Label;
 import com.siscaproject.sisca.Model.ResponseIndex;
@@ -75,7 +77,8 @@ public class StatusLabelActivity extends AppCompatActivity {
     @OnClick(R.id.fab_add)
     public void onClick(View view){
         if(view.getId() == R.id.fab_add){
-            Toast.makeText(this, "Add Status Label", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Add Status Label", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(StatusLabelActivity.this, FormNewStatusLabelActivity.class));
         }
     }
 

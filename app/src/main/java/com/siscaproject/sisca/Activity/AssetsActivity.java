@@ -1,7 +1,10 @@
 package com.siscaproject.sisca.Activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,6 +23,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.siscaproject.sisca.ActivityForm.FormNewAssetActivity;
 import com.siscaproject.sisca.Adapter.AssetsAdapter;
+import com.siscaproject.sisca.Fragment.EditAssetFragment;
 import com.siscaproject.sisca.Model.Asset;
 import com.siscaproject.sisca.Model.ResponseDelete;
 import com.siscaproject.sisca.Model.ResponseIndex;
@@ -37,19 +41,16 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AssetsActivity extends AppCompatActivity{
+public class AssetsActivity extends AppCompatActivity implements EditAssetFragment.OnFragmentInteractionListener{
     private static final String TAG = "AssetsListCategory";
 
-    @BindView(R.id.tv_title)
-    TextView tv_title;
-    @BindView(R.id.btn_create_new)
-    LinearLayout btn_create_new;
-    @BindView(R.id.rv_list_asset)
-    RecyclerView recyclerView;
-    @BindView(R.id.progress_bar)
-    ProgressBar progressBar;
-    @BindView(R.id.swprefresh)
-    SwipeRefreshLayout refresh;
+    public static final int DIALOG_QUEST_CODE = 300;
+
+    @BindView(R.id.tv_title) TextView tv_title;
+    @BindView(R.id.btn_create_new) LinearLayout btn_create_new;
+    @BindView(R.id.rv_list_asset) RecyclerView recyclerView;
+    @BindView(R.id.progress_bar) ProgressBar progressBar;
+    @BindView(R.id.swprefresh) SwipeRefreshLayout refresh;
 
     private MaterialDialog createDialog;
     private MaterialDialog deleteDialog;
@@ -85,6 +86,16 @@ public class AssetsActivity extends AppCompatActivity{
 
             deleteDialog = builder.build();
             deleteDialog.show();
+        }
+
+        @Override
+        public void showEditDialog(Asset asset) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            EditAssetFragment fragment = new EditAssetFragment();
+            fragment.setAsset(asset);
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+            transaction.add(android.R.id.content, fragment).addToBackStack(null).commit();
         }
     };
 
@@ -182,12 +193,8 @@ public class AssetsActivity extends AppCompatActivity{
 
     // On Progress
     private void getAsset() {
-        String auth = Prefs.getString("token_type", "null")
-                + " " + Prefs.getString("access_token", "null");
-        String accept = "application/json";
-
         showProgressBar();
-        Call<ResponseIndex<Asset>> call = userService.indexFixed(auth, accept);
+        Call<ResponseIndex<Asset>> call = userService.indexFixed(Header.auth, Header.accept);
         call.enqueue(new Callback<ResponseIndex<Asset>>() {
             @Override
             public void onResponse(Call<ResponseIndex<Asset>> call, Response<ResponseIndex<Asset>> response) {
@@ -261,5 +268,10 @@ public class AssetsActivity extends AppCompatActivity{
     protected void onResume() {
         super.onResume();
         getAsset();
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+        // Still null
     }
 }

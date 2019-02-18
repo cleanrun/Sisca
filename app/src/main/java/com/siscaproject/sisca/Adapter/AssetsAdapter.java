@@ -87,7 +87,8 @@ public class AssetsAdapter extends RecyclerView.Adapter<AssetsAdapter.ItemHolder
         holder.btn_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(activityContext, "Edit", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(activityContext, "Edit", Toast.LENGTH_SHORT).show();
+                listener.showEditDialog(listData.get(position));
             }
         });
     }
@@ -126,6 +127,7 @@ public class AssetsAdapter extends RecyclerView.Adapter<AssetsAdapter.ItemHolder
 
     public interface OnButtonClickListener {
         void showDeleteDialog(final int id);
+        void showEditDialog(Asset asset);
     }
 
 }

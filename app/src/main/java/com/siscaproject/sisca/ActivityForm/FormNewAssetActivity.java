@@ -113,7 +113,7 @@ public class FormNewAssetActivity extends AppCompatActivity {
 
     private void showDialog(){
         MaterialDialog.Builder builder = new MaterialDialog.Builder(FormNewAssetActivity.this)
-                .content("Sending data..")
+                .content("Inputting data..")
                 .progress(true, 0)
                 .contentGravity(GravityEnum.CENTER)
                 .autoDismiss(true)
