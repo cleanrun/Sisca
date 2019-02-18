@@ -36,9 +36,12 @@ public class Model {
     @Expose
     private String image;
 
-    public Model(String id, String name, String model_number, String manufacturer_id, String category_id,
+    public Model(){
+
+    }
+
+    public Model(String name, String model_number, String manufacturer_id, String category_id,
                  String depreciation_id, String notes, String image) {
-        this.id = id;
         this.name = name;
         this.model_number = model_number;
         this.manufacturer_id = manufacturer_id;
@@ -78,6 +81,38 @@ public class Model {
 
     public String getImage() {
         return image;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setModel_number(String model_number) {
+        this.model_number = model_number;
+    }
+
+    public void setManufacturer_id(String manufacturer_id) {
+        this.manufacturer_id = manufacturer_id;
+    }
+
+    public void setCategory_id(String category_id) {
+        this.category_id = category_id;
+    }
+
+    public void setDepreciation_id(String depreciation_id) {
+        this.depreciation_id = depreciation_id;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     @Override

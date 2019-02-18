@@ -211,7 +211,6 @@ public class FormNewAssetActivity extends AppCompatActivity {
                 }
                 else{
                     Log.e(TAG, "onResponse company: else");
-
                 }
             }
 

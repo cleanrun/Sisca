@@ -4,6 +4,10 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Manufacturer {
+    @SerializedName("id")
+    @Expose
+    private String id;
+
     @SerializedName("name")
     @Expose
     private String name;
@@ -37,6 +41,10 @@ public class Manufacturer {
         this.image = image;
     }
 
+    public String getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }
@@ -59,5 +67,10 @@ public class Manufacturer {
 
     public String getImage() {
         return image;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

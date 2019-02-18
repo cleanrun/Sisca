@@ -156,9 +156,9 @@ public interface UserService {
     @GET("setting/model")
     Call<ResponseIndex<Model>> indexModel(@Header("Authorization") String auth, @Header("Accept") String accept);
 
-    @FormUrlEncoded
+    //@FormUrlEncoded
     @POST("setting/model")
-    Call<Model> storeModel(@Body Model model);
+    Call<Model> storeModel(@Header("Authorization") String auth, @Header("Accept") String accept, @Body Model model);
 
     @GET("setting/model/{model}")
     Call<Model> showModel();
@@ -222,7 +222,7 @@ public interface UserService {
 
     // Depreciation Calls --------------------------------------------------------------------------
     @GET("setting/depreciation")
-    Call<Depreciation> indexDepreciation();
+    Call<ResponseIndex<Depreciation>> indexDepreciation(@Header("Authorization") String auth, @Header("Accept") String accept);
 
     @FormUrlEncoded
     @POST("setting/depreciation")

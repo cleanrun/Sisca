@@ -4,6 +4,10 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Depreciation {
+    @SerializedName("id")
+    @Expose
+    private String id;
+
     @SerializedName("name")
     @Expose
     private String name;
@@ -17,11 +21,20 @@ public class Depreciation {
         this.months = months;
     }
 
+    public String getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }
 
     public String getMonths() {
         return months;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

@@ -22,9 +22,12 @@ public class ModelAssetsAdapter extends RecyclerView.Adapter<ModelAssetsAdapter.
     private ArrayList<Model> listData;
     private Context activityContext;
 
-    public ModelAssetsAdapter(ArrayList<Model> listData, Context activityContext) {
+    private OnButtonClickListener listener;
+
+    public ModelAssetsAdapter(ArrayList<Model> listData, Context activityContext, OnButtonClickListener listener) {
         this.listData = listData;
         this.activityContext = activityContext;
+        this.listener = listener;
     }
 
     @NonNull
@@ -36,7 +39,7 @@ public class ModelAssetsAdapter extends RecyclerView.Adapter<ModelAssetsAdapter.
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ItemHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ItemHolder holder, final int position) {
         holder.tvName.setText(listData.get(position).getName());
         holder.tvManufacturer.setText(listData.get(position).getManufacturer_id());
         holder.tvModelNo.setText(listData.get(position).getModel_number());
@@ -44,7 +47,8 @@ public class ModelAssetsAdapter extends RecyclerView.Adapter<ModelAssetsAdapter.
         holder.btnDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(activityContext, "View Detail", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(activityContext, "View Detail", Toast.LENGTH_SHORT).show();
+                listener.showDetails(listData.get(position));
             }
         });
     }
@@ -71,5 +75,9 @@ public class ModelAssetsAdapter extends RecyclerView.Adapter<ModelAssetsAdapter.
             tvModelNo = itemView.findViewById(R.id.tv_model_no);
             btnDetail = itemView.findViewById(R.id.btn_view_detail);
         }
+    }
+
+    public interface OnButtonClickListener{
+        void showDetails(Model model);
     }
 }
