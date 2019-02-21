@@ -130,5 +130,6 @@
     <string name="edit_category">Edit Category</string>
 
     <string name="model_details">Model Details</string>
+    <string name="manufacturer_details">Manufacturer Details</string>
 
 </resources>

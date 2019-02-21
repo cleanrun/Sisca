@@ -22,9 +22,12 @@ public class ManufacturerAdapter extends RecyclerView.Adapter<ManufacturerAdapte
     private ArrayList<Manufacturer> listData;
     private Context activityContext;
 
-    public ManufacturerAdapter(ArrayList<Manufacturer> listData, Context activityContext) {
+    private OnButtonClickListener listener;
+
+    public ManufacturerAdapter(ArrayList<Manufacturer> listData, Context activityContext, OnButtonClickListener listener) {
         this.listData = listData;
         this.activityContext = activityContext;
+        this.listener = listener;
     }
 
     @NonNull
@@ -35,14 +38,15 @@ public class ManufacturerAdapter extends RecyclerView.Adapter<ManufacturerAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ItemHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ItemHolder holder, final int position) {
         holder.tv_name.setText(listData.get(position).getName());
         holder.tv_url.setText(listData.get(position).getUrl());
 
         holder.btn_view_detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(activityContext, "View Detail", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(activityContext, "View Detail", Toast.LENGTH_SHORT).show();
+                listener.showDetails(listData.get(position));
             }
         });
     }
@@ -68,5 +72,9 @@ public class ManufacturerAdapter extends RecyclerView.Adapter<ManufacturerAdapte
             tv_url = itemView.findViewById(R.id.tv_url);
             btn_view_detail = itemView.findViewById(R.id.btn_view_detail);
         }
+    }
+
+    public interface OnButtonClickListener{
+        void showDetails(Manufacturer manufacturer);
     }
 }

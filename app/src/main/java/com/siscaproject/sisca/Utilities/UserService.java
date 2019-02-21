@@ -207,9 +207,9 @@ public interface UserService {
     @GET("setting/manufacturer")
     Call<ResponseIndex<Manufacturer>> indexManufacturer(@Header("Authorization") String auth, @Header("Accept") String accept);
 
-    @FormUrlEncoded
+    //@FormUrlEncoded
     @POST("setting/manufacturer")
-    Call<Manufacturer> storeManufacturer(@Body Manufacturer manufacturer);
+    Call<Manufacturer> storeManufacturer(@Header("Authorization") String auth, @Header("Accept") String accept, @Body Manufacturer manufacturer);
 
     @GET("setting/manufacturer/{manufacturer}")
     Call<Manufacturer> showManufacturer();

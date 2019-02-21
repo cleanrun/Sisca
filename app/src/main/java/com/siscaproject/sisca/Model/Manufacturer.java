@@ -41,6 +41,14 @@ public class Manufacturer {
         this.image = image;
     }
 
+    public Manufacturer(String name, String url, String support_url, String support_phone, String support_email) {
+        this.name = name;
+        this.url = url;
+        this.support_url = support_url;
+        this.support_phone = support_phone;
+        this.support_email = support_email;
+    }
+
     public String getId() {
         return id;
     }

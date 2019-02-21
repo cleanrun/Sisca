@@ -120,7 +120,7 @@ public class FormNewCategoryActivity extends AppCompatActivity {
                 else{
                     try{
                         errorDialog();
-                        Log.e(TAG, "onResponse: add category is not successfull " + response.errorBody().string() );
+                        Log.e(TAG, "onResponse: add category is not successful " + response.errorBody().string() );
                     }catch(Exception e){
                         Log.e(TAG, "onResponse: catch " + e.getMessage() );
                     }
