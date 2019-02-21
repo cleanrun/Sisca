@@ -105,18 +105,18 @@ public interface UserService {
     @GET("setting/category")
     Call<ResponseIndex<Category>> indexCategory(@Header("Authorization") String auth, @Header("Accept") String accept);
 
-    @FormUrlEncoded
+    //@FormUrlEncoded
     @POST("setting/category")
-    Call<Category> storeCategory(@Body Category category);
+    Call<Category> storeCategory(@Header("Authorization") String auth, @Header("Accept") String accept, @Body Category category);
 
     @GET("setting/category/{category}")
     Call<Category> showCategory();
 
     @PUT("setting/category/{category}")
-    Call<Category> putCategory(@Body Category category);
+    Call<Category> putCategory(@Header("Authorization") String auth, @Header("Accept") String accept, @Path("category") int id, @Body Category category);
 
     @DELETE("setting/category/{category}")
-    Call<Category> deleteCategory(@Query("id") String id);
+    Call<ResponseDelete> deleteCategory(@Header("Authorization") String auth, @Header("Accept") String accept, @Path("category") int id);
 
     // Company Calls -------------------------------------------------------------------------------
     @GET("setting/company")

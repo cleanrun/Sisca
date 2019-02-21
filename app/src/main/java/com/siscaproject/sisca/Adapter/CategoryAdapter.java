@@ -9,22 +9,24 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.siscaproject.sisca.Model.Category;
 import com.siscaproject.sisca.R;
 
 import java.util.ArrayList;
 
-public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ItemHolder> implements View.OnClickListener{
+public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ItemHolder>{
     private static final String TAG = "CategoryAdapter";
 
     private ArrayList<Category> listData;
     private Context activityContext;
 
-    public CategoryAdapter(ArrayList<Category> listData, Context activityContext) {
+    private OnButtonClickListener listener;
+
+    public CategoryAdapter(ArrayList<Category> listData, Context activityContext, OnButtonClickListener listener) {
         this.listData = listData;
         this.activityContext = activityContext;
+        this.listener = listener;
     }
 
     @NonNull
@@ -36,13 +38,24 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ItemHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ItemHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ItemHolder holder, final int position) {
         holder.tv_name.setText(listData.get(position).getName());
         holder.tv_type.setText(listData.get(position).getType());
         //holder.tv_assets.setText(listData.get(position).getAssets());
 
-        holder.btn_edit.setOnClickListener(this);
-        holder.btn_delete.setOnClickListener(this);
+        holder.btn_edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.showEditDialog(listData.get(position));
+            }
+        });
+
+        holder.btn_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.showDeleteDialog(Integer.valueOf(listData.get(position).getId()));
+            }
+        });
     }
 
     @Override
@@ -51,20 +64,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ItemHo
         else return listData.size();
     }
 
-    @Override
-    public void onClick(View view) {
-        int id = view.getId();
-        switch(id){
-            case R.id.btn_edit:
-                Toast.makeText(activityContext, "Edit", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.btn_delete:
-                Toast.makeText(activityContext, "Delete", Toast.LENGTH_SHORT).show();
-                break;
-            default:
-                break;
-        }
-    }
 
     public class ItemHolder extends RecyclerView.ViewHolder{
         private ImageView iv_category;
@@ -84,5 +83,10 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ItemHo
             btn_edit = itemView.findViewById(R.id.btn_edit);
             btn_delete = itemView.findViewById(R.id.btn_delete);
         }
+    }
+
+    public interface OnButtonClickListener{
+        void showDeleteDialog(final int id);
+        void showEditDialog(Category category);
     }
 }
