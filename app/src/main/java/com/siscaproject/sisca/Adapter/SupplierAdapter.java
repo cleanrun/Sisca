@@ -26,9 +26,12 @@ public class SupplierAdapter extends RecyclerView.Adapter<SupplierAdapter.ItemHo
     private ArrayList<Supplier> listDataFull;
     private Context activityContext;
 
-    public SupplierAdapter(ArrayList<Supplier> listData, Context activityContext) {
+    private OnButtonClickListener listener;
+
+    public SupplierAdapter(ArrayList<Supplier> listData, Context activityContext, OnButtonClickListener listener) {
         this.listData = listData;
         listDataFull = new ArrayList<>(listData);
+        this.listener = listener;
         this.activityContext = activityContext;
     }
 
@@ -40,7 +43,7 @@ public class SupplierAdapter extends RecyclerView.Adapter<SupplierAdapter.ItemHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ItemHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ItemHolder holder, final int position) {
         holder.tv_name.setText(listData.get(position).getName());
         holder.tv_address.setText(listData.get(position).getAddress());
         holder.tv_email.setText(listData.get(position).getEmail());
@@ -49,7 +52,8 @@ public class SupplierAdapter extends RecyclerView.Adapter<SupplierAdapter.ItemHo
         holder.btn_view_detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(activityContext, "View Detail", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(activityContext, "View Detail", Toast.LENGTH_SHORT).show();
+                listener.showDetails(listData.get(position));
             }
         });
     }
@@ -115,6 +119,10 @@ public class SupplierAdapter extends RecyclerView.Adapter<SupplierAdapter.ItemHo
             tv_email = itemView.findViewById(R.id.tv_email);
             btn_view_detail = itemView.findViewById(R.id.btn_view_detail);
         }
+    }
+
+    public interface OnButtonClickListener{
+        void showDetails(Supplier supplier);
     }
 
 }

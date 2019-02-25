@@ -1,18 +1,24 @@
 package com.siscaproject.sisca.Activity;
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.pixplicity.easyprefs.library.Prefs;
+import com.siscaproject.sisca.ActivityForm.FormNewSupplierActivity;
 import com.siscaproject.sisca.Adapter.SupplierAdapter;
 import com.siscaproject.sisca.Model.ResponseIndex;
 import com.siscaproject.sisca.Model.Supplier;
@@ -40,6 +46,13 @@ public class SupplierActivity extends AppCompatActivity {
 
     private SupplierAdapter adapter;
     private UserService userService;
+
+    private SupplierAdapter.OnButtonClickListener listener = new SupplierAdapter.OnButtonClickListener() {
+        @Override
+        public void showDetails(Supplier supplier) {
+            showDetailsDialog(supplier);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +92,8 @@ public class SupplierActivity extends AppCompatActivity {
     @OnClick(R.id.fab_add)
     public void onClick(View view){
         if(view.getId() == R.id.fab_add){
-            Toast.makeText(this, "Add Supplier", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Add Supplier", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, FormNewSupplierActivity.class));
         }
     }
 
@@ -97,7 +111,7 @@ public class SupplierActivity extends AppCompatActivity {
 
                     ArrayList<Supplier> listData = response.body().getRows();
 
-                    adapter = new SupplierAdapter(listData, SupplierActivity.this);
+                    adapter = new SupplierAdapter(listData, SupplierActivity.this, listener);
                     recyclerView.setAdapter(adapter);
                 }
                 else{
@@ -114,6 +128,58 @@ public class SupplierActivity extends AppCompatActivity {
                 errorToast();
             }
         });
+    }
+
+    private void showDetailsDialog(Supplier supplier){
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.layout_detail_supplier);
+        dialog.setCancelable(false);
+
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(dialog.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+
+        final ImageButton btnClose = dialog.findViewById(R.id.btn_close);
+        final TextView tvName = dialog.findViewById(R.id.tv_name);
+        final AppCompatEditText etCity = dialog.findViewById(R.id.et_city);
+        final AppCompatEditText etState = dialog.findViewById(R.id.et_state);
+        final AppCompatEditText etCountry = dialog.findViewById(R.id.et_country);
+        final AppCompatEditText etAddress = dialog.findViewById(R.id.et_address);
+        final AppCompatEditText etPhone = dialog.findViewById(R.id.et_phone);
+        final AppCompatEditText etEmail = dialog.findViewById(R.id.et_email);
+        final AppCompatEditText etZip = dialog.findViewById(R.id.et_zip);
+        final AppCompatEditText etUrl = dialog.findViewById(R.id.et_url);
+
+        tvName.setText(supplier.getName());
+        etCity.setText(supplier.getCity());
+        etState.setText(supplier.getState());
+        etCountry.setText(supplier.getCountry());
+        etAddress.setText(supplier.getAddress());
+        etPhone.setText(supplier.getPhone());
+        etEmail.setText(supplier.getEmail());
+        etZip.setText(supplier.getZip());
+        etUrl.setText(supplier.getUrl());
+
+        etCity.setKeyListener(null);
+        etState.setKeyListener(null);
+        etCountry.setKeyListener(null);
+        etAddress.setKeyListener(null);
+        etPhone.setKeyListener(null);
+        etEmail.setKeyListener(null);
+        etZip.setKeyListener(null);
+        etUrl.setKeyListener(null);
+
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+        dialog.getWindow().setAttributes(lp);
     }
 
     private void errorToast(){

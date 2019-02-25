@@ -78,6 +78,19 @@ public class Supplier {
         this.image = image;
     }
 
+    public Supplier(String name, String address, String city, String state,
+                    String country, String phone, String email, String zip, String url) {
+        this.name = name;
+        this.address = address;
+        this.city = city;
+        this.state = state;
+        this.country = country;
+        this.phone = phone;
+        this.email = email;
+        this.zip = zip;
+        this.url = url;
+    }
+
     public String getId() {
         return id;
     }

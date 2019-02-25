@@ -190,9 +190,9 @@ public interface UserService {
     @GET("setting/supplier")
     Call<ResponseIndex<Supplier>> indexSupplier(@Header("Authorization") String auth, @Header("Accept") String accept);
 
-    @FormUrlEncoded
+    //@FormUrlEncoded
     @POST("setting/supplier")
-    Call<Supplier> storeSupplier(@Body Supplier supplier);
+    Call<Supplier> storeSupplier(@Header("Authorization") String auth, @Header("Accept") String accept, @Body Supplier supplier);
 
     @GET("setting/supplier/{supplier}")
     Call<Supplier> showSupplier();

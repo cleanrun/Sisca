@@ -61,6 +61,7 @@
     <string name="position">Position</string>
     <string name="website">Website</string>
     <string name="phone">Phone</string>
+    <string name="fax">Fax</string>
     <string name="zip_code">Zip Code</string>
     <string name="email">Email</string>
     <string name="location">Location</string>
@@ -131,5 +132,6 @@
 
     <string name="model_details">Model Details</string>
     <string name="manufacturer_details">Manufacturer Details</string>
+    <string name="supplier_details">Supplier Details</string>
 
 </resources>
