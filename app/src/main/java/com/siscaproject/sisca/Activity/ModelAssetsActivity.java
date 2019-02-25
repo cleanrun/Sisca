@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -40,7 +41,7 @@ import retrofit2.Response;
 public class ModelAssetsActivity extends AppCompatActivity {
     private static final String TAG = "ModelAssetsActivity";
 
-    @BindView(R.id.et_search) EditText et_search;
+    @BindView(R.id.search_view) SearchView searchView;
     @BindView(R.id.swprefresh) SwipeRefreshLayout refresh;
     @BindView(R.id.rv_list_assets_model) RecyclerView recyclerView;
     @BindView(R.id.fab_add) FloatingActionButton fab_add;
@@ -66,6 +67,19 @@ public class ModelAssetsActivity extends AppCompatActivity {
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return false;
+            }
+        });
 
         getModel();
 

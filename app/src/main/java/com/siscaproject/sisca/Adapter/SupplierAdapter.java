@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,15 +17,18 @@ import com.siscaproject.sisca.Model.Supplier;
 import com.siscaproject.sisca.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class SupplierAdapter extends RecyclerView.Adapter<SupplierAdapter.ItemHolder>{
+public class SupplierAdapter extends RecyclerView.Adapter<SupplierAdapter.ItemHolder> implements Filterable{
     private static final String TAG = "SupplierAdapter";
 
     private ArrayList<Supplier> listData;
+    private ArrayList<Supplier> listDataFull;
     private Context activityContext;
 
     public SupplierAdapter(ArrayList<Supplier> listData, Context activityContext) {
         this.listData = listData;
+        listDataFull = new ArrayList<>(listData);
         this.activityContext = activityContext;
     }
 
@@ -54,6 +59,43 @@ public class SupplierAdapter extends RecyclerView.Adapter<SupplierAdapter.ItemHo
         if(listData.isEmpty()) return 0;
         else return listData.size();
     }
+
+    @Override
+    public Filter getFilter() {
+        return dataFilter;
+    }
+
+    private Filter dataFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            ArrayList<Supplier> filteredList = new ArrayList<>();
+
+            if(charSequence == null || charSequence.length() == 0){
+                filteredList.addAll(listDataFull);
+            }
+            else{
+                String filterPattern = charSequence.toString().toLowerCase().trim();
+
+                for(Supplier item : listDataFull){
+                    if(item.getName().toLowerCase().contains(filterPattern)){
+                        filteredList.add(item);
+                    }
+                }
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            listData.clear();
+            listData.addAll((List) filterResults.values);
+            notifyDataSetChanged();
+        }
+    };
 
     public class ItemHolder extends RecyclerView.ViewHolder{
         private CircularImageView iv_photo;

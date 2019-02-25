@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -43,7 +44,7 @@ import retrofit2.Response;
 public class CategoryActivity extends AppCompatActivity implements EditCategoryFragment.OnFragmentInteractionListener{
     private static final String TAG = "CategoryActivity";
 
-    @BindView(R.id.et_search) EditText et_search;
+    @BindView(R.id.search_view) SearchView searchView;
     @BindView(R.id.rv_list_category) RecyclerView recyclerView;
     @BindView(R.id.swprefresh) SwipeRefreshLayout refresh;
     @BindView(R.id.fab_add) FloatingActionButton fab_add;
@@ -104,6 +105,19 @@ public class CategoryActivity extends AppCompatActivity implements EditCategoryF
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return false;
+            }
+        });
 
         getCategory();
 

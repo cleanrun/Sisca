@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -17,6 +18,7 @@ import com.siscaproject.sisca.Model.ResponseIndex;
 import com.siscaproject.sisca.Model.Supplier;
 import com.siscaproject.sisca.R;
 import com.siscaproject.sisca.Utilities.APIProperties;
+import com.siscaproject.sisca.Utilities.Header;
 import com.siscaproject.sisca.Utilities.UserService;
 
 import java.util.ArrayList;
@@ -31,17 +33,13 @@ import retrofit2.Response;
 public class SupplierActivity extends AppCompatActivity {
     private static final String TAG = "SupplierActivity";
 
-    @BindView(R.id.et_search) EditText et_search;
+    @BindView(R.id.search_view) SearchView searchView;
     @BindView(R.id.rv_list_supplier) RecyclerView recyclerView;
     @BindView(R.id.swprefresh) SwipeRefreshLayout refresh;
     @BindView(R.id.fab_add) FloatingActionButton fab_add;
 
     private SupplierAdapter adapter;
     private UserService userService;
-
-    private String auth = Prefs.getString("token_type", "null")
-            + " " + Prefs.getString("access_token", "null");
-    private String accept = "application/json";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +52,19 @@ public class SupplierActivity extends AppCompatActivity {
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return false;
+            }
+        });
 
         getSupplier();
 
@@ -75,7 +86,7 @@ public class SupplierActivity extends AppCompatActivity {
     private void getSupplier(){
         refresh.setRefreshing(true);
 
-        Call<ResponseIndex<Supplier>> call = userService.indexSupplier(auth, accept);
+        Call<ResponseIndex<Supplier>> call = userService.indexSupplier(Header.auth, Header.accept);
         call.enqueue(new Callback<ResponseIndex<Supplier>>() {
             @Override
             public void onResponse(Call<ResponseIndex<Supplier>> call, Response<ResponseIndex<Supplier>> response) {

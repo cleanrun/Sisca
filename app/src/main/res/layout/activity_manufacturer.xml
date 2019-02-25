@@ -40,22 +40,11 @@
             android:weightSum="7"
             android:background="@drawable/btn_rounded_white">
 
-            <ImageView
-                android:layout_width="0dp"
+            <android.support.v7.widget.SearchView
+                android:id="@+id/search_view"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:padding="7dp"
-                android:tint="@color/grey_60"
-                app:srcCompat="@drawable/ic_search"/>
-
-            <EditText
-                android:id="@+id/et_search"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="5.5"
-                android:textSize="15sp"
-                android:hint="Search Manufacturer"
-                android:background="@color/transparent"/>
+                app:queryHint="Search Manufacturer"/>
 
         </LinearLayout>
 

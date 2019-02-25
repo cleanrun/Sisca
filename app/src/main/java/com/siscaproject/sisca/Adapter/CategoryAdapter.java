@@ -6,6 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,17 +16,20 @@ import com.siscaproject.sisca.Model.Category;
 import com.siscaproject.sisca.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ItemHolder>{
+public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ItemHolder> implements Filterable{
     private static final String TAG = "CategoryAdapter";
 
     private ArrayList<Category> listData;
+    private ArrayList<Category> listDataFull;
     private Context activityContext;
 
     private OnButtonClickListener listener;
 
     public CategoryAdapter(ArrayList<Category> listData, Context activityContext, OnButtonClickListener listener) {
         this.listData = listData;
+        listDataFull = new ArrayList<>(listData);
         this.activityContext = activityContext;
         this.listener = listener;
     }
@@ -64,6 +69,42 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ItemHo
         else return listData.size();
     }
 
+    @Override
+    public Filter getFilter() {
+        return dataFilter;
+    }
+
+    private Filter dataFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            ArrayList<Category> filteredList = new ArrayList<>();
+
+            if(charSequence == null || charSequence.length() == 0){
+                filteredList.addAll(listDataFull);
+            }
+            else{
+                String filterPattern = charSequence.toString().toLowerCase().trim();
+
+                for(Category item : listDataFull){
+                    if(item.getName().toLowerCase().contains(filterPattern)){
+                        filteredList.add(item);
+                    }
+                }
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            listData.clear();
+            listData.addAll((List) filterResults.values);
+            notifyDataSetChanged();
+        }
+    };
 
     public class ItemHolder extends RecyclerView.ViewHolder{
         private ImageView iv_category;

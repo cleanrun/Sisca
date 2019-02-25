@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,17 +17,20 @@ import com.siscaproject.sisca.Model.Model;
 import com.siscaproject.sisca.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class ModelAssetsAdapter extends RecyclerView.Adapter<ModelAssetsAdapter.ItemHolder>{
+public class ModelAssetsAdapter extends RecyclerView.Adapter<ModelAssetsAdapter.ItemHolder> implements Filterable{
     private static final String TAG = "ModelAssetsAdapter";
 
     private ArrayList<Model> listData;
+    private ArrayList<Model> listDataFull;
     private Context activityContext;
 
     private OnButtonClickListener listener;
 
     public ModelAssetsAdapter(ArrayList<Model> listData, Context activityContext, OnButtonClickListener listener) {
         this.listData = listData;
+        listDataFull = new ArrayList<>(listData);
         this.activityContext = activityContext;
         this.listener = listener;
     }
@@ -58,6 +63,43 @@ public class ModelAssetsAdapter extends RecyclerView.Adapter<ModelAssetsAdapter.
         if(listData.isEmpty()) return 0;
         else return listData.size();
     }
+
+    @Override
+    public Filter getFilter() {
+        return dataFilter;
+    }
+
+    private Filter dataFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            ArrayList<Model> filteredList = new ArrayList<>();
+
+            if(charSequence == null || charSequence.length() == 0){
+                filteredList.addAll(listDataFull);
+            }
+            else{
+                String filterPattern = charSequence.toString().toLowerCase().trim();
+
+                for(Model item : listDataFull){
+                    if(item.getName().toLowerCase().contains(filterPattern)){
+                        filteredList.add(item);
+                    }
+                }
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            listData.clear();
+            listData.addAll((List) filterResults.values);
+            notifyDataSetChanged();
+        }
+    };
 
     public class ItemHolder extends RecyclerView.ViewHolder{
         private CircularImageView ivPhoto;
