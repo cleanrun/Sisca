@@ -10,8 +10,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -46,8 +48,9 @@ public class AssetsActivity extends AppCompatActivity implements EditAssetFragme
 
     public static final int DIALOG_QUEST_CODE = 300;
 
-    @BindView(R.id.tv_title) TextView tv_title;
-    @BindView(R.id.btn_create_new) LinearLayout btn_create_new;
+    @BindView(R.id.search_view) SearchView searchView;
+    @BindView(R.id.btn_reader) ImageButton btnReader;
+    @BindView(R.id.btn_add) ImageButton btnAdd;
     @BindView(R.id.rv_list_asset) RecyclerView recyclerView;
     @BindView(R.id.progress_bar) ProgressBar progressBar;
     @BindView(R.id.swprefresh) SwipeRefreshLayout refresh;
@@ -109,10 +112,23 @@ public class AssetsActivity extends AppCompatActivity implements EditAssetFragme
 
         Bundle extras = getIntent().getExtras();
         String title = extras.getString("title", "Assets");
-        tv_title.setText(title);
+        //tv_title.setText(title);
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return false;
+            }
+        });
 
         getAsset();
 
@@ -131,14 +147,24 @@ public class AssetsActivity extends AppCompatActivity implements EditAssetFragme
                 .build();
     }
 
-    @OnClick(R.id.btn_create_new)
+    @OnClick({R.id.btn_reader, R.id.btn_add})
     public void onClick(View view) {
-        if (view.getId() == R.id.btn_create_new) {
-            try {
-                showCreateDialog();
-            } catch (Exception e) {
-                Log.e(TAG, "onClick: exception = " + e.getMessage());
-            }
+        int id = view.getId();
+        switch(id){
+            case R.id.btn_reader:
+                try{
+                    startActivity(new Intent(AssetsActivity.this, BluetoothActivity.class));
+                }catch(Exception e){
+                    errorToast();
+                }
+                break;
+            case R.id.btn_add:
+                try{
+                    startActivity(new Intent(AssetsActivity.this, FormNewAssetActivity.class));
+                }catch(Exception e){
+                    errorToast();
+                }
+                break;
         }
     }
 
@@ -203,8 +229,8 @@ public class AssetsActivity extends AppCompatActivity implements EditAssetFragme
                     Log.i(TAG, "onResponse: total " + total);
 
                     ArrayList<Asset> rows = response.body().getRows();
-                    AssetsAdapter rvAdapter = new AssetsAdapter(rows, getApplicationContext(), userService, listener);
-                    recyclerView.setAdapter(rvAdapter);
+                    adapter = new AssetsAdapter(rows, getApplicationContext(), userService, listener);
+                    recyclerView.setAdapter(adapter);
                 } else {
                     Log.i(TAG, "onResponse: else");
                     errorToast();

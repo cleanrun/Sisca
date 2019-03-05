@@ -40,9 +40,10 @@ public class ManufacturerActivity extends AppCompatActivity {
     private static final String TAG = "ManufacturerActivity";
 
     @BindView(R.id.search_view) SearchView searchView;
+    @BindView(R.id.btn_reader) ImageButton btnReader;
+    @BindView(R.id.btn_add) ImageButton btnAdd;
     @BindView(R.id.rv_list_manufacturer) RecyclerView recyclerView;
     @BindView(R.id.swprefresh) SwipeRefreshLayout refresh;
-    @BindView(R.id.fab_add) FloatingActionButton fab_add;
 
     private ManufacturerAdapter adapter;
     private UserService userService;
@@ -90,11 +91,24 @@ public class ManufacturerActivity extends AppCompatActivity {
         });
     }
 
-    @OnClick(R.id.fab_add)
-    public void onClick(View view){
-        if(view.getId() == R.id.fab_add){
-            //Toast.makeText(this, "Add Manufacturer", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(this, FormNewManufacturerActivity.class));
+    @OnClick({R.id.btn_reader, R.id.btn_add})
+    public void onClick(View view) {
+        int id = view.getId();
+        switch(id){
+            case R.id.btn_reader:
+                try{
+                    startActivity(new Intent(this, BluetoothActivity.class));
+                }catch(Exception e){
+                    errorToast();
+                }
+                break;
+            case R.id.btn_add:
+                try{
+                    startActivity(new Intent(this, FormNewManufacturerActivity.class));
+                }catch(Exception e){
+                    errorToast();
+                }
+                break;
         }
     }
 

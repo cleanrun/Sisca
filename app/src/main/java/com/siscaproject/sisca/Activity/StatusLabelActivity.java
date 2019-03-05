@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.pixplicity.easyprefs.library.Prefs;
@@ -35,9 +36,10 @@ public class StatusLabelActivity extends AppCompatActivity {
     private static final String TAG = "StatusLabelActivity";
 
     @BindView(R.id.search_view) SearchView searchView;
+    @BindView(R.id.btn_reader) ImageButton btnReader;
+    @BindView(R.id.btn_add) ImageButton btnAdd;
     @BindView(R.id.swprefresh) SwipeRefreshLayout refresh;
     @BindView(R.id.rv_list_status_label) RecyclerView recyclerView;
-    @BindView(R.id.fab_add) FloatingActionButton fab_add;
 
     private StatusLabelAdapter adapter;
     private UserService userService;
@@ -84,11 +86,24 @@ public class StatusLabelActivity extends AppCompatActivity {
                 .build();
     }
 
-    @OnClick(R.id.fab_add)
-    public void onClick(View view){
-        if(view.getId() == R.id.fab_add){
-            //Toast.makeText(this, "Add Status Label", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(StatusLabelActivity.this, FormNewStatusLabelActivity.class));
+    @OnClick({R.id.btn_reader, R.id.btn_add})
+    public void onClick(View view) {
+        int id = view.getId();
+        switch(id){
+            case R.id.btn_reader:
+                try{
+                    startActivity(new Intent(this, BluetoothActivity.class));
+                }catch(Exception e){
+                    errorToast();
+                }
+                break;
+            case R.id.btn_add:
+                try{
+                    startActivity(new Intent(this, FormNewStatusLabelActivity.class));
+                }catch(Exception e){
+                    errorToast();
+                }
+                break;
         }
     }
 

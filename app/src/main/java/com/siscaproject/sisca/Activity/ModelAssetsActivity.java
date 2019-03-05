@@ -42,9 +42,10 @@ public class ModelAssetsActivity extends AppCompatActivity {
     private static final String TAG = "ModelAssetsActivity";
 
     @BindView(R.id.search_view) SearchView searchView;
+    @BindView(R.id.btn_reader) ImageButton btnReader;
+    @BindView(R.id.btn_add) ImageButton btnAdd;
     @BindView(R.id.swprefresh) SwipeRefreshLayout refresh;
     @BindView(R.id.rv_list_assets_model) RecyclerView recyclerView;
-    @BindView(R.id.fab_add) FloatingActionButton fab_add;
 
     private ModelAssetsAdapter adapter;
     private UserService userService;
@@ -91,11 +92,24 @@ public class ModelAssetsActivity extends AppCompatActivity {
         });
     }
 
-    @OnClick(R.id.fab_add)
-    public void onClick(View view){
-        if(view.getId() == R.id.fab_add){
-            //Toast.makeText(this, "Add Asset Model", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(ModelAssetsActivity.this, FormNewAssetsModelActivity.class));
+    @OnClick({R.id.btn_reader, R.id.btn_add})
+    public void onClick(View view) {
+        int id = view.getId();
+        switch(id){
+            case R.id.btn_reader:
+                try{
+                    startActivity(new Intent(this, BluetoothActivity.class));
+                }catch(Exception e){
+                    errorToast();
+                }
+                break;
+            case R.id.btn_add:
+                try{
+                    startActivity(new Intent(this, FormNewAssetsModelActivity.class));
+                }catch(Exception e){
+                    errorToast();
+                }
+                break;
         }
     }
 

@@ -1,5 +1,6 @@
 package com.siscaproject.sisca.Activity;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -8,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.pixplicity.easyprefs.library.Prefs;
 import com.siscaproject.sisca.Fragment.AssetsFragment;
 import com.siscaproject.sisca.Fragment.HomeFragment;
 import com.siscaproject.sisca.Fragment.ProfileFragment;
@@ -31,6 +33,7 @@ public class HomeNavigationActivity extends AppCompatActivity
         setContentView(R.layout.activity_home_navigation);
 
         initComponents();
+        checkLoginStatus();
 
         if(savedInstanceState == null){
             navigationView.setSelectedItemId(R.id.nav_home);
@@ -80,6 +83,23 @@ public class HomeNavigationActivity extends AppCompatActivity
                 return true;
             }
         });
+    }
+
+    private void checkLoginStatus(){
+        new Prefs.Builder()
+                .setContext(this)
+                .setMode(android.content.ContextWrapper.MODE_PRIVATE)
+                .setPrefsName(getPackageName())
+                .setUseDefaultSharedPreference(true)
+                .build();
+
+        String stat = Prefs.getString("access_token", "null");
+
+        if (stat.equals("null")) {
+            startActivity(new Intent(this, SplashScreenActivity.class));
+            finish();
+        }
+
     }
 
     @Override

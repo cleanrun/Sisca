@@ -15,6 +15,7 @@ import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
@@ -45,9 +46,10 @@ public class CategoryActivity extends AppCompatActivity implements EditCategoryF
     private static final String TAG = "CategoryActivity";
 
     @BindView(R.id.search_view) SearchView searchView;
+    @BindView(R.id.btn_reader) ImageButton btnReader;
+    @BindView(R.id.btn_add) ImageButton btnAdd;
     @BindView(R.id.rv_list_category) RecyclerView recyclerView;
     @BindView(R.id.swprefresh) SwipeRefreshLayout refresh;
-    @BindView(R.id.fab_add) FloatingActionButton fab_add;
 
     private MaterialDialog deleteDialog;
     private MaterialDialog loadingDialog;
@@ -129,11 +131,24 @@ public class CategoryActivity extends AppCompatActivity implements EditCategoryF
         });
     }
 
-    @OnClick(R.id.fab_add)
+    @OnClick({R.id.btn_reader, R.id.btn_add})
     public void onClick(View view){
-        if(view.getId() == R.id.fab_add){
-            //Toast.makeText(this, "Add Category", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(this, FormNewCategoryActivity.class));
+        int id = view.getId();
+        switch(id){
+            case R.id.btn_reader:
+                try{
+                    startActivity(new Intent(this, BluetoothActivity.class));
+                }catch(Exception e){
+                    errorToast();
+                }
+                break;
+            case R.id.btn_add:
+                try{
+                    startActivity(new Intent(this, FormNewCategoryActivity.class));
+                }catch(Exception e){
+                    errorToast();
+                }
+                break;
         }
     }
 

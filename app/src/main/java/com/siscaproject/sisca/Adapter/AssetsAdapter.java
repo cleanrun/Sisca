@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,17 +30,19 @@ import com.siscaproject.sisca.Utilities.Header;
 import com.siscaproject.sisca.Utilities.UserService;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AssetsAdapter extends RecyclerView.Adapter<AssetsAdapter.ItemHolder>{
+public class AssetsAdapter extends RecyclerView.Adapter<AssetsAdapter.ItemHolder> implements Filterable{
     private static final String TAG = "AssetsAdapter";
 
     private OnButtonClickListener listener;
 
     private ArrayList<Asset> listData;
+    private ArrayList<Asset> listDataFull;
     private Context activityContext;
     private UserService userService;
 
@@ -46,6 +50,7 @@ public class AssetsAdapter extends RecyclerView.Adapter<AssetsAdapter.ItemHolder
 
     public AssetsAdapter(ArrayList<Asset> listData, Context activityContext, UserService userService, OnButtonClickListener listener) {
         this.listData = listData;
+        listDataFull = new ArrayList<>(listData);
         this.activityContext = activityContext;
         this.userService = userService;
         this.listener = listener;
@@ -98,6 +103,43 @@ public class AssetsAdapter extends RecyclerView.Adapter<AssetsAdapter.ItemHolder
         if(listData.isEmpty()) return 0;
         else return listData.size();
     }
+
+    @Override
+    public Filter getFilter() {
+        return dataFilter;
+    }
+
+    private Filter dataFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            ArrayList<Asset> filteredList = new ArrayList<>();
+
+            if(charSequence == null || charSequence.length() == 0){
+                filteredList.addAll(listDataFull);
+            }
+            else{
+                String filterPattern = charSequence.toString().toLowerCase().trim();
+
+                for(Asset item : listDataFull){
+                    if(item.getName().toLowerCase().contains(filterPattern)){
+                        filteredList.add(item);
+                    }
+                }
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            listData.clear();
+            listData.addAll((List) filterResults.values);
+            notifyDataSetChanged();
+        }
+    };
 
     public class ItemHolder extends RecyclerView.ViewHolder{
         private ImageView iv_asset;
