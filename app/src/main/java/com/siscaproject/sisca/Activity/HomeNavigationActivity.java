@@ -7,8 +7,15 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.GravityEnum;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.siscaproject.sisca.Fragment.AssetsFragment;
 import com.siscaproject.sisca.Fragment.HomeFragment;
@@ -26,11 +33,23 @@ public class HomeNavigationActivity extends AppCompatActivity
     private static final String TAG = "HomeNavigationActivity";
 
     private BottomNavigationView navigationView;
+    private Toolbar toolbar;
+
+    private MenuItem aboutMenu;
+    private MenuItem logoutMenu;
+
+    private MaterialDialog logoutDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_navigation);
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        //toolbar.setLogo(R.drawable.sisca_logo_white);
 
         initComponents();
         checkLoginStatus();
@@ -83,6 +102,63 @@ public class HomeNavigationActivity extends AppCompatActivity
                 return true;
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_home, menu);
+
+        aboutMenu = menu.findItem(R.id.menu_about);
+        logoutMenu = menu.findItem(R.id.menu_logout);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        switch(id){
+            case R.id.menu_logout:
+                showLogoutDialog();
+                break;
+            case R.id.menu_about:
+                Toast.makeText(this, "About", Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void showLogoutDialog() {
+        Log.i(TAG, "showLogoutDialog: called");
+
+        MaterialDialog.Builder builder = new MaterialDialog.Builder(this)
+                .content("Are you sure you want to Log Out?")
+                .contentGravity(GravityEnum.CENTER)
+                .autoDismiss(true)
+                .positiveText("Yes")
+                .negativeText("No")
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        Prefs.clear();
+                        finish();
+                        moveTaskToBack(true);
+                    }
+                })
+                .onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        // Do nothing
+                    }
+                })
+                .canceledOnTouchOutside(true);
+
+        logoutDialog = builder.build();
+        logoutDialog.show();
     }
 
     private void checkLoginStatus(){
