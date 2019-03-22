@@ -153,7 +153,8 @@ public class AssetsActivity extends AppCompatActivity implements EditAssetFragme
         switch(id){
             case R.id.btn_reader:
                 try{
-                    startActivity(new Intent(AssetsActivity.this, BluetoothActivity.class));
+                    //startActivity(new Intent(AssetsActivity.this, BluetoothActivity.class));
+                    showReaderDialog();
                 }catch(Exception e){
                     errorToast();
                 }
@@ -168,15 +169,15 @@ public class AssetsActivity extends AppCompatActivity implements EditAssetFragme
         }
     }
 
-    private void showCreateDialog() {
+    private void showReaderDialog() {
         Log.i(TAG, "showCreateDialog: called");
 
         MaterialDialog.Builder builder = new MaterialDialog.Builder(AssetsActivity.this)
-                .content("Please select create method.")
+                .content("Please select reader")
                 .contentGravity(GravityEnum.CENTER)
                 .autoDismiss(true)
                 .positiveText("Bluetooth Reader")
-                .negativeText("Asset Form")
+                .negativeText("QR/Barcode Reader")
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
@@ -186,7 +187,7 @@ public class AssetsActivity extends AppCompatActivity implements EditAssetFragme
                 .onNegative(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        startActivity(new Intent(AssetsActivity.this, FormNewAssetActivity.class));
+                        startActivity(new Intent(AssetsActivity.this, QRActivity.class));
                     }
                 })
                 .canceledOnTouchOutside(true);

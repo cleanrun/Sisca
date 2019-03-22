@@ -43,6 +43,7 @@ public class LoginActivity extends AppCompatActivity{
     @BindView(android.R.id.content) View parent_view;
 
     @BindView(R.id.textinput_username) TextInputEditText username;
+    @BindView(R.id.textinput_address) TextInputEditText address;
     @BindView(R.id.textinput_password) ShowHidePasswordEditText password;
 
     @BindView(R.id.textview_forgot_password) TextView forgotPassword;
@@ -61,6 +62,8 @@ public class LoginActivity extends AppCompatActivity{
         ButterKnife.bind(this);
 
         userService = APIProperties.getUserService();
+
+        // TODO: set address function has yet to be created
 
         new Prefs.Builder()
                 .setContext(this)

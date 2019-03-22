@@ -1,140 +1,133 @@
 package com.siscaproject.sisca.Activity;
 
 import android.Manifest;
-import android.content.Context;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
-import android.os.Vibrator;
-import android.support.annotation.NonNull;
+import android.os.Build;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.util.SparseArray;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
-import android.widget.TextView;
+import android.widget.Toast;
 
-import com.google.android.gms.vision.CameraSource;
-import com.google.android.gms.vision.Detector;
-import com.google.android.gms.vision.barcode.Barcode;
-import com.google.android.gms.vision.barcode.BarcodeDetector;
+import com.google.zxing.Result;
 import com.siscaproject.sisca.R;
 
-import java.io.IOException;
+import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import static android.Manifest.permission.CAMERA;
 
-public class QRActivity extends AppCompatActivity {
+public class QRActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler{
 
-    @BindView(R.id.surface_camera) SurfaceView surface_camera;
-    @BindView(R.id.tv_qr_result) TextView tv_qr_result;
-
-    private BarcodeDetector barcodeDetector;
-    private CameraSource cameraSource;
-
-    private static final int requestCameraPermissionID = 1001;
-    private static final String TAG = "QRActivity";
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch(requestCode){
-            case requestCameraPermissionID:
-                if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    if(ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
-                            != PackageManager.PERMISSION_GRANTED){
-                        return;
-                    }
-
-                    try{
-                        cameraSource.start(surface_camera.getHolder());
-                        Log.d(TAG, "onRequestPermissionsResult: camera started");
-                    }catch(IOException e){
-                        Log.e(TAG, "surfaceCreated: " + e.getMessage());
-                    }
-                }
-                break;
-        }
-    }
+    private static final int REQUEST_CAMERA = 1;
+    private ZXingScannerView scannerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_qr);
+        scannerView = new ZXingScannerView(this);
+        setContentView(scannerView);
 
-        ButterKnife.bind(this);
-
-        addCameraEvent();
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            if(checkPermission()){
+                Toast.makeText(this, "Permission granted!", Toast.LENGTH_SHORT).show();
+            }else{
+                requestPermission();
+            }
+        }
     }
 
-    private void addCameraEvent(){
-        barcodeDetector = new BarcodeDetector.Builder(this)
-                .setBarcodeFormats(Barcode.QR_CODE)
-                .build();
+    private boolean checkPermission(){
+        return (ContextCompat.checkSelfPermission(QRActivity.this, CAMERA)
+                == PackageManager.PERMISSION_GRANTED);
+    }
 
-        cameraSource = new CameraSource.Builder(this, barcodeDetector)
-                .setRequestedPreviewSize(330, 250)
-                .build();
+    private void requestPermission(){
+        ActivityCompat.requestPermissions(this, new String[]{CAMERA}, REQUEST_CAMERA);
 
-        surface_camera.getHolder().addCallback(new SurfaceHolder.Callback() {
-            @Override
-            public void surfaceCreated(SurfaceHolder surfaceHolder) {
-                if(ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA)
-                        != PackageManager.PERMISSION_GRANTED){
-                    // Request permission
-                    ActivityCompat.requestPermissions(QRActivity.this,
-                            new String[]{Manifest.permission.CAMERA}, requestCameraPermissionID);
-                    return;
-                }
-                try{
-                    cameraSource.start(surface_camera.getHolder());
-                    Log.d(TAG, "addCameraEvent: camera started");
-                }catch(IOException e){
-                    Log.e(TAG, "surfaceCreated: " + e.getMessage());
-                }
-            }
+    }
 
-            @Override
-            public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int i1, int i2) {
-                // Do nothing
-            }
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int grantResults[]){
+        switch(requestCode){
+            case REQUEST_CAMERA:
+                if(grantResults.length > 0){
+                    boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
 
-            @Override
-            public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
-                cameraSource.stop();
-                Log.d(TAG, "addCameraEvent: camera stopped");
-            }
-        });
+                    if(cameraAccepted){
+                        Toast.makeText(this, "Permission granted!", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Toast.makeText(this, "Permission denied.", Toast.LENGTH_SHORT).show();
+                        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                            if(shouldShowRequestPermissionRationale(CAMERA)){
+                                String message = "You need to allow access for both permissions";
 
-        barcodeDetector.setProcessor(new Detector.Processor<Barcode>() {
-            @Override
-            public void release() {
-                // Do nothing
-            }
-
-            @Override
-            public void receiveDetections(Detector.Detections<Barcode> detections) {
-                final SparseArray<Barcode> qrCodes = detections.getDetectedItems();
-                if(qrCodes.size() != 0){
-                    tv_qr_result.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            // Create vibration
-                            //Vibrator vibrator = (Vibrator) getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
-                            //vibrator.vibrate(100);
-                            //Log.d(TAG, "receiveDetection: vibrate");
-                            tv_qr_result.setText(qrCodes.valueAt(0).displayValue);
+                                showAlertMessage(message,
+                                        new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                                                    requestPermissions(new String[]{CAMERA}, REQUEST_CAMERA);
+                                                }
+                                            }
+                                        });
+                                return;
+                            }
                         }
-                    });
+                    }
                 }
-            }
-        });
-
+        }
     }
 
     @Override
-    public void onBackPressed() {
-        finish();
-        super.onBackPressed();
+    protected void onResume() {
+        super.onResume();
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            if(checkPermission()){
+                //Toast.makeText(this, "Permission granted!", Toast.LENGTH_SHORT).show();
+                if(scannerView == null){
+                    scannerView = new ZXingScannerView(this);
+                    setContentView(scannerView);
+                }
+                scannerView.setResultHandler(this);
+                scannerView.startCamera();
+            }else{
+                requestPermission();
+            }
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        scannerView.stopCamera();
+    }
+
+    public void showAlertMessage(String message, DialogInterface.OnClickListener listener){
+        new AlertDialog.Builder(this)
+                .setMessage(message)
+                .setPositiveButton("OK", listener)
+                .setNegativeButton("Cancel", null)
+                .create()
+                .show();
+    }
+
+    @Override
+    public void handleResult(Result result) {
+        String scanResult = result.getText();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Scan result");
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                scannerView.resumeCameraPreview(QRActivity.this);
+            }
+        });
+
+        builder.setMessage(scanResult);
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 }

@@ -53,6 +53,7 @@ public class CategoryActivity extends AppCompatActivity implements EditCategoryF
 
     private MaterialDialog deleteDialog;
     private MaterialDialog loadingDialog;
+    private MaterialDialog createDialog;
 
     private CategoryAdapter adapter;
     private UserService userService;
@@ -137,7 +138,8 @@ public class CategoryActivity extends AppCompatActivity implements EditCategoryF
         switch(id){
             case R.id.btn_reader:
                 try{
-                    startActivity(new Intent(this, BluetoothActivity.class));
+                    //startActivity(new Intent(this, BluetoothActivity.class));
+                    showReaderDialog();
                 }catch(Exception e){
                     errorToast();
                 }
@@ -150,6 +152,33 @@ public class CategoryActivity extends AppCompatActivity implements EditCategoryF
                 }
                 break;
         }
+    }
+
+    private void showReaderDialog() {
+        Log.i(TAG, "showCreateDialog: called");
+
+        MaterialDialog.Builder builder = new MaterialDialog.Builder(CategoryActivity.this)
+                .content("Please select reader")
+                .contentGravity(GravityEnum.CENTER)
+                .autoDismiss(true)
+                .positiveText("Bluetooth Reader")
+                .negativeText("QR/Barcode Reader")
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        startActivity(new Intent(CategoryActivity.this, BluetoothActivity.class));
+                    }
+                })
+                .onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        startActivity(new Intent(CategoryActivity.this, QRActivity.class));
+                    }
+                })
+                .canceledOnTouchOutside(true);
+
+        createDialog = builder.build();
+        createDialog.show();
     }
 
     private void showLoadingDialog(){

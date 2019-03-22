@@ -2,6 +2,7 @@ package com.siscaproject.sisca.Activity;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -18,6 +19,9 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.GravityEnum;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.siscaproject.sisca.ActivityForm.FormNewSupplierActivity;
 import com.siscaproject.sisca.Adapter.SupplierAdapter;
 import com.siscaproject.sisca.Model.ResponseIndex;
@@ -47,6 +51,8 @@ public class SupplierActivity extends AppCompatActivity {
 
     private SupplierAdapter adapter;
     private UserService userService;
+
+    private MaterialDialog createDialog;
 
     private SupplierAdapter.OnButtonClickListener listener = new SupplierAdapter.OnButtonClickListener() {
         @Override
@@ -96,7 +102,8 @@ public class SupplierActivity extends AppCompatActivity {
         switch(id){
             case R.id.btn_reader:
                 try{
-                    startActivity(new Intent(this, BluetoothActivity.class));
+                    //startActivity(new Intent(this, BluetoothActivity.class));
+                    showReaderDialog();
                 }catch(Exception e){
                     errorToast();
                 }
@@ -109,6 +116,33 @@ public class SupplierActivity extends AppCompatActivity {
                 }
                 break;
         }
+    }
+
+    private void showReaderDialog() {
+        Log.i(TAG, "showCreateDialog: called");
+
+        MaterialDialog.Builder builder = new MaterialDialog.Builder(SupplierActivity.this)
+                .content("Please select reader")
+                .contentGravity(GravityEnum.CENTER)
+                .autoDismiss(true)
+                .positiveText("Bluetooth Reader")
+                .negativeText("QR/Barcode Reader")
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        startActivity(new Intent(SupplierActivity.this, BluetoothActivity.class));
+                    }
+                })
+                .onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        startActivity(new Intent(SupplierActivity.this, QRActivity.class));
+                    }
+                })
+                .canceledOnTouchOutside(true);
+
+        createDialog = builder.build();
+        createDialog.show();
     }
 
     private void getSupplier(){
