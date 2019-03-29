@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -32,7 +31,6 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class ScanFragment extends Fragment {
     private static final String TAG = "ScanFragment";
@@ -48,7 +46,6 @@ public class ScanFragment extends Fragment {
     private static final int REQUEST_CONNECT_DEVICE_INSECURE = 2;
 
     @BindView(R.id.tv_total_data) TextView totalData;
-    @BindView(R.id.fab_register_data) FloatingActionButton registerData;
     @BindView(R.id.parent_register) FrameLayout parentLayout;
 
     private MaterialDialog createDialog;
@@ -126,11 +123,6 @@ public class ScanFragment extends Fragment {
                 mResultsListView.setSelection(mResultsArrayAdapter.getCount() - 1);
             }
         });
-    }
-
-    @OnClick(R.id.fab_register_data)
-    public void onClick(){
-        Snackbar.make(parentLayout, "Register Data", Snackbar.LENGTH_SHORT).show();
     }
 
     private void showCreateDialog(final String tag){

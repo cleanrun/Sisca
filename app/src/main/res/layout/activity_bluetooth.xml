@@ -6,6 +6,7 @@
     android:id="@+id/main_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:fitsSystemWindows="true"
     tools:context=".Activity.BluetoothActivity">
 
@@ -13,19 +14,21 @@
         android:id="@+id/appbar_bluetooth"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/appbar_padding_top"
         android:background="@color/colorRedPrimary"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar_bluetooth"
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:layout_weight="1"
-            android:background="@color/colorRedPrimary"
-            app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:title="@string/app_name">
+            app:contentInsetStartWithNavigation="0dp"
+            app:elevation="4dp">
+
+            <ImageView
+                android:layout_width="90dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/sisca_logo_white"/>
 
         </android.support.v7.widget.Toolbar>
 
@@ -33,6 +36,7 @@
             android:id="@+id/tab_bluetooth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             app:tabIndicatorColor="@color/overlay_light_90"
             app:tabIndicatorHeight="5dp" >
 
@@ -56,8 +60,28 @@
         android:id="@+id/viewpager_bluetooth"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
         android:layout_below="@id/appbar_bluetooth"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+    <LinearLayout
+        android:id="@+id/lyt_state"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:background="@color/colorRedPrimary"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/tv_reader_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:text="Reader State"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
 
 </RelativeLayout>

@@ -31,7 +31,7 @@ public class QRActivity extends AppCompatActivity implements ZXingScannerView.Re
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
             if(checkPermission()){
-                Toast.makeText(this, "Permission granted!", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Permission granted!", Toast.LENGTH_SHORT).show();
             }else{
                 requestPermission();
             }
@@ -55,7 +55,7 @@ public class QRActivity extends AppCompatActivity implements ZXingScannerView.Re
                     boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
 
                     if(cameraAccepted){
-                        Toast.makeText(this, "Permission granted!", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(this, "Permission granted!", Toast.LENGTH_SHORT).show();
                     }
                     else{
                         Toast.makeText(this, "Permission denied.", Toast.LENGTH_SHORT).show();

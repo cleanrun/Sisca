@@ -55,14 +55,4 @@
 
     </RelativeLayout>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_register_data"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:rippleColor="@android:color/white"
-        app:backgroundTint="@color/colorRedPrimary"
-        app:srcCompat="@drawable/ic_add" />
-
 </FrameLayout>

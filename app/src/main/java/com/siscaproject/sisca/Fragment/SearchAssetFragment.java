@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +29,7 @@ import com.siscaproject.sisca.Model.Asset;
 import com.siscaproject.sisca.Model.ResponseIndex;
 import com.siscaproject.sisca.R;
 import com.siscaproject.sisca.Utilities.APIProperties;
+import com.siscaproject.sisca.Utilities.Header;
 import com.siscaproject.sisca.Utilities.UserService;
 
 import java.util.ArrayList;
@@ -41,9 +43,7 @@ import retrofit2.Response;
 public class SearchAssetFragment extends Fragment {
     private static final String TAG = "SearchAssetFragment";
 
-    @BindView(R.id.btn_filter) ImageButton btn_filter;
-    @BindView(R.id.btn_search) ImageButton btn_search;
-    @BindView(R.id.et_search) EditText et_search;
+    @BindView(R.id.search_view) SearchView searchView;
     @BindView(R.id.swprefresh) SwipeRefreshLayout refresh;
     @BindView(R.id.rv_list_asset) RecyclerView recyclerView;
     @BindView(R.id.progress_bar) ProgressBar progressBar;
@@ -59,7 +59,17 @@ public class SearchAssetFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    private AssetsAdapter.OnButtonClickListener listener;
+    private AssetsAdapter.OnButtonClickListener listener = new AssetsAdapter.OnButtonClickListener() {
+        @Override
+        public void showDeleteDialog(int id) {
+            // TODO: Complete showDeleteDialog()
+        }
+
+        @Override
+        public void showEditDialog(Asset asset) {
+            // TODO: Complete showEditDialog()
+        }
+    };
 
     public SearchAssetFragment() {
         // Required empty public constructor
@@ -85,8 +95,8 @@ public class SearchAssetFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        adapter = new AssetsAdapter(listData, getActivity(), userService, listener);
-        recyclerView.setAdapter(adapter);
+        //adapter = new AssetsAdapter(listData, getActivity(), userService, listener);
+        //recyclerView.setAdapter(adapter);
 
         getAsset();
 
@@ -97,21 +107,9 @@ public class SearchAssetFragment extends Fragment {
             }
         });
 
+
         return view;
     }
-
-    /*
-    @OnClick(R.id.fab_add)
-    public void onClick(View view){
-        if(view.getId() == R.id.fab_add){
-            try{
-                showCreateDialog();
-            }catch(Exception e){
-                Log.e(TAG, "onClick: exception = " + e.getMessage() );
-            }
-        }
-    }
-    */
 
     private void showCreateDialog(){
         Log.i(TAG, "showCreateDialog: called");
@@ -152,12 +150,8 @@ public class SearchAssetFragment extends Fragment {
 
     // On Progress
     private void getAsset(){
-        String auth = Prefs.getString("token_type", "null")
-                + " " + Prefs.getString("access_token", "null");
-        String accept = "application/json";
-
         showProgressBar();
-        Call<ResponseIndex<Asset>> call = userService.indexFixed(auth, accept);
+        Call<ResponseIndex<Asset>> call = userService.indexFixed(Header.auth, Header.accept);
         call.enqueue(new Callback<ResponseIndex<Asset>>() {
             @Override
             public void onResponse(Call<ResponseIndex<Asset>> call, Response<ResponseIndex<Asset>> response) {
@@ -166,13 +160,9 @@ public class SearchAssetFragment extends Fragment {
                     Log.i(TAG, "onResponse: total " + total);
 
                     ArrayList<Asset> rows = response.body().getRows();
-                    //adapter = new AssetsAdapter(rows, getActivity());
-                    //recyclerView.setAdapter(adapter);
+                    adapter = new AssetsAdapter(rows, getActivity(), userService, listener);
+                    recyclerView.setAdapter(adapter);
 
-                    //listData = response.body().getRows();
-
-                    adapter.setListData(rows);
-                    //adapter.notifyDataSetChanged();
                 }
                 else{
                     Log.i(TAG, "onResponse: else");

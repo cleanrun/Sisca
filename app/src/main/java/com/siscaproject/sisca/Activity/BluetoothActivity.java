@@ -30,7 +30,6 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.siscaproject.sisca.BuildConfig;
 import com.siscaproject.sisca.Fragment.ScanFragment;
-import com.siscaproject.sisca.Fragment.SearchFragment;
 import com.siscaproject.sisca.R;
 import com.siscaproject.sisca.Utilities.FamsModel;
 import com.siscaproject.sisca.Utilities.ModelBase;
@@ -67,8 +66,9 @@ public class BluetoothActivity extends TSLBluetoothDeviceActivity {
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
     @BindView(R.id.viewpager_bluetooth) ViewPager mViewPager;
-    @BindView(R.id.toolbar_bluetooth) Toolbar mToolbar;
+    @BindView(R.id.toolbar) Toolbar mToolbar;
     @BindView(R.id.tab_bluetooth) TabLayout mTabLayout;
+    @BindView(R.id.tv_reader_state) TextView tvReaderState;
 
     // Menu items
     private MenuItem reconnectMenuItem;
@@ -88,6 +88,7 @@ public class BluetoothActivity extends TSLBluetoothDeviceActivity {
         ButterKnife.bind(this);
 
         setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -150,7 +151,7 @@ public class BluetoothActivity extends TSLBluetoothDeviceActivity {
     private void setupViewPager(ViewPager viewPager){
         SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new ScanFragment(), "REGISTER");
-        adapter.addFragment(new SearchFragment(), "SEARCH");
+        //adapter.addFragment(new SearchFragment(), "SEARCH");
         viewPager.setAdapter(adapter);
     }
 
@@ -227,16 +228,19 @@ public class BluetoothActivity extends TSLBluetoothDeviceActivity {
             case CONNECTED:
                 isReaderConnected = true;
                 connectionMessage += getCommander().getConnectedDeviceName();
-                getSupportActionBar().setTitle(connectionMessage);
+                //getSupportActionBar().setTitle(connectionMessage);
+                tvReaderState.setText(connectionMessage);
                 break;
             case CONNECTING:
                 connectionMessage += "Connecting..";
-                getSupportActionBar().setTitle(connectionMessage);
+                //getSupportActionBar().setTitle(connectionMessage);
+                tvReaderState.setText(connectionMessage);
                 break;
             default:
                 isReaderConnected= false;
                 connectionMessage += "Disconnected";
-                getSupportActionBar().setTitle(connectionMessage);
+                //getSupportActionBar().setTitle(connectionMessage);
+                tvReaderState.setText(connectionMessage);
         }
     }
 
@@ -263,9 +267,7 @@ public class BluetoothActivity extends TSLBluetoothDeviceActivity {
                                 ScanFragment r = (ScanFragment) fragment;
                                 r.addData(message);
                             }
-                            else if(fragment instanceof SearchFragment){
-                                // On progress
-                            }
+
                         }
                         else if(message.startsWith("EPC")){
                             int index = mViewPager.getCurrentItem();
@@ -276,9 +278,7 @@ public class BluetoothActivity extends TSLBluetoothDeviceActivity {
                                 ScanFragment r = (ScanFragment) fragment;
                                 r.addData(message);
                             }
-                            else if(fragment instanceof SearchFragment){
-                                // On progress
-                            }
+
                         }
                         break;
                     default:

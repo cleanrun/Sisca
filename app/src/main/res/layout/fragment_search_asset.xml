@@ -12,69 +12,32 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <!-- Picture layout -->
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="85dp"
-            android:gravity="center">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/colorRedPrimary">
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:srcCompat="@drawable/image_1"
-                android:scaleType="centerCrop"/>
+            <LinearLayout
+                android:layout_width="320dp"
+                android:layout_height="35dp"
+                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:weightSum="7"
+                android:background="@drawable/btn_rounded_white">
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/search_bar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:layout_margin="@dimen/spacing_middle"
-                android:clipToPadding="false"
-                app:cardBackgroundColor="@android:color/white"
-                app:cardCornerRadius="2dp"
-                app:cardElevation="3dp">
-
-                <LinearLayout
+                <android.support.v7.widget.SearchView
+                    android:id="@+id/search_view"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    app:theme="@style/AppSearchView"
+                    app:queryHint="Search"/>
 
-                    <ImageButton
-                        android:id="@+id/btn_filter"
-                        android:layout_width="?attr/actionBarSize"
-                        android:layout_height="?attr/actionBarSize"
-                        android:background="@android:color/transparent"
-                        android:tint="@color/grey_60"
-                        android:layout_gravity="center_vertical"
-                        app:srcCompat="@drawable/ic_menu" />
+            </LinearLayout>
 
-                    <EditText
-                        android:id="@+id/et_search"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:hint="@string/filter_asset"
-                        android:imeOptions="actionSearch"
-                        android:maxLines="1"
-                        android:inputType="none"
-                        android:singleLine="true"/>
-
-                    <ImageButton
-                        android:id="@+id/btn_search"
-                        android:layout_width="?attr/actionBarSize"
-                        android:layout_height="?attr/actionBarSize"
-                        android:background="@android:color/transparent"
-                        android:layout_gravity="center_vertical"
-                        android:clickable="true"
-                        android:tint="@color/grey_60"
-                        app:srcCompat="@drawable/ic_search" />
-
-                </LinearLayout>
-
-            </android.support.v7.widget.CardView>
-
-        </RelativeLayout>
+        </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
