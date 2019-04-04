@@ -218,7 +218,6 @@ public class AssetsActivity extends AppCompatActivity implements EditAssetFragme
         recyclerView.setVisibility(View.VISIBLE);
     }
 
-    // On Progress
     private void getAsset() {
         showProgressBar();
         Call<ResponseIndex<Asset>> call = userService.indexFixed(Header.auth, Header.accept);

@@ -74,8 +74,8 @@ public class HomeNavigationActivity extends AppCompatActivity
                         setTitle("Dashboard");
                         break;
                     case R.id.nav_assets:
-                        //selectedFragment = AssetsFragment.newInstance();
-                        selectedFragment = SearchAssetFragment.newInstance();
+                        selectedFragment = AssetsFragment.newInstance();
+                        //selectedFragment = SearchAssetFragment.newInstance();
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.nsv_container_home, selectedFragment).commit();
                         setTitle("Assets");

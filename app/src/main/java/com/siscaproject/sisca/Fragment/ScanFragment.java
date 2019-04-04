@@ -23,14 +23,22 @@ import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.GravityEnum;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.siscaproject.sisca.ActivityForm.FormNewAssetActivity;
+import com.siscaproject.sisca.Model.Asset;
 import com.siscaproject.sisca.Model.PairedDevice;
+import com.siscaproject.sisca.Model.ResponseIndex;
 import com.siscaproject.sisca.R;
+import com.siscaproject.sisca.Utilities.APIProperties;
 import com.siscaproject.sisca.Utilities.BluetoothConnector;
+import com.siscaproject.sisca.Utilities.Header;
+import com.siscaproject.sisca.Utilities.UserService;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ScanFragment extends Fragment {
     private static final String TAG = "ScanFragment";
@@ -49,12 +57,16 @@ public class ScanFragment extends Fragment {
     @BindView(R.id.parent_register) FrameLayout parentLayout;
 
     private MaterialDialog createDialog;
+    private MaterialDialog infoDialog;
+
+    private UserService userService;
 
     // The list of results from actions
     private ArrayAdapter<String> mResultsArrayAdapter;
     private ListView mResultsListView;
 
     private ArrayList<String> data = new ArrayList<>();
+    private ArrayList<Asset> listAsset;
 
     public ScanFragment() {
         // Required empty public constructor
@@ -63,6 +75,9 @@ public class ScanFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        userService = APIProperties.getUserService();
+        getAsset();
     }
 
     @Nullable
@@ -75,7 +90,8 @@ public class ScanFragment extends Fragment {
 
         mResultsArrayAdapter = new ArrayAdapter<>(ScanFragment.this.getContext(), android.R.layout.simple_list_item_1);
 
-        mResultsArrayAdapter.add("1234");
+        mResultsArrayAdapter.add("0000");
+        mResultsArrayAdapter.add("81016");
 
         mResultsListView = view.findViewById(R.id.lv_data);
         mResultsListView.setAdapter(mResultsArrayAdapter);
@@ -87,8 +103,9 @@ public class ScanFragment extends Fragment {
                 //mResultsArrayAdapter.remove(mResultsArrayAdapter.getItem(position));
                 //mResultsArrayAdapter.notifyDataSetChanged();
                 //totalData.setText(Integer.toString(mResultsArrayAdapter.getCount()) + " items detected");
-
-                showCreateDialog(mResultsArrayAdapter.getItem(position));
+                //isAssetExist(mResultsArrayAdapter.getItem(position));
+                //showCreateDialog(mResultsArrayAdapter.getItem(position));
+                showDialog(mResultsArrayAdapter.getItem(position));
             }
         });
 
@@ -152,5 +169,68 @@ public class ScanFragment extends Fragment {
 
         createDialog = builder.build();
         createDialog.show();
+    }
+
+    private void showInfoDialog(Asset asset){
+        Log.i(TAG, "showInfoDialog: called");
+
+        String name = "Name : " + asset.getName();
+        String tag = "Asset Tag : " + asset.getAsset_id();
+
+        MaterialDialog.Builder builder = new MaterialDialog.Builder(getContext())
+                .title("Asset Registered!")
+                .content(name + '\n' + tag)
+                .contentGravity(GravityEnum.CENTER)
+                .autoDismiss(true)
+                .neutralText("Dismiss")
+                .canceledOnTouchOutside(true);
+
+        infoDialog = builder.build();
+        infoDialog.show();
+    }
+
+    private Asset isAssetExist(String assetTag){
+        for(Asset a : listAsset){
+            String tag = a.getAsset_id();
+            if (tag.equals(assetTag)){
+                Log.i(TAG, "isAssetExist: true");
+                return a;
+            }
+        }
+        Log.i(TAG, "isAssetExist: false");
+        return null;
+    }
+
+    private void showDialog(String tag){
+        Asset a = isAssetExist(tag);
+
+        if(a != null){
+            showInfoDialog(a);
+        }
+        else{
+            showCreateDialog(tag);
+        }
+    }
+
+    private void getAsset() {
+        Call<ResponseIndex<Asset>> call = userService.indexFixed(Header.auth, Header.accept);
+        call.enqueue(new Callback<ResponseIndex<Asset>>() {
+            @Override
+            public void onResponse(Call<ResponseIndex<Asset>> call, Response<ResponseIndex<Asset>> response) {
+                if (response.isSuccessful()) {
+                    int total = response.body().getTotal();
+                    Log.i(TAG, "onResponse: total " + total);
+
+                    listAsset = response.body().getRows();
+                } else {
+                    Log.i(TAG, "onResponse: else");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseIndex<Asset>> call, Throwable t) {
+                Log.e(TAG, "onFailure: " + t.getMessage());
+            }
+        });
     }
 }
