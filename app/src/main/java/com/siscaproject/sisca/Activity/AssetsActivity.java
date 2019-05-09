@@ -138,13 +138,6 @@ public class AssetsActivity extends AppCompatActivity implements EditAssetFragme
                 getAsset();
             }
         });
-
-        new Prefs.Builder()
-                .setContext(this)
-                .setMode(android.content.ContextWrapper.MODE_PRIVATE)
-                .setPrefsName(getPackageName())
-                .setUseDefaultSharedPreference(true)
-                .build();
     }
 
     @OnClick({R.id.btn_reader, R.id.btn_add})

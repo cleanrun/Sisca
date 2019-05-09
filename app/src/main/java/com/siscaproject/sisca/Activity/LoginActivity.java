@@ -135,7 +135,7 @@ public class LoginActivity extends AppCompatActivity{
                         Prefs.putString("token_type", response.body().getToken_type().toString());
                         Prefs.putString("expires_at", response.body().getExpires_at().toString());
 
-                        startActivity(new Intent(LoginActivity.this, HomeNavigationActivity.class));
+                        startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
                         finish();
                     } else {
                         Log.e(TAG, "getLogin, Unauthorized access" + response.body().getToken_type().toString());

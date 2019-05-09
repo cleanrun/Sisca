@@ -4,6 +4,9 @@
     tools:context="com.siscaproject.sisca.Activity.HomeActivity">
 
     <item
+        android:id="@+id/menu_reader"
+        android:title="Reader" />
+    <item
         android:id="@+id/menu_about"
         android:title="About" />
 

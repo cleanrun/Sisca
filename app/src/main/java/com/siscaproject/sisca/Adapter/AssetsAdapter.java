@@ -15,26 +15,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.afollestad.materialdialogs.DialogAction;
-import com.afollestad.materialdialogs.GravityEnum;
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.pixplicity.easyprefs.library.Prefs;
-import com.siscaproject.sisca.Activity.AssetsActivity;
-import com.siscaproject.sisca.Activity.BluetoothActivity;
-import com.siscaproject.sisca.ActivityForm.FormNewAssetActivity;
 import com.siscaproject.sisca.Model.Asset;
-import com.siscaproject.sisca.Model.ResponseDelete;
 import com.siscaproject.sisca.R;
-import com.siscaproject.sisca.Utilities.APIProperties;
-import com.siscaproject.sisca.Utilities.Header;
 import com.siscaproject.sisca.Utilities.UserService;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class AssetsAdapter extends RecyclerView.Adapter<AssetsAdapter.ItemHolder> implements Filterable{
     private static final String TAG = "AssetsAdapter";
@@ -62,7 +50,6 @@ public class AssetsAdapter extends RecyclerView.Adapter<AssetsAdapter.ItemHolder
 
     public void setListData(ArrayList<Asset> listData) {
         this.listData = listData;
-        notifyDataSetChanged();
     }
 
     @NonNull

@@ -19,26 +19,28 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.siscaproject.sisca.Fragment.AssetsFragment;
 import com.siscaproject.sisca.Fragment.HomeFragment;
+import com.siscaproject.sisca.Fragment.MonitoringFragment;
 import com.siscaproject.sisca.Fragment.ProfileFragment;
-import com.siscaproject.sisca.Fragment.ReportFragment;
-import com.siscaproject.sisca.Fragment.SearchAssetFragment;
+import com.siscaproject.sisca.Fragment.PindahAsetFragment;
 import com.siscaproject.sisca.Fragment.SettingsFragment;
 import com.siscaproject.sisca.R;
 
 public class HomeNavigationActivity extends AppCompatActivity
     implements AssetsFragment.OnFragmentInteractionListener, HomeFragment.OnFragmentInteractionListener,
-                ProfileFragment.OnFragmentInteractionListener, ReportFragment.OnFragmentInteractionListener,
-                SettingsFragment.OnFragmentInteractionListener, SearchAssetFragment.OnFragmentInteractionListener{
+                ProfileFragment.OnFragmentInteractionListener, PindahAsetFragment.OnFragmentInteractionListener,
+                SettingsFragment.OnFragmentInteractionListener, MonitoringFragment.OnFragmentInteractionListener{
 
     private static final String TAG = "HomeNavigationActivity";
 
     private BottomNavigationView navigationView;
     private Toolbar toolbar;
 
+    private MenuItem readerMenu;
     private MenuItem aboutMenu;
     private MenuItem logoutMenu;
 
     private MaterialDialog logoutDialog;
+    private MaterialDialog readerDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,13 +77,13 @@ public class HomeNavigationActivity extends AppCompatActivity
                         break;
                     case R.id.nav_assets:
                         selectedFragment = AssetsFragment.newInstance();
-                        //selectedFragment = SearchAssetFragment.newInstance();
+                        //selectedFragment = MonitoringFragment.newInstance();
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.nsv_container_home, selectedFragment).commit();
                         setTitle("Assets");
                         break;
                     case R.id.nav_report:
-                        selectedFragment = ReportFragment.newInstance();
+                        selectedFragment = PindahAsetFragment.newInstance();
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.nsv_container_home, selectedFragment).commit();
                         setTitle("Report");
@@ -109,6 +111,7 @@ public class HomeNavigationActivity extends AppCompatActivity
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_home, menu);
 
+        readerMenu = menu.findItem(R.id.menu_reader);
         aboutMenu = menu.findItem(R.id.menu_about);
         logoutMenu = menu.findItem(R.id.menu_logout);
         return true;
@@ -119,6 +122,9 @@ public class HomeNavigationActivity extends AppCompatActivity
         int id = item.getItemId();
 
         switch(id){
+            case R.id.menu_reader:
+                showReaderDialog();
+                break;
             case R.id.menu_logout:
                 showLogoutDialog();
                 break;
@@ -130,6 +136,33 @@ public class HomeNavigationActivity extends AppCompatActivity
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void showReaderDialog() {
+        Log.i(TAG, "showReaderDialog: called");
+
+        MaterialDialog.Builder builder = new MaterialDialog.Builder(HomeNavigationActivity.this)
+                .content("Please select reader")
+                .contentGravity(GravityEnum.CENTER)
+                .autoDismiss(true)
+                .positiveText("Bluetooth Reader")
+                .negativeText("QR/Barcode Reader")
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        startActivity(new Intent(HomeNavigationActivity.this, BluetoothActivity.class));
+                    }
+                })
+                .onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        startActivity(new Intent(HomeNavigationActivity.this, QRActivity.class));
+                    }
+                })
+                .canceledOnTouchOutside(true);
+
+        readerDialog = builder.build();
+        readerDialog.show();
     }
 
     private void showLogoutDialog() {

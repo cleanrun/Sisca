@@ -6,6 +6,8 @@
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="selamat_datang">Selamat Datang</string>
+
     <string name="tab_home">Home</string>
     <string name="tab_profile">Profile</string>
     <string name="tab_register">Register</string>
@@ -128,10 +130,18 @@
     <string name="status_type">Status Type</string>
 
     <string name="edit_asset_data">Edit Asset Data</string>
+    <string name="show_asset_details">Show Asset Details</string>
     <string name="edit_category">Edit Category</string>
 
     <string name="model_details">Model Details</string>
     <string name="manufacturer_details">Manufacturer Details</string>
     <string name="supplier_details">Supplier Details</string>
+    <string name="title_activity_dashboard">DashboardActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    <string name="lokasi">Lokasi</string>
+    <string name="id_aset">ID Aset</string>
 
 </resources>

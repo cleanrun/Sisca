@@ -14,8 +14,8 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-    <uses-feature android:name="android.hardware.camera"/>
-    <uses-feature android:name="android.hardware.camera.autofocus"/>
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <application
         android:name=".Utilities.TSLBluetoothDeviceApplication"
@@ -28,12 +28,7 @@
         tools:replace="android:icon">
         <activity
             android:name=".Activity.LoginActivity"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
-            android:name=".Activity.HomeActivity"
-            android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait"></activity>
 
         <meta-data
             android:name="com.google.android.gms.vision.DEPENDENCIES"
@@ -47,12 +42,7 @@
         <activity android:name=".Activity.ExtraActivity" />
         <activity
             android:name=".Activity.HomeNavigationActivity"
-            android:theme="@style/AppTheme" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:theme="@style/AppTheme">
         </activity>
         <activity android:name=".Activity.DetailAssetsActivity" />
         <activity android:name=".Activity.AssetsActivity" />
@@ -69,7 +59,15 @@
         <activity android:name=".Activity.ModelAssetsActivity" />
         <activity android:name=".Activity.CategoryActivity" />
         <activity android:name=".Activity.ManufacturerActivity" />
-        <activity android:name=".Activity.SupplierActivity"></activity>
+        <activity android:name=".Activity.SupplierActivity" />
+        <activity
+            android:name=".Activity.DashboardActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
