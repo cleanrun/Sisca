@@ -6,7 +6,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.net.Uri;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -30,7 +29,6 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.siscaproject.sisca.BuildConfig;
-import com.siscaproject.sisca.Fragment.EditAssetFragment;
 import com.siscaproject.sisca.Fragment.ScanFragment;
 import com.siscaproject.sisca.R;
 import com.siscaproject.sisca.Utilities.FamsModel;

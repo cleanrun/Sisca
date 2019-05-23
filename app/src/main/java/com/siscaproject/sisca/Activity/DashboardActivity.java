@@ -13,12 +13,12 @@ import android.widget.TextView;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.siscaproject.sisca.Fragment.HomeFragment;
 import com.siscaproject.sisca.Fragment.MonitoringFragment;
-import com.siscaproject.sisca.Fragment.PindahAsetFragment;
+import com.siscaproject.sisca.Fragment.MutasiFragment;
 import com.siscaproject.sisca.Fragment.ProfileFragment;
 import com.siscaproject.sisca.R;
 
 public class DashboardActivity extends AppCompatActivity implements MonitoringFragment.OnFragmentInteractionListener,
-        PindahAsetFragment.OnFragmentInteractionListener, ProfileFragment.OnFragmentInteractionListener, HomeFragment.OnFragmentInteractionListener{
+        MutasiFragment.OnFragmentInteractionListener, ProfileFragment.OnFragmentInteractionListener, HomeFragment.OnFragmentInteractionListener{
 
     private TextView mTextMessage;
 
@@ -58,7 +58,7 @@ public class DashboardActivity extends AppCompatActivity implements MonitoringFr
                         setTitle("Monitoring");
                         break;
                     case R.id.nav_pindah_aset:
-                        selectedFragment = PindahAsetFragment.newInstance();
+                        selectedFragment = MutasiFragment.newInstance();
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.nsv_container_home, selectedFragment).commit();
                         setTitle("Pindah Aset");

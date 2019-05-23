@@ -57,6 +57,7 @@ dependencies {
     implementation 'com.afollestad.material-dialogs:commons:0.9.4.5'   // material dialog
     implementation 'com.jakewharton:butterknife:8.8.1'                 // butter knife view binding
     implementation 'me.dm7.barcodescanner:zxing:1.9'                   // barcode scanner library
+    implementation 'com.github.rey5137:material:1.2.2'                 // custom progress bar
     implementation 'com.android.support:support-v4:27.1.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 

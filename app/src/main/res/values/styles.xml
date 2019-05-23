@@ -2,11 +2,21 @@
 
     <style name="AppTheme" parent="BaseTheme" />
 
-    <style name="BaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
+    <!--<style name="BaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        &lt;!&ndash; Customize your theme here. &ndash;&gt;
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="android:actionModeBackground">@color/blue_grey_600</item>
+        <item name="android:dialogTheme">@style/Dialog.Theme</item>
+    </style>-->
+
+    <style name="BaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/color_v3_red_2</item>
+        <item name="colorPrimaryDark">@color/color_v3_red_1</item>
+        <item name="colorAccent">@color/color_v3_red_2</item>
         <item name="windowActionModeOverlay">true</item>
         <item name="android:actionModeBackground">@color/blue_grey_600</item>
         <item name="android:dialogTheme">@style/Dialog.Theme</item>
@@ -249,6 +259,12 @@
 
     <style name="AppSearchView" parent="Widget.AppCompat.SearchView" >
         <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="progressViewColor" parent="@style/Theme.AppCompat">
+        <item name="colorPrimary">@color/color_v3_red_2</item>
+        <item name="colorPrimaryDark">@color/color_v3_red_2</item>
+        <item name="colorAccent">@color/color_v3_red_2</item>
     </style>
 
 </resources>

@@ -1,7 +1,6 @@
 package com.siscaproject.sisca.Activity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.design.widget.Snackbar;

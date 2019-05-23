@@ -5,33 +5,148 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/spacing_large"
     tools:context=".Fragment.MonitoringFragment">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@color/color_v3_white_2">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_medium"
-            android:layout_marginBottom="@dimen/spacing_medium"
-            android:text="@string/lokasi"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Widget.ActionBar.Subtitle"/>
-
-        <android.support.v7.widget.CardView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <Spinner
-                android:id="@+id/spn_lokasi"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <android.support.design.widget.AppBarLayout
+                android:id="@+id/appbar"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"/>
+                android:layout_height="wrap_content"
+                android:background="@color/color_v3_red_2">
 
-        </android.support.v7.widget.CardView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="16dp"
+                    android:descendantFocusability="beforeDescendants"
+                    android:focusableInTouchMode="true"
+                    android:orientation="horizontal">
 
-    </LinearLayout>
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:layout_weight="1">
+
+                        <EditText
+                            android:id="@+id/et_search_report"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:hint="Cari Lokasi"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="48dp"
+                            android:maxLength="40"
+                            android:textSize="12sp"
+                            android:textColorHint="@color/color_v3_gray_1"
+                            android:textColor="@color/color_v3_black_1"
+                            android:inputType="text"
+                            android:background="@drawable/shape_search" />
+
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/cv_search_submit_report"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            app:cardCornerRadius="8dp"
+                            android:layout_margin="8dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerInParent="true"
+                            android:clickable="true"
+                            app:cardElevation="0dp"
+                            android:foreground="?android:attr/selectableItemBackground">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_margin="8dp"
+                                android:src="@drawable/ic_search_black"/>
+
+                        </android.support.v7.widget.CardView>
+
+                    </RelativeLayout>
+
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/cv_scan_qr_report"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        app:cardCornerRadius="8dp"
+                        app:cardBackgroundColor="@color/color_v3_red_3"
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="12dp"
+                            android:src="@drawable/ic_qr_scan"/>
+
+                    </android.support.v7.widget.CardView>
+
+                </LinearLayout>
+
+            </android.support.design.widget.AppBarLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/ll_empty_report"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="240dp"
+                        android:layout_height="240dp"
+                        android:src="@drawable/undraw_no_data_qbuo"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/color_v3_gray_1"
+                        android:text="Belum ada lokasi aset"/>
+
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_report"
+                    android:paddingTop="6dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </android.support.v7.widget.RecyclerView>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <com.rey.material.widget.ProgressView
+            android:id="@+id/pv_report"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            app:pv_autostart="true"
+            app:pv_circular="true"
+            app:pv_progressStyle="@style/Material.Drawable.CircularProgress"
+            app:pv_progressMode="indeterminate"
+            android:layout_centerInParent="true"
+            android:theme="@style/progressViewColor"
+            android:indeterminate="false" />
+
+    </RelativeLayout>
 
 </FrameLayout>

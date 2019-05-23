@@ -2,16 +2,11 @@ package com.siscaproject.sisca.Fragment;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,13 +17,9 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.afollestad.materialdialogs.DialogAction;
-import com.afollestad.materialdialogs.GravityEnum;
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.siscaproject.sisca.ActivityForm.FormNewAssetActivity;
 import com.siscaproject.sisca.Model.Asset;
 import com.siscaproject.sisca.Model.PairedDevice;
-import com.siscaproject.sisca.Model.ResponseIndex;
 import com.siscaproject.sisca.R;
 import com.siscaproject.sisca.Utilities.APIProperties;
 import com.siscaproject.sisca.Utilities.BluetoothConnector;
@@ -80,7 +71,7 @@ public class ScanFragment extends Fragment{
         super.onCreate(savedInstanceState);
 
         userService = APIProperties.getUserService();
-        getAsset();
+        //getAsset();
     }
 
     @Nullable
@@ -145,6 +136,7 @@ public class ScanFragment extends Fragment{
         });
     }
 
+    /*
     private void showCreateDialog(final String tag){
         Log.i(TAG, "showCreateDialog: called");
 
@@ -173,6 +165,7 @@ public class ScanFragment extends Fragment{
         createDialog = builder.build();
         createDialog.show();
     }
+
 
     private void showInfoDialog(final Asset asset){
         Log.i(TAG, "showInfoDialog: called");
@@ -207,6 +200,7 @@ public class ScanFragment extends Fragment{
         infoDialog = builder.build();
         infoDialog.show();
     }
+    */
 
     private Asset isAssetExist(String assetTag){
         for(Asset a : listAsset){
@@ -224,13 +218,14 @@ public class ScanFragment extends Fragment{
         Asset a = isAssetExist(tag);
 
         if(a != null){
-            showInfoDialog(a);
+            //showInfoDialog(a);
         }
         else{
-            showCreateDialog(tag);
+            //showCreateDialog(tag);
         }
     }
 
+    /*
     private void getAsset() {
         Call<ResponseIndex<Asset>> call = userService.indexFixed(Header.auth, Header.accept);
         call.enqueue(new Callback<ResponseIndex<Asset>>() {
@@ -252,4 +247,5 @@ public class ScanFragment extends Fragment{
             }
         });
     }
+    */
 }

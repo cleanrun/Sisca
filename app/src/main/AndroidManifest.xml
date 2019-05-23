@@ -39,13 +39,6 @@
             android:name=".Activity.BluetoothActivity"
             android:label="@string/title_activity_bluetooth"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Activity.ExtraActivity" />
-        <activity
-            android:name=".Activity.HomeNavigationActivity"
-            android:theme="@style/AppTheme">
-        </activity>
-        <activity android:name=".Activity.DetailAssetsActivity" />
-        <activity android:name=".Activity.AssetsActivity" />
         <activity
             android:name=".ActivityForm.FormNewAssetActivity"
             android:theme="@style/StandardTheme" />
@@ -55,11 +48,6 @@
         <activity android:name=".ActivityForm.FormNewManufacturerActivity" />
         <activity android:name=".ActivityForm.FormNewSupplierActivity" />
         <activity android:name=".Activity.SplashScreenActivity" />
-        <activity android:name=".Activity.StatusLabelActivity" />
-        <activity android:name=".Activity.ModelAssetsActivity" />
-        <activity android:name=".Activity.CategoryActivity" />
-        <activity android:name=".Activity.ManufacturerActivity" />
-        <activity android:name=".Activity.SupplierActivity" />
         <activity
             android:name=".Activity.DashboardActivity">
             <intent-filter>
