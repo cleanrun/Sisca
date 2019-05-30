@@ -145,4 +145,6 @@
 
     <string name="lorem_ipsum_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ac nulla lacinia mauris facilisis lacinia in ac turpis. Pellentesque suscipit lacus vitae dui dignissim tristique</string>
 
+    <string name="pilih_lokasi">Pilih Lokasi</string>
+    <string name="pilih_pic">Pilih PIC</string>
 </resources>
