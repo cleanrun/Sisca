@@ -56,7 +56,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activity.DetailMonitoringActivity" />
-        <activity android:name=".Activity.DetailMutationActivity"></activity>
+        <activity android:name=".Activity.DetailMutationActivity" />
+        <activity android:name=".Activity.SearchMutationActivity"></activity>
     </application>
 
 </manifest>

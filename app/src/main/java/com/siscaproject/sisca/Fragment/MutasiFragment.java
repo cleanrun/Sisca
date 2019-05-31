@@ -11,8 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.siscaproject.sisca.Activity.DetailMutationActivity;
+import com.siscaproject.sisca.Activity.SearchMutationActivity;
 import com.siscaproject.sisca.R;
 
 import butterknife.BindView;
@@ -23,6 +26,7 @@ public class MutasiFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
 
     @BindView(R.id.iv_scan) ImageView ivScan;
+    @BindView(R.id.tv_search_mutation) TextView tvSearch;
 
     public MutasiFragment() {
         // Required empty public constructor
@@ -50,6 +54,14 @@ public class MutasiFragment extends Fragment {
         if(view.getId() == R.id.iv_scan){
             Log.i("MutasiFragment", "mutationActivity");
             startActivity(new Intent(getActivity(), DetailMutationActivity.class));
+        }
+    }
+
+    @OnClick(R.id.tv_search_mutation)
+    public void searchActivity(View view){
+        if(view.getId() == R.id.tv_search_mutation){
+            Log.i("MutasiFragment", "searchActivity");
+            startActivity(new Intent(getActivity(), SearchMutationActivity.class));
         }
     }
 
