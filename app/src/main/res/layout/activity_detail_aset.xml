@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.DetailAsetActivity">
+
+    <com.rey.material.widget.ProgressView
+        android:id="@+id/pv_home_aset_detail"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        app:pv_autostart="true"
+        app:pv_circular="true"
+        app:pv_progressStyle="@style/Material.Drawable.CircularProgress"
+        app:pv_progressMode="indeterminate"
+        android:layout_centerInParent="true"
+        android:theme="@style/progressViewColor"
+        android:indeterminate="false" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/photo_male_1"/>
+
+            <android.support.design.widget.AppBarLayout
+                android:layout_alignParentTop="true"
+                android:background="@color/transparent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.v7.widget.Toolbar
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@color/transparent"
+                    android:contentInsetLeft="0dp"
+                    android:contentInsetStart="0dp"
+                    app:contentInsetLeft="0dp"
+                    app:contentInsetStart="0dp"
+                    android:contentInsetRight="0dp"
+                    android:contentInsetEnd="0dp"
+                    app:contentInsetRight="0dp"
+                    app:contentInsetEnd="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/cv_back_home_aset_detail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            app:cardElevation="0dp"
+                            app:cardBackgroundColor="@color/transparent"
+                            android:foreground="?android:attr/selectableItemBackground">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:padding="12dp"
+                                app:srcCompat="@drawable/ic_arrow_back_white_24dp"
+                                android:layout_gravity="left"
+                                android:adjustViewBounds="true"
+                                android:cropToPadding="true" />
+
+                        </android.support.v7.widget.CardView>
+
+                        <TextView
+                            android:id="@+id/tv_title_report_detail"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="match_parent"
+                            android:textAlignment="center"
+                            android:text="Aset"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:gravity="center_vertical"
+                            android:textColor="@color/color_v3_white_1"
+                            android:textStyle="bold"
+                            android:textSize="18sp"/>
+
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/cv_option_home_aset_detail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            app:cardElevation="0dp"
+                            app:cardBackgroundColor="@color/transparent"
+                            android:foreground="?android:attr/selectableItemBackground">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:padding="12dp"
+                                app:srcCompat="@drawable/ic_more_vert_white_24dp"
+                                android:layout_gravity="left"
+                                android:adjustViewBounds="true"
+                                android:cropToPadding="true" />
+
+                        </android.support.v7.widget.CardView>
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.Toolbar>
+
+            </android.support.design.widget.AppBarLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="16dp"
+                android:layout_alignParentBottom="true">
+
+                <TextView
+                    android:id="@+id/tv_name_home_aset_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="Nama Aset"
+                    android:textColor="@color/color_v3_white_1"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_id_home_aset_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Kode aset"
+                    android:textColor="@color/color_v3_white_2"
+                    android:textSize="16sp"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_marginRight="8dp"
+                            android:drawablePadding="16dp"
+                            android:src="@drawable/ic_folder" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="8dp"
+                            android:text="Lokasi : "
+                            android:textColor="@color/color_v3_gray_3"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_lokasi_home_aset_detail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="KODE"
+                            android:textColor="@color/color_v3_black_1"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginRight="8dp"
+                            android:drawablePadding="16dp"
+                            android:src="@drawable/ic_pic" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="8dp"
+                            android:text="PIC : "
+                            android:textColor="@color/color_v3_gray_3"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_pic_home_aset_detail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="KODE"
+                            android:textColor="@color/color_v3_black_1"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Deskripsi"
+                android:layout_margin="16dp"
+                android:textColor="@color/color_v3_gray_3"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_desc_home_aset_detail"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="isi deskripsi"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
+                android:textColor="@color/color_v3_gray_3"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_v3_gray_1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/color_v3_white_1"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="2dp"
+                    android:paddingRight="2dp"
+                    android:textSize="12sp"
+                    android:text="Bulan"/>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/color_v3_gray_3"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/color_v3_white_1"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="2dp"
+                    android:paddingRight="2dp"
+                    android:textSize="12sp"
+                    android:text="Tgl Beli"/>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/color_v3_gray_3"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/color_v3_white_1"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="2dp"
+                    android:paddingRight="2dp"
+                    android:textSize="12sp"
+                    android:text="Harga"/>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/color_v3_gray_3"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/color_v3_white_1"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="2dp"
+                    android:paddingRight="2dp"
+                    android:textSize="12sp"
+                    android:text="Value"/>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/color_v3_gray_3"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/color_v3_white_1"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="2dp"
+                    android:paddingRight="2dp"
+                    android:textSize="12sp"
+                    android:text="Depresiasi"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@color/color_v3_white_3"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/color_v3_gray_1"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="2dp"
+                    android:paddingRight="2dp"
+                    android:textSize="12sp"
+                    android:text="10 Bulan"/>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/color_v3_gray_3"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/color_v3_gray_1"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="2dp"
+                    android:paddingRight="2dp"
+                    android:textSize="12sp"
+                    android:text="01/12/2019"/>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/color_v3_gray_3"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/color_v3_gray_1"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="2dp"
+                    android:paddingRight="2dp"
+                    android:textSize="12sp"
+                    android:text="1,000,000"/>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/color_v3_gray_3"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/color_v3_gray_1"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="2dp"
+                    android:paddingRight="2dp"
+                    android:textSize="12sp"
+                    android:text="600,000"/>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/color_v3_gray_3"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/color_v3_gray_1"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="2dp"
+                    android:paddingRight="2dp"
+                    android:textSize="12sp"
+                    android:text="400,000"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -341,7 +341,10 @@
     <color name="color_v3_red_3">#f12a32</color>
     <color name="color_v3_white_1">#ffffff</color>
     <color name="color_v3_white_2">#fdfdfd</color>
+    <color name="color_v3_white_3">#eff1f5</color>
     <color name="color_v3_black_1">#333333</color>
     <color name="color_v3_gray_1">#737373</color>
+    <color name="color_v3_gray_2">#61656b</color>
+    <color name="color_v3_gray_3">#595d64</color>
 
 </resources>

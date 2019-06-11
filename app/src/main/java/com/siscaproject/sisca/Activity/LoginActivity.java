@@ -19,11 +19,9 @@ import com.afollestad.materialdialogs.GravityEnum;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.scottyab.showhidepasswordedittext.ShowHidePasswordEditText;
-import com.siscaproject.sisca.Model.Account;
 import com.siscaproject.sisca.Model.LoginAuth;
 import com.siscaproject.sisca.R;
 import com.siscaproject.sisca.Utilities.APIProperties;
-import com.siscaproject.sisca.Utilities.Config;
 import com.siscaproject.sisca.Utilities.UserService;
 
 import butterknife.BindView;

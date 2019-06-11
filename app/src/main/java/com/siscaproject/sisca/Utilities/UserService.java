@@ -1,7 +1,7 @@
 package com.siscaproject.sisca.Utilities;
 
 import com.siscaproject.sisca.Model.Asset;
-import com.siscaproject.sisca.Model.AssetStock;
+import com.siscaproject.sisca.Model.Location;
 import com.siscaproject.sisca.Model.LoginAuth;
 import com.siscaproject.sisca.Model.User;
 
@@ -80,16 +80,16 @@ public interface UserService {
 
     @FormUrlEncoded
     @POST("asset/stock")
-    Call<AssetStock> storeStock(@Body AssetStock asset);
+    Call<Location> storeStock(@Body Location asset);
 
     @GET("asset/stock/{stock}")
-    Call<AssetStock> showStock();
+    Call<Location> showStock();
 
     @PUT("asset/stock/{stock}")
-    Call<AssetStock> putStock(@Body AssetStock asset);
+    Call<Location> putStock(@Body Location asset);
 
     @DELETE("asset/stock/{stock}")
-    Call<AssetStock> deleteStock(@Query("id") String id);
+    Call<Location> deleteStock(@Query("id") String id);
 
 
 }

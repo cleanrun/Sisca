@@ -5,17 +5,15 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.siscaproject.sisca.Activity.DetailMutationActivity;
-import com.siscaproject.sisca.Activity.SearchMutationActivity;
+import com.siscaproject.sisca.Activity.DetailAsetActivity;
 import com.siscaproject.sisca.R;
 
 import butterknife.BindView;
@@ -61,7 +59,7 @@ public class MutasiFragment extends Fragment {
     public void searchActivity(View view){
         if(view.getId() == R.id.tv_search_mutation){
             Log.i("MutasiFragment", "searchActivity");
-            startActivity(new Intent(getActivity(), SearchMutationActivity.class));
+            startActivity(new Intent(getActivity(), DetailAsetActivity.class));
         }
     }
 

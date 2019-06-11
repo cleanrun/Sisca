@@ -68,7 +68,7 @@ public class DetailMutationActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_submit_mutation_detail)
     public void submit(View view){
-        Toast.makeText(this, "Data aset berhasil dipindahkan.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Data ic_aset berhasil dipindahkan.", Toast.LENGTH_SHORT).show();
     }
 
     private ArrayList<String> dataLokasi(){
