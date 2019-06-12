@@ -99,7 +99,7 @@ public class ScanFragment extends Fragment{
                 //totalData.setText(Integer.toString(mResultsArrayAdapter.getCount()) + " items detected");
                 //isAssetExist(mResultsArrayAdapter.getItem(position));
                 //showCreateDialog(mResultsArrayAdapter.getItem(position));
-                showDialog(mResultsArrayAdapter.getItem(position));
+                //showDialog(mResultsArrayAdapter.getItem(position));
             }
         });
 
@@ -200,7 +200,8 @@ public class ScanFragment extends Fragment{
         infoDialog = builder.build();
         infoDialog.show();
     }
-    */
+
+
 
     private Asset isAssetExist(String assetTag){
         for(Asset a : listAsset){
@@ -214,6 +215,7 @@ public class ScanFragment extends Fragment{
         return null;
     }
 
+
     private void showDialog(String tag){
         Asset a = isAssetExist(tag);
 
@@ -225,7 +227,7 @@ public class ScanFragment extends Fragment{
         }
     }
 
-    /*
+
     private void getAsset() {
         Call<ResponseIndex<Asset>> call = userService.indexFixed(Header.auth, Header.accept);
         call.enqueue(new Callback<ResponseIndex<Asset>>() {
@@ -247,5 +249,6 @@ public class ScanFragment extends Fragment{
             }
         });
     }
+
     */
 }
