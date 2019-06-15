@@ -128,6 +128,9 @@ public class LoginActivity extends AppCompatActivity{
                         Log.i(TAG, "getLogin, access_token: " + response.body().getAccess_token().toString());
                         Log.i(TAG, "getLogin, expires_at: " + response.body().getExpires_at().toString());
 
+                        Prefs.putInt("id", response.body().getUser().getId());
+                        Prefs.putString("name", response.body().getUser().getName().toString());
+                        Prefs.putString("email", response.body().getUser().getEmail().toString());
                         Prefs.putString("access_token", response.body().getAccess_token().toString());
                         Prefs.putString("token_type", response.body().getToken_type().toString());
                         Prefs.putString("expires_at", response.body().getExpires_at().toString());

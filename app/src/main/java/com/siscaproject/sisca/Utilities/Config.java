@@ -4,7 +4,7 @@ import java.util.Locale;
 import java.util.UUID;
 
 public class Config {
-    public static final String API_URL = "http://demo.sisca.id/api/v1/";
+    public static final String API_URL = "http://dev.sisca.id/api/v1/";
 
     //public final static String CLIENT_SECRET = "krrUUmbDtyxGVew2d1qaoAVaBPEZH2tguhRIN06o";
     public static final String CLIENT_SECRET = "U262vjwP1CVe4YKqioOUR53TRgaEwsOeWPJOth21";

@@ -99,7 +99,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/spacing_middle"
-                        android:text="Farid Wajdi Kardbri"
+                        android:text="Name"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
                         android:textColor="@color/color_v3_gray_3"
                         android:textStyle="bold" />
@@ -109,7 +109,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/spacing_xmedium"
-                        android:text="farid.rh@btp.co.id"
+                        android:text="email@email.com"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
                         android:textColor="@color/color_v3_gray_1"
                         android:textStyle="bold" />

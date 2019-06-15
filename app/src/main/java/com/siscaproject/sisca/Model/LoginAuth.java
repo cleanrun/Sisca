@@ -3,6 +3,9 @@ package com.siscaproject.sisca.Model;
 import com.google.gson.annotations.SerializedName;
 
 public class LoginAuth {
+    @SerializedName("user")
+    private User user;
+
     @SerializedName("access_token")
     private String access_token;
 
@@ -14,6 +17,14 @@ public class LoginAuth {
 
     @SerializedName("message")
     private String message;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public String getAccess_token() {
         return access_token;

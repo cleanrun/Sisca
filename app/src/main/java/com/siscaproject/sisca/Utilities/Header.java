@@ -7,4 +7,8 @@ public class Header {
             + " " + Prefs.getString("access_token", "null");
     public static final String accept = "application/json";
 
+    public static final int id = Prefs.getInt("id", 0);
+    public static final String name = Prefs.getString("name", "null");
+    public static final String email = Prefs.getString("email", "null");
+
 }
