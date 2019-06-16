@@ -14,7 +14,7 @@
     <item
         android:id="@+id/nav_pindah_aset"
         android:icon="@drawable/ic_mutasi_border"
-        android:title="Pindah Aset" />
+        android:title="Mutasi" />
 
     <item
         android:id="@+id/nav_profil"

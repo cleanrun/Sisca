@@ -18,26 +18,26 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <RelativeLayout
+            <android.support.design.widget.AppBarLayout
+                android:id="@+id/appbar"
                 android:layout_width="match_parent"
-                android:layout_height="124dp">
+                android:layout_height="wrap_content"
+                android:background="@color/color_v3_red_2">
 
-                <ImageView
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/bg_gradient"/>
+                    android:layout_height="60dp">
 
-                <android.support.design.widget.AppBarLayout
-                    android:id="@+id/appbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/transparent">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/bg_gradient"/>
 
                     <android.support.v7.widget.Toolbar
                         android:id="@+id/toolbar"
                         android:layout_width="match_parent"
-                        android:layout_height="?attr/actionBarSize"
+                        android:layout_height="match_parent"
                         app:popupTheme="@style/AppTheme.PopupOverlay"
                         app:contentInsetStartWithNavigation="0dp"
                         android:contentInsetLeft="0dp"
@@ -50,100 +50,80 @@
                         app:contentInsetEnd="0dp"
                         app:elevation="4dp">
 
-                        <RelativeLayout
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-
-                            <ImageView
-                                android:layout_width="90dp"
-                                android:layout_height="30dp"
-                                android:layout_centerInParent="true"
-                                app:srcCompat="@drawable/sisca_logo_white"/>
-
-                        </RelativeLayout>
-
-                    </android.support.v7.widget.Toolbar>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
-                        android:paddingTop="4dp"
-                        android:paddingBottom="16dp"
-                        android:descendantFocusability="beforeDescendants"
-                        android:focusableInTouchMode="true"
-                        android:orientation="horizontal">
-
-                        <RelativeLayout
-                            android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_marginRight="8dp"
-                            android:layout_weight="1">
-
-                            <EditText
-                                android:id="@+id/et_search_report"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:hint="Cari Lokasi"
-                                android:paddingLeft="16dp"
-                                android:paddingRight="48dp"
-                                android:maxLength="40"
-                                android:textSize="12sp"
-                                android:textColorHint="@color/color_v3_gray_1"
-                                android:textColor="@color/color_v3_black_1"
-                                android:inputType="text"
-                                android:background="@drawable/shape_search" />
+                            android:padding="16dp"
+                            android:descendantFocusability="beforeDescendants"
+                            android:focusableInTouchMode="true"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
 
                             <android.support.v7.widget.CardView
-                                android:id="@+id/cv_search_submit_report"
-                                android:layout_width="32dp"
-                                android:layout_height="32dp"
-                                app:cardCornerRadius="8dp"
-                                android:layout_margin="8dp"
-                                android:layout_alignParentRight="true"
-                                android:layout_centerInParent="true"
+                                android:id="@+id/cv_scan_qr_report"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                app:cardBackgroundColor="@color/transparent"
                                 android:clickable="true"
                                 app:cardElevation="0dp"
+                                app:cardMaxElevation="0dp"
+                                android:elevation="0dp"
+                                app:cardCornerRadius="8dp"
+                                android:layout_gravity="center"
+                                android:foreground="?android:attr/selectableItemBackground">
+
+                                <ImageView
+                                    android:layout_gravity="center"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="8dp"
+                                    android:src="@drawable/ic_qr_scan"/>
+
+                            </android.support.v7.widget.CardView>
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:text="Monitoring"
+                                android:gravity="center"
+                                android:textStyle="bold"
+                                android:textSize="24sp"
+                                android:textColor="@color/color_v3_white_1"/>
+
+                            <android.support.v7.widget.CardView
+                                android:id="@+id/cv_search_report"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                app:cardBackgroundColor="@color/transparent"
+                                app:cardElevation="0dp"
+                                app:cardMaxElevation="0dp"
+                                android:elevation="0dp"
+                                app:cardCornerRadius="8dp"
+                                android:clickable="true"
+                                android:layout_gravity="center"
                                 android:foreground="?android:attr/selectableItemBackground">
 
                                 <ImageView
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:layout_margin="8dp"
-                                    android:src="@drawable/ic_search_black"/>
+                                    android:layout_gravity="center"
+                                    android:layout_margin="10dp"
+                                    android:src="@drawable/ic_search_white"/>
 
                             </android.support.v7.widget.CardView>
 
-                        </RelativeLayout>
+                        </LinearLayout>
 
-                        <android.support.v7.widget.CardView
-                            android:id="@+id/cv_scan_qr_report"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            app:cardCornerRadius="8dp"
-                            app:cardBackgroundColor="@color/color_v3_red_3"
-                            android:clickable="true"
-                            android:foreground="?android:attr/selectableItemBackground">
+                    </android.support.v7.widget.Toolbar>
 
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_margin="12dp"
-                                android:src="@drawable/ic_qr_scan"/>
+                </RelativeLayout>
 
-                        </android.support.v7.widget.CardView>
-
-                    </LinearLayout>
-
-                </android.support.design.widget.AppBarLayout>
-
-            </RelativeLayout>
+            </android.support.design.widget.AppBarLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
                 <LinearLayout
                     android:id="@+id/ll_empty_report"
                     android:layout_width="wrap_content"

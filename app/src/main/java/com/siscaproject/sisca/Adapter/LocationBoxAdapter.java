@@ -14,35 +14,33 @@ import com.siscaproject.sisca.R;
 
 import java.util.List;
 
-public class SearchLocationAdapter extends RecyclerView.Adapter<SearchLocationAdapter.ItemHolder>{
+public class LocationBoxAdapter extends RecyclerView.Adapter<LocationBoxAdapter.ItemHolder>{
 
     private Context activityContext;
-    //List<LocationModel> locationList;
     private List<LocationAPI> listData;
 
-    public SearchLocationAdapter(Context context, List<LocationAPI> locationList) {
+    public LocationBoxAdapter(Context context, List<LocationAPI> locationAPIList) {
         this.activityContext = context;
-        this.listData = locationList;
+        this.listData = locationAPIList;
     }
 
     @NonNull
     @Override
     public ItemHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_location, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_box_location, null);
         return new ItemHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ItemHolder holder, final int position) {
         holder.tvId.setText(listData.get(position).getName());
-        holder.tvAsetSize.setText("0 aset");
         holder.cvItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*Intent intent = new Intent(context, MonitoringDetailActivity.class);
-                intent.putExtra("ID_LOCATION_EXTRA", locationList.get(position).getId());
+                /*Intent intent = new Intent(activityContext, MonitoringDetailActivity.class);
+                intent.putExtra("ID_LOCATION_EXTRA", listData.get(position).getId());
 
-                context.startActivity(intent);*/
+                activityContext.startActivity(intent);*/
             }
         });
     }
@@ -52,18 +50,15 @@ public class SearchLocationAdapter extends RecyclerView.Adapter<SearchLocationAd
         return listData.size();
     }
 
-    public class ItemHolder extends RecyclerView.ViewHolder {
-
+    public class ItemHolder extends RecyclerView.ViewHolder{
         public TextView tvId;
-        public TextView tvAsetSize;
         public CardView cvItem;
 
         public ItemHolder(View itemView) {
             super(itemView);
 
-            tvId = itemView.findViewById(R.id.tv_id_item_location);
-            tvAsetSize = itemView.findViewById(R.id.tv_jumlah_aset_location);
-            cvItem = itemView.findViewById(R.id.cv_item_location);
+            tvId = itemView.findViewById(R.id.tv_id_item_box_location);
+            cvItem = itemView.findViewById(R.id.cv_item_box_location);
         }
     }
 }

@@ -9,8 +9,6 @@
         android:id="@+id/cv_item_asset"
         android:layout_marginTop="2dp"
         android:layout_marginBottom="6dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:clickable="true"
         android:elevation="8dp"
         app:cardCornerRadius="4dp"
@@ -49,7 +47,7 @@
                     android:text="Nama aset"/>
 
                 <TextView
-                    android:id="@+id/tv_id_item_asset"
+                    android:id="@+id/tv_id_asset"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/color_v3_gray_1"

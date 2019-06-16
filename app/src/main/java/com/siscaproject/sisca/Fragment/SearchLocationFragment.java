@@ -1,66 +1,137 @@
 package com.siscaproject.sisca.Fragment;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.rey.material.widget.ProgressView;
+import com.siscaproject.sisca.Adapter.SearchLocationAdapter;
+import com.siscaproject.sisca.Model.LocationAPI;
+import com.siscaproject.sisca.Model.LocationModel;
+import com.siscaproject.sisca.Model.ResponseIndex;
 import com.siscaproject.sisca.R;
+import com.siscaproject.sisca.Utilities.APIProperties;
+import com.siscaproject.sisca.Utilities.Header;
+import com.siscaproject.sisca.Utilities.UserService;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static android.support.constraint.Constraints.TAG;
 
 public class SearchLocationFragment extends Fragment {
 
-    private OnFragmentInteractionListener mListener;
+    @BindView(R.id.pv_home_search_location)
+    ProgressView progressView;
+    @BindView(R.id.rv_home_search_location)
+    RecyclerView recyclerView;
+    @BindView(R.id.tv_empty_home_search_location)
+    TextView tvEmpty;
+
+    private List<LocationModel> locationModelList, locationFoundList;
+    private String search;
+    private List<LocationAPI> locationAPIList, locationAPIFoundList;
+    private UserService userService;
 
     public SearchLocationFragment() {
         // Required empty public constructor
     }
 
-    public static SearchLocationFragment newInstance(String param1, String param2) {
-        SearchLocationFragment fragment = new SearchLocationFragment();
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search_location, container, false);
+        View view = inflater.inflate(R.layout.fragment_search_location, container, false);
+        ButterKnife.bind(this, view);
+
+        progressView.bringToFront();
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+        onLoadData();
+
+        return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+    public void setTextSearch(String search){
+        this.search = search;
+    }
+
+    private void loadDataInit() {
+        progressView.setVisibility(View.VISIBLE);
+        userService = APIProperties.getUserService();
+        Call<ResponseIndex<LocationAPI>> call = userService.indexLocation(Header.auth, Header.accept);
+        call.enqueue(new Callback<ResponseIndex<LocationAPI>>() {
+            @Override
+            public void onResponse(Call<ResponseIndex<LocationAPI>> call, Response<ResponseIndex<LocationAPI>> response) {
+                if (response.isSuccessful()) {
+                    int total = response.body().getTotal();
+                    Log.i(TAG, "onResponse: total " + total);
+                    Log.d(TAG, "testotaluser" + total);
+
+                    locationAPIList = response.body().getData();
+                    onLoadData();
+                } else {
+                    Log.i(TAG, "onResponse: else");
+                    errorToast();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseIndex<LocationAPI>> call, Throwable t) {
+                Log.i(TAG, "onResponse: else");
+                errorToast();
+            }
+        });
+    }
+
+    public void onLoadData(){
+        progressView.setVisibility(View.VISIBLE);
+
+        if (locationAPIList==null){
+            loadDataInit();
+        }
+        else{
+            locationAPIFoundList = new ArrayList<>();
+            for (int i=0; i<locationAPIList.size(); i++){
+                if (locationAPIList.get(i).getName().toLowerCase().contains(search.toLowerCase()) && !search.isEmpty()){
+                    locationAPIFoundList.add(locationAPIList.get(i));
+                }
+            }
+
+            if (locationAPIFoundList.isEmpty()){
+                recyclerView.setVisibility(View.INVISIBLE);
+                tvEmpty.setVisibility(View.VISIBLE);
+            }
+            else{
+                recyclerView.removeAllViews();
+                recyclerView.setVisibility(View.VISIBLE);
+                tvEmpty.setVisibility(View.INVISIBLE);
+                SearchLocationAdapter adapter = new SearchLocationAdapter(getContext(), locationAPIFoundList);
+                recyclerView.setAdapter(adapter);
+            }
+
+            progressView.setVisibility(View.INVISIBLE);
         }
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
+    private void errorToast() {
+        Toast.makeText(getContext(), "Something went wrong :(", Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    public interface OnFragmentInteractionListener {
-        void onFragmentInteraction(Uri uri);
-    }
 }

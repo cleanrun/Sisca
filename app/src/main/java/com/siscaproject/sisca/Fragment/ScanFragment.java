@@ -7,7 +7,6 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,21 +17,17 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.siscaproject.sisca.Model.Asset;
+import com.siscaproject.sisca.Model.AssetModel;
 import com.siscaproject.sisca.Model.PairedDevice;
 import com.siscaproject.sisca.R;
 import com.siscaproject.sisca.Utilities.APIProperties;
 import com.siscaproject.sisca.Utilities.BluetoothConnector;
-import com.siscaproject.sisca.Utilities.Header;
 import com.siscaproject.sisca.Utilities.UserService;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class ScanFragment extends Fragment{
     private static final String TAG = "ScanFragment";
@@ -60,7 +55,7 @@ public class ScanFragment extends Fragment{
     private ListView mResultsListView;
 
     private ArrayList<String> data = new ArrayList<>();
-    private ArrayList<Asset> listAsset;
+    private ArrayList<AssetModel> listAsset;
 
     public ScanFragment() {
         // Required empty public constructor
@@ -167,14 +162,14 @@ public class ScanFragment extends Fragment{
     }
 
 
-    private void showInfoDialog(final Asset asset){
+    private void showInfoDialog(final AssetModel asset){
         Log.i(TAG, "showInfoDialog: called");
 
         String name = "Name : " + asset.getName();
-        String tag = "Asset Tag : " + asset.getAsset_id();
+        String tag = "AssetModel Tag : " + asset.getAsset_id();
 
         MaterialDialog.Builder builder = new MaterialDialog.Builder(getContext())
-                .title("Asset Registered!")
+                .title("AssetModel Registered!")
                 .content(name + '\n' + tag)
                 .contentGravity(GravityEnum.START)
                 .autoDismiss(true)
@@ -203,8 +198,8 @@ public class ScanFragment extends Fragment{
 
 
 
-    private Asset isAssetExist(String assetTag){
-        for(Asset a : listAsset){
+    private AssetModel isAssetExist(String assetTag){
+        for(AssetModel a : listAsset){
             String tag = a.getAsset_id();
             if (tag.equals(assetTag)){
                 Log.i(TAG, "isAssetExist: true");
@@ -217,7 +212,7 @@ public class ScanFragment extends Fragment{
 
 
     private void showDialog(String tag){
-        Asset a = isAssetExist(tag);
+        AssetModel a = isAssetExist(tag);
 
         if(a != null){
             //showInfoDialog(a);
@@ -229,10 +224,10 @@ public class ScanFragment extends Fragment{
 
 
     private void getAsset() {
-        Call<ResponseIndex<Asset>> call = userService.indexFixed(Header.auth, Header.accept);
-        call.enqueue(new Callback<ResponseIndex<Asset>>() {
+        Call<ResponseIndex<AssetModel>> call = userService.indexFixed(Header.auth, Header.accept);
+        call.enqueue(new Callback<ResponseIndex<AssetModel>>() {
             @Override
-            public void onResponse(Call<ResponseIndex<Asset>> call, Response<ResponseIndex<Asset>> response) {
+            public void onResponse(Call<ResponseIndex<AssetModel>> call, Response<ResponseIndex<AssetModel>> response) {
                 if (response.isSuccessful()) {
                     int total = response.body().getTotal();
                     Log.i(TAG, "onResponse: total " + total);
@@ -244,7 +239,7 @@ public class ScanFragment extends Fragment{
             }
 
             @Override
-            public void onFailure(Call<ResponseIndex<Asset>> call, Throwable t) {
+            public void onFailure(Call<ResponseIndex<AssetModel>> call, Throwable t) {
                 Log.e(TAG, "onFailure: " + t.getMessage());
             }
         });

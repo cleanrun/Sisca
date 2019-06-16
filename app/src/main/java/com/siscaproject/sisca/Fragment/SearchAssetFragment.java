@@ -4,22 +4,32 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.rey.material.widget.ProgressView;
 import com.siscaproject.sisca.Adapter.SearchAssetAdapter;
-import com.siscaproject.sisca.Model.Asset;
+import com.siscaproject.sisca.Model.AssetAPI;
+import com.siscaproject.sisca.Model.ResponseIndex;
 import com.siscaproject.sisca.R;
-import com.siscaproject.sisca.Utilities.DummyData;
+import com.siscaproject.sisca.Utilities.APIProperties;
+import com.siscaproject.sisca.Utilities.Header;
+import com.siscaproject.sisca.Utilities.UserService;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static android.support.constraint.Constraints.TAG;
 
 
 public class SearchAssetFragment extends Fragment {
@@ -28,8 +38,9 @@ public class SearchAssetFragment extends Fragment {
     @BindView(R.id.rv_home_search_aset) RecyclerView recyclerView;
     @BindView(R.id.tv_empty_home_search_aset) TextView tvEmpty;
 
-    private List<Asset> assetModelList, assetFoundList;
     private String search;
+    private List<AssetAPI> assetAPIList, assetAPIFoundList;
+    private UserService userService;
 
     public SearchAssetFragment() {
         // Required empty public constructor
@@ -66,32 +77,64 @@ public class SearchAssetFragment extends Fragment {
         this.search = search;
     }
 
-    public void onLoadData(){
+    private void loadDataInit() {
         progressView.setVisibility(View.VISIBLE);
+        userService = APIProperties.getUserService();
+        Call<ResponseIndex<AssetAPI>> call = userService.indexAsset(Header.auth, Header.accept);
+        call.enqueue(new Callback<ResponseIndex<AssetAPI>>() {
+            @Override
+            public void onResponse(Call<ResponseIndex<AssetAPI>> call, Response<ResponseIndex<AssetAPI>> response) {
+                if (response.isSuccessful()) {
+                    int total = response.body().getTotal();
+                    Log.i(TAG, "onResponse: total " + total);
+                    Log.d(TAG, "testotaluser" + total);
 
-        assetModelList = new ArrayList<>();
-        assetFoundList = new ArrayList<>();
-        assetModelList = DummyData.getListAsset();
-
-        for (int i=0; i<assetModelList.size(); i++){
-            if (assetModelList.get(i).getId().toLowerCase().contains(search.toLowerCase()) && !search.isEmpty()){
-                assetFoundList.add(assetModelList.get(i));
+                    assetAPIList = response.body().getData();
+                    onLoadData();
+                } else {
+                    Log.i(TAG, "onResponse: else");
+                    errorToast();
+                }
             }
-        }
 
-        if (assetFoundList.isEmpty()){
-            recyclerView.setVisibility(View.INVISIBLE);
-            tvEmpty.setVisibility(View.VISIBLE);
+            @Override
+            public void onFailure(Call<ResponseIndex<AssetAPI>> call, Throwable t) {
+                Log.i(TAG, "onResponse: else");
+                errorToast();
+            }
+        });
+    }
+
+    public void onLoadData(){
+        if (assetAPIList==null){
+            loadDataInit();
         }
         else{
-            recyclerView.removeAllViews();
-            recyclerView.setVisibility(View.VISIBLE);
-            tvEmpty.setVisibility(View.INVISIBLE);
-            SearchAssetAdapter adapter = new SearchAssetAdapter(getContext(), assetFoundList);
-            recyclerView.setAdapter(adapter);
-        }
+            assetAPIFoundList = new ArrayList<>();
+            for (int i=0; i<assetAPIList.size(); i++){
+                if (assetAPIList.get(i).getAsset_id().toLowerCase().contains(search.toLowerCase()) && !search.isEmpty()){
+                    assetAPIFoundList.add(assetAPIList.get(i));
+                }
+            }
 
-        progressView.setVisibility(View.INVISIBLE);
+            if (assetAPIFoundList.isEmpty()){
+                recyclerView.setVisibility(View.INVISIBLE);
+                tvEmpty.setVisibility(View.VISIBLE);
+            }
+            else{
+                recyclerView.removeAllViews();
+                recyclerView.setVisibility(View.VISIBLE);
+                tvEmpty.setVisibility(View.INVISIBLE);
+                SearchAssetAdapter adapter = new SearchAssetAdapter(getContext(), assetAPIFoundList);
+                recyclerView.setAdapter(adapter);
+            }
+
+            progressView.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    private void errorToast() {
+        Toast.makeText(getContext(), "Something went wrong :(", Toast.LENGTH_SHORT).show();
     }
 
 }

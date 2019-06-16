@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.rey.material.widget.ProgressView;
-import com.siscaproject.sisca.Model.Asset;
+import com.siscaproject.sisca.Model.AssetModel;
 import com.siscaproject.sisca.R;
 import com.siscaproject.sisca.Utilities.DummyData;
 
@@ -28,7 +28,7 @@ public class DetailAsetActivity extends AppCompatActivity {
     @BindView(R.id.tv_pic_home_aset_detail) TextView tvPic;
     @BindView(R.id.tv_desc_home_aset_detail) TextView tvDesc;
 
-    private List<Asset> assetModelList;
+    private List<AssetModel> assetModelList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

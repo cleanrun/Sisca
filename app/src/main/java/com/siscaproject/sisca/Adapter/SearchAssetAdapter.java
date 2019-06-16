@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.siscaproject.sisca.Activity.DetailAsetActivity;
-import com.siscaproject.sisca.Model.Asset;
+import com.siscaproject.sisca.Model.AssetAPI;
 import com.siscaproject.sisca.R;
 
 import java.util.List;
@@ -20,9 +20,9 @@ import java.util.List;
 public class SearchAssetAdapter extends RecyclerView.Adapter<SearchAssetAdapter.ItemHolder>{
 
     private Context activityContext;
-    private List<Asset> listData;
+    private List<AssetAPI> listData;
 
-    public SearchAssetAdapter(Context context, List<Asset> assetList) {
+    public SearchAssetAdapter(Context context, List<AssetAPI> assetList) {
         this.activityContext = context;
         this.listData = assetList;
     }
@@ -36,7 +36,7 @@ public class SearchAssetAdapter extends RecyclerView.Adapter<SearchAssetAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ItemHolder holder, final int position) {
-        holder.ivPhoto.setImageDrawable(activityContext.getResources().getDrawable(listData.get(position).getPhoto()));
+        //holder.ivPhoto.setImageDrawable(activityContext.getResources().getDrawable(listData.get(position).getPhoto()));
         holder.tvName.setText(listData.get(position).getName());
         holder.tvId.setText(listData.get(position).getId());
         holder.cvItem.setOnClickListener(new View.OnClickListener() {
@@ -67,7 +67,7 @@ public class SearchAssetAdapter extends RecyclerView.Adapter<SearchAssetAdapter.
 
             ivPhoto = itemView.findViewById(R.id.iv_photo_item_asset);
             tvName = itemView.findViewById(R.id.tv_name_item_asset);
-            tvId = itemView.findViewById(R.id.tv_id_item_asset);
+            tvId = itemView.findViewById(R.id.tv_id_asset);
             cvItem = itemView.findViewById(R.id.cv_item_asset);
         }
     }

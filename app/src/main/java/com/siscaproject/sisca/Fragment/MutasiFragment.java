@@ -5,26 +5,54 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.AppCompatImageButton;
+import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.Toast;
 
-import com.siscaproject.sisca.Activity.DetailMutationActivity;
-import com.siscaproject.sisca.Activity.DetailAsetActivity;
+import com.rey.material.widget.ProgressView;
+import com.siscaproject.sisca.Activity.SearchActivity;
+import com.siscaproject.sisca.Adapter.AssetAdapter;
+import com.siscaproject.sisca.Adapter.LocationAdapter;
+import com.siscaproject.sisca.Model.AssetAPI;
+import com.siscaproject.sisca.Model.AssetMutasi;
+import com.siscaproject.sisca.Model.LocationAPI;
+import com.siscaproject.sisca.Model.ResponseIndex;
 import com.siscaproject.sisca.R;
+import com.siscaproject.sisca.Utilities.APIProperties;
+import com.siscaproject.sisca.Utilities.Header;
+import com.siscaproject.sisca.Utilities.UserService;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MutasiFragment extends Fragment {
+    private static final String TAG = "MutasiFragment";
+
     private OnFragmentInteractionListener mListener;
 
-    @BindView(R.id.iv_scan) ImageView ivScan;
-    @BindView(R.id.tv_search_mutation) TextView tvSearch;
+    private ArrayList<AssetMutasi> listAsset; // List terakhir mutasi
+
+    @BindView(R.id.cv_scanner) CardView cvScanner;
+    @BindView(R.id.cv_search) CardView cvSearch;
+    @BindView(R.id.btn_filter) AppCompatImageButton btnFilter;
+    @BindView(R.id.rv_mutasi_terakhir) RecyclerView recyclerView;
+    @BindView(R.id.pv_mutasi) ProgressView progressView;
+
+    private UserService userService;
 
     public MutasiFragment() {
         // Required empty public constructor
@@ -36,37 +64,77 @@ public class MutasiFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_mutasi, container, false);
         ButterKnife.bind(this, view);
+
+        userService = APIProperties.getUserService();
+        getDataAsset();
+
         return view;
     }
 
-    @OnClick(R.id.iv_scan)
-    public void mutationActivity(View view){
-        if(view.getId() == R.id.iv_scan){
-            Log.i("MutasiFragment", "mutationActivity");
-            startActivity(new Intent(getActivity(), DetailMutationActivity.class));
+    @OnClick({R.id.cv_scanner, R.id.cv_search, R.id.btn_filter})
+    public void onClick(View view){
+        switch(view.getId()){
+            case R.id.cv_scanner:
+                showToast("Scanner");
+                break;
+            case R.id.cv_search:
+                startActivity(new Intent(getActivity(), SearchActivity.class));
+                break;
+            case R.id.btn_filter:
+                showToast("Filter");
+                break;
+            default:
+                break;
         }
     }
 
-    @OnClick(R.id.tv_search_mutation)
-    public void searchActivity(View view){
-        if(view.getId() == R.id.tv_search_mutation){
-            Log.i("MutasiFragment", "searchActivity");
-            startActivity(new Intent(getActivity(), DetailAsetActivity.class));
-        }
+    public void getDataAsset(){
+        progressView.setVisibility(View.VISIBLE);
+
+        Call<ResponseIndex<AssetMutasi>> call = userService.indexAssetMutasi(Header.auth, Header.accept);
+        call.enqueue(new Callback<ResponseIndex<AssetMutasi>>() {
+            @Override
+            public void onResponse(Call<ResponseIndex<AssetMutasi>> call, Response<ResponseIndex<AssetMutasi>> response) {
+                progressView.setVisibility(View.GONE);
+                if(response.isSuccessful()){
+                    int total = response.body().getTotal();
+                    Log.d(TAG, "onResponse asset: total asset " + total);
+
+                    listAsset = response.body().getData();
+
+                    showData();
+                }
+                else{
+                    Log.e(TAG, "onFailure: not successful");
+                    showToast("Unable to fetch the data.");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseIndex<AssetMutasi>> call, Throwable t) {
+                progressView.setVisibility(View.GONE);
+                Log.e(TAG, "onFailure: " + t.getMessage());
+                showToast("Unable to fetch the data.");
+            }
+        });
     }
 
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+    private void showData() {
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        AssetAdapter adapter = new AssetAdapter(getContext(), listAsset);
+        recyclerView.setAdapter(adapter);
+
+        progressView.setVisibility(View.INVISIBLE);
+    }
+
+    private void showToast(String message){
+        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
