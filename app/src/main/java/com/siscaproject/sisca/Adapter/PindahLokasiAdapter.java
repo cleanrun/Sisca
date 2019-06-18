@@ -9,18 +9,20 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.siscaproject.sisca.Model.LocationAPI;
 import com.siscaproject.sisca.R;
 
 import java.util.ArrayList;
 
 public class PindahLokasiAdapter extends RecyclerView.Adapter<PindahLokasiAdapter.ItemHolder>{
 
-    private ArrayList<String> listData;
+    //private ArrayList<String> listData;
+    private ArrayList<LocationAPI> listData;
     private Context activityContext;
 
     private OnItemClickListener listener;
 
-    public PindahLokasiAdapter(ArrayList<String> listData, Context activityContext, OnItemClickListener listener) {
+    public PindahLokasiAdapter(ArrayList<LocationAPI> listData, Context activityContext, OnItemClickListener listener) {
         this.listData = listData;
         this.activityContext = activityContext;
         this.listener = listener;
@@ -36,12 +38,12 @@ public class PindahLokasiAdapter extends RecyclerView.Adapter<PindahLokasiAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ItemHolder holder, final int position) {
-        holder.tvLokasi.setText(listData.get(position));
+        holder.tvLokasi.setText(listData.get(position).getName());
 
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.putLokasi(listData.get(position));
+                listener.putLokasi(listData.get(position).getId(), listData.get(position).getName());
             }
         });
     }
@@ -69,6 +71,6 @@ public class PindahLokasiAdapter extends RecyclerView.Adapter<PindahLokasiAdapte
     }
 
     public interface OnItemClickListener{
-        void putLokasi(String lokasi);
+        void putLokasi(final int id, String title);
     }
 }

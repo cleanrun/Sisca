@@ -3,6 +3,8 @@ package com.siscaproject.sisca.Model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+// Harusnya namanya AssetAPI, sementara aja
+
 public class AssetMutasi {
     @SerializedName("id")
     @Expose
@@ -56,7 +58,21 @@ public class AssetMutasi {
     @Expose
     private String updated_at;
 
-    public AssetMutasi(int id, String asset_id, String asset_rfid, int category_id, int location_id, int pic_id, String name, String description, String date_purchase, String price, String condition, String created_at, String updated_at) {
+    @SerializedName("location")
+    @Expose
+    private LocationAPI location;
+
+    @SerializedName("pic")
+    @Expose
+    private User pic;
+
+    /*
+    @SerializedName("category")
+    @Expose
+    private Category category
+    */
+
+    public AssetMutasi(int id, String asset_id, String asset_rfid, int category_id, int location_id, int pic_id, String name, String description, String date_purchase, String price, String condition, String created_at, String updated_at, LocationAPI location, User pic) {
         this.id = id;
         this.asset_id = asset_id;
         this.asset_rfid = asset_rfid;
@@ -70,6 +86,8 @@ public class AssetMutasi {
         this.condition = condition;
         this.created_at = created_at;
         this.updated_at = updated_at;
+        this.location = location;
+        this.pic = pic;
     }
 
     public int getId() {
@@ -174,5 +192,21 @@ public class AssetMutasi {
 
     public void setUpdated_at(String updated_at) {
         this.updated_at = updated_at;
+    }
+
+    public LocationAPI getLocation() {
+        return location;
+    }
+
+    public void setLocation(LocationAPI location) {
+        this.location = location;
+    }
+
+    public User getPic() {
+        return pic;
+    }
+
+    public void setPic(User pic) {
+        this.pic = pic;
     }
 }

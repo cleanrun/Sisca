@@ -112,7 +112,8 @@ public class LoginActivity extends AppCompatActivity{
             return;
         }
         else{
-            getLogin(username.getText().toString(), password.getText().toString() );
+            getLogin(username.getText().toString(), password.getText().toString());
+            //getLogin("admin@admin.com", "admin");
         }
     }
 
@@ -122,6 +123,7 @@ public class LoginActivity extends AppCompatActivity{
         call.enqueue(new Callback<LoginAuth>() {
             @Override
             public void onResponse(Call<LoginAuth> call, Response<LoginAuth> response) {
+
                 try {
                     if (response.body().getToken_type().equals("Bearer")) {
                         Log.i(TAG, "getLogin, Authorized access");
@@ -145,6 +147,7 @@ public class LoginActivity extends AppCompatActivity{
                     Toast.makeText(LoginActivity.this, "Wrong Email or Password", Toast.LENGTH_SHORT).show();
                 }
                 dismissDialog();
+
             }
 
             @Override

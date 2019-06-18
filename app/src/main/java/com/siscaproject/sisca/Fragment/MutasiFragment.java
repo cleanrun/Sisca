@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.CardView;
@@ -15,13 +16,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.GravityEnum;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.rey.material.widget.ProgressView;
+import com.siscaproject.sisca.Activity.BluetoothActivity;
+import com.siscaproject.sisca.Activity.DetailMutationActivity;
+import com.siscaproject.sisca.Activity.QRActivity;
 import com.siscaproject.sisca.Activity.SearchActivity;
 import com.siscaproject.sisca.Adapter.AssetAdapter;
-import com.siscaproject.sisca.Adapter.LocationAdapter;
-import com.siscaproject.sisca.Model.AssetAPI;
 import com.siscaproject.sisca.Model.AssetMutasi;
-import com.siscaproject.sisca.Model.LocationAPI;
 import com.siscaproject.sisca.Model.ResponseIndex;
 import com.siscaproject.sisca.R;
 import com.siscaproject.sisca.Utilities.APIProperties;
@@ -29,8 +33,6 @@ import com.siscaproject.sisca.Utilities.Header;
 import com.siscaproject.sisca.Utilities.UserService;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -53,6 +55,17 @@ public class MutasiFragment extends Fragment {
     @BindView(R.id.pv_mutasi) ProgressView progressView;
 
     private UserService userService;
+
+    private MaterialDialog scannerDialog;
+
+    private AssetAdapter.cardClickListener clickListener = new AssetAdapter.cardClickListener() {
+        @Override
+        public void onCardClick(final int id) {
+            Intent intent = new Intent(getActivity(), DetailMutationActivity.class);
+            intent.putExtra("assetID", id);
+            startActivity(intent);
+        }
+    };
 
     public MutasiFragment() {
         // Required empty public constructor
@@ -78,10 +91,13 @@ public class MutasiFragment extends Fragment {
     public void onClick(View view){
         switch(view.getId()){
             case R.id.cv_scanner:
-                showToast("Scanner");
+                //showToast("Scanner");
+                showScannerDialog();
                 break;
             case R.id.cv_search:
-                startActivity(new Intent(getActivity(), SearchActivity.class));
+                Intent searchIntent = new Intent(getActivity(), SearchActivity.class);
+                searchIntent.putExtra("EXTRA_SEARCH", "");
+                startActivity(searchIntent);
                 break;
             case R.id.btn_filter:
                 showToast("Filter");
@@ -127,7 +143,7 @@ public class MutasiFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(linearLayoutManager);
-        AssetAdapter adapter = new AssetAdapter(getContext(), listAsset);
+        AssetAdapter adapter = new AssetAdapter(getContext(), listAsset, clickListener);
         recyclerView.setAdapter(adapter);
 
         progressView.setVisibility(View.INVISIBLE);
@@ -135,6 +151,33 @@ public class MutasiFragment extends Fragment {
 
     private void showToast(String message){
         Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    private void showScannerDialog() {
+        Log.i(TAG, "showScannerDialog: called");
+
+        MaterialDialog.Builder builder = new MaterialDialog.Builder(getActivity())
+                .content("Silahkan pilih scanner yang ingin digunakan")
+                .contentGravity(GravityEnum.CENTER)
+                .autoDismiss(true)
+                .positiveText("Bluetooth")
+                .negativeText("QR")
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        startActivity(new Intent(getActivity(), BluetoothActivity.class));
+                    }
+                })
+                .onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        startActivity(new Intent(getActivity(), QRActivity.class));
+                    }
+                })
+                .canceledOnTouchOutside(true);
+
+        scannerDialog = builder.build();
+        scannerDialog.show();
     }
 
     @Override

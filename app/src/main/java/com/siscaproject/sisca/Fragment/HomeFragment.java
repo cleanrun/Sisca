@@ -65,7 +65,7 @@ public class HomeFragment extends Fragment{
     private List<LocationModel> locationList;
 
     private UserService userService;
-    private List<LocationAPI> locationAPIList;
+    private ArrayList<LocationAPI> locationAPIList;
 
     private OnFragmentInteractionListener mListener;
 

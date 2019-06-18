@@ -136,26 +136,33 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <LinearLayout
+                        <com.balysv.materialripple.MaterialRippleLayout
                             android:layout_width="match_parent"
-                            android:layout_height="60dp"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
+                            android:layout_height="wrap_content">
 
-                            <ImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:layout_marginStart="@dimen/spacing_mlarge"
-                                android:src="@drawable/ic_account"
-                                android:tint="@color/color_v3_gray_1" />
+                            <LinearLayout
+                                android:id="@+id/ll_nama"
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/spacing_mlarge"
-                                android:text="Nama" />
+                                <ImageView
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    android:layout_marginStart="@dimen/spacing_mlarge"
+                                    android:src="@drawable/ic_nama"
+                                    android:tint="@color/color_v3_gray_1" />
 
-                        </LinearLayout>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/spacing_mlarge"
+                                    android:text="Nama" />
+
+                            </LinearLayout>
+
+                        </com.balysv.materialripple.MaterialRippleLayout>
 
                         <View
                             android:layout_width="match_parent"
@@ -164,26 +171,33 @@
                             android:layout_marginRight="@dimen/spacing_large"
                             android:background="@color/grey_300" />
 
-                        <LinearLayout
+                        <com.balysv.materialripple.MaterialRippleLayout
                             android:layout_width="match_parent"
-                            android:layout_height="60dp"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
+                            android:layout_height="wrap_content">
 
-                            <ImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:layout_marginStart="@dimen/spacing_mlarge"
-                                android:src="@drawable/ic_account"
-                                android:tint="@color/color_v3_gray_1" />
+                            <LinearLayout
+                                android:id="@+id/ll_email"
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/spacing_mlarge"
-                                android:text="Email" />
+                                <ImageView
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    android:layout_marginStart="@dimen/spacing_mlarge"
+                                    android:src="@drawable/ic_email"
+                                    android:tint="@color/color_v3_gray_1" />
 
-                        </LinearLayout>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/spacing_mlarge"
+                                    android:text="Email" />
+
+                            </LinearLayout>
+
+                        </com.balysv.materialripple.MaterialRippleLayout>
 
                         <View
                             android:layout_width="match_parent"
@@ -192,26 +206,33 @@
                             android:layout_marginRight="@dimen/spacing_large"
                             android:background="@color/grey_300" />
 
-                        <LinearLayout
+                        <com.balysv.materialripple.MaterialRippleLayout
                             android:layout_width="match_parent"
-                            android:layout_height="60dp"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
+                            android:layout_height="wrap_content">
 
-                            <ImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:layout_marginStart="@dimen/spacing_mlarge"
-                                android:src="@drawable/ic_account"
-                                android:tint="@color/color_v3_gray_1" />
+                            <LinearLayout
+                                android:id="@+id/ll_password"
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/spacing_mlarge"
-                                android:text="Password" />
+                                <ImageView
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    android:layout_marginStart="@dimen/spacing_mlarge"
+                                    android:src="@drawable/ic_password"
+                                    android:tint="@color/color_v3_gray_1" />
 
-                        </LinearLayout>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/spacing_mlarge"
+                                    android:text="Password" />
+
+                            </LinearLayout>
+
+                        </com.balysv.materialripple.MaterialRippleLayout>
 
                     </LinearLayout>
 
@@ -246,7 +267,7 @@
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
                                 android:layout_marginStart="@dimen/spacing_mlarge"
-                                android:src="@drawable/ic_account"
+                                android:src="@drawable/ic_bluetooth"
                                 android:tint="@color/color_v3_gray_1" />
 
                             <TextView
@@ -262,7 +283,8 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
-                            android:layout_gravity="center_vertical" />
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginEnd="20dp" />
 
                     </RelativeLayout>
 

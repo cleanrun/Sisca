@@ -9,7 +9,9 @@ import android.support.v7.widget.AppCompatButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.GravityEnum;
@@ -30,6 +32,9 @@ public class ProfileFragment extends Fragment {
     @BindView(R.id.iv_photo) CircularImageView ivPhoto;
     @BindView(R.id.tv_name) TextView tvName;
     @BindView(R.id.tv_email) TextView tvEmail;
+    @BindView(R.id.ll_nama) LinearLayout llNama;
+    @BindView(R.id.ll_email) LinearLayout llEmail;
+    @BindView(R.id.ll_password) LinearLayout llPassword;
     @BindView(R.id.btn_keluar) AppCompatButton btnKeluar;
 
     private MaterialDialog logoutDialog;
@@ -59,11 +64,22 @@ public class ProfileFragment extends Fragment {
         return view;
     }
 
-    @OnClick({R.id.btn_keluar})
+    @OnClick({R.id.btn_keluar, R.id.ll_nama, R.id.ll_email, R.id.ll_password})
     public void onClick(View view){
         switch(view.getId()){
             case R.id.btn_keluar:
                 logOut();
+                break;
+            case R.id.ll_nama:
+                showToast("Nama");
+                break;
+            case R.id.ll_email:
+                showToast("Email");
+                break;
+            case R.id.ll_password:
+                showToast("Password");
+                break;
+            default:
                 break;
         }
     }
@@ -94,6 +110,10 @@ public class ProfileFragment extends Fragment {
         logoutDialog = builder.build();
         logoutDialog.show();
 
+    }
+
+    private void showToast(String message){
+        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -1,11 +1,13 @@
 package com.siscaproject.sisca.Activity;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -18,13 +20,25 @@ import android.widget.Toast;
 import com.rey.material.widget.ProgressView;
 import com.siscaproject.sisca.Adapter.PindahLokasiAdapter;
 import com.siscaproject.sisca.Adapter.PindahPicAdapter;
+import com.siscaproject.sisca.Model.AssetMutasi;
+import com.siscaproject.sisca.Model.LocationAPI;
+import com.siscaproject.sisca.Model.ResponseIndex;
+import com.siscaproject.sisca.Model.ResponseShow;
+import com.siscaproject.sisca.Model.ResponseStore;
+import com.siscaproject.sisca.Model.User;
 import com.siscaproject.sisca.R;
+import com.siscaproject.sisca.Utilities.APIProperties;
+import com.siscaproject.sisca.Utilities.Header;
+import com.siscaproject.sisca.Utilities.UserService;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class DetailMutationActivity extends AppCompatActivity {
 
@@ -33,23 +47,59 @@ public class DetailMutationActivity extends AppCompatActivity {
     @BindView(R.id.pv_mutation_detail) ProgressView progressView;
     @BindView(R.id.cv_back_mutation_detail) CardView back;
     @BindView(R.id.iv_photo_mutation_detail) ImageView ivPhoto;
+    @BindView(R.id.tv_name_mutation_detail) TextView tvName;
     @BindView(R.id.tv_id_mutation_detail) TextView tvId;
     @BindView(R.id.tv_desc_mutation_detail) TextView tvDesc;
+    @BindView(R.id.et_location_before_mutation_detail) EditText etSebelumLokasi;
     @BindView(R.id.et_pindah_lokasi) EditText etPindahLokasi;
+    @BindView(R.id.et_pic_before_mutation_detail) EditText etSebelumPic;
     @BindView(R.id.et_pindah_pic) EditText etPindahPic;
     @BindView(R.id.btn_pindah_lokasi) CardView btnPindahLokasi;
     @BindView(R.id.btn_pindah_pic) CardView btnPindahPic;
     @BindView(R.id.et_notes_mutation_detail) EditText etNotes;
     @BindView(R.id.btn_submit_mutation_detail) Button btnSubmit;
 
+    private UserService userService;
+
+    private AssetMutasi dataAsset;
+    private ArrayList<LocationAPI> listLokasi;
+    private ArrayList<User> listUser; // list PIC
+
+    private int newLocation = 0;
+    private int newPic = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_mutation);
 
+        userService = APIProperties.getUserService();
+        Intent intent = getIntent();
+        int id = intent.getIntExtra("assetID", 0);
+
+        getAssetData(id);
+        getLokasi();
+
         ButterKnife.bind(this);
 
         progressView.setVisibility(View.GONE);
+    }
+
+    private void setBeforeFields(){
+        tvName.setText(dataAsset.getName());
+        tvId.setText(dataAsset.getAsset_id());
+        tvDesc.setText(dataAsset.getDescription());
+        //etSebelumLokasi.setText(String.valueOf(dataAsset.getLocation_id()));
+        //etSebelumPic.setText(String.valueOf(dataAsset.getPic_id()));
+        etSebelumLokasi.setText(dataAsset.getLocation().getName());
+        etSebelumPic.setText(dataAsset.getPic().getName());
+    }
+
+    @OnClick(R.id.cv_back_mutation_detail)
+    public void back(View view){
+        if(view.getId() == R.id.cv_back_mutation_detail){
+            onBackPressed();
+        }
     }
 
     @OnClick(R.id.btn_pindah_lokasi)
@@ -68,10 +118,19 @@ public class DetailMutationActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_submit_mutation_detail)
     public void submit(View view){
-        Toast.makeText(this, "Data ic_aset berhasil dipindahkan.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Under Maintenance :)", Toast.LENGTH_SHORT).show();
+        //submitMutasi();
     }
 
-    private ArrayList<String> dataLokasi(){
+    private void setNewLocation(int id){
+        newLocation = id;
+    }
+
+    private void setNewPic(int id){
+        newPic = id;
+    }
+
+    private ArrayList<String> dataLokasi(){ // data lokal
         ArrayList<String> data = new ArrayList<>();
         data.add("C102");
         data.add("C103");
@@ -83,7 +142,7 @@ public class DetailMutationActivity extends AppCompatActivity {
         return data;
     }
 
-    private ArrayList<String> dataPic(){
+    private ArrayList<String> dataPic(){ // data lokal
         ArrayList<String> data = new ArrayList<>();
         data.add("Riski Novanda");
         data.add("Susi Susanto");
@@ -104,8 +163,11 @@ public class DetailMutationActivity extends AppCompatActivity {
 
         PindahLokasiAdapter.OnItemClickListener listener = new PindahLokasiAdapter.OnItemClickListener() {
             @Override
-            public void putLokasi(String lokasi) {
-                etPindahLokasi.setText(lokasi);
+            public void putLokasi(final int id, String title) {
+                //etPindahLokasi.setText(String.valueOf(id));
+                etPindahLokasi.setText(title);
+                setNewLocation(id);
+                Log.i(TAG, "new location id : " + newLocation);
                 dialog.dismiss();
             }
         };
@@ -121,7 +183,8 @@ public class DetailMutationActivity extends AppCompatActivity {
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        PindahLokasiAdapter adapter = new PindahLokasiAdapter(dataLokasi(), getApplicationContext(), listener);
+        //PindahLokasiAdapter adapter = new PindahLokasiAdapter(dataLokasi(), getApplicationContext(), listener);
+        PindahLokasiAdapter adapter = new PindahLokasiAdapter(listLokasi, getApplicationContext(), listener);
         recyclerView.setAdapter(adapter);
 
         btnBatal.setOnClickListener(new View.OnClickListener() {
@@ -173,4 +236,78 @@ public class DetailMutationActivity extends AppCompatActivity {
         dialog.show();
         dialog.getWindow().setAttributes(lp);
     }
+
+    private void showToast(String message){
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    private void getAssetData(final int id){
+        String idString = String.valueOf(id);
+
+        Call<ResponseShow<AssetMutasi>> call = userService.showAset(idString, Header.auth, Header.accept);
+        call.enqueue(new Callback<ResponseShow<AssetMutasi>>() {
+            @Override
+            public void onResponse(Call<ResponseShow<AssetMutasi>> call, Response<ResponseShow<AssetMutasi>> response) {
+                if(response.isSuccessful()){
+                    //String name = response.body().getData().getName();
+                    dataAsset = response.body().getData();
+                    setBeforeFields();
+                    Log.i(TAG, "getAssetData onResponse: successful");
+                    Log.i(TAG, "getAssetData onResponse: asset name == " + dataAsset.getName());
+                    Log.i(TAG, "getAssetData onResponse: asset location == " + dataAsset.getLocation().getName());
+                    Log.i(TAG, "getAssetData onResponse: asset pic == " + dataAsset.getPic().getName());
+                }
+                else{
+                    Log.e(TAG, "getAssetData onResponse: is not successful");
+                    showToast("Gagal mengambil data asset");
+                    finish();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseShow<AssetMutasi>> call, Throwable t) {
+                Log.e(TAG, "getAssetData onFailure: message == " + t.getMessage() );
+                showToast("Gagal mengambil data asset");
+                finish();
+            }
+        });
+    }
+
+    private void getLokasi(){
+        Call<ResponseIndex<LocationAPI>> call = userService.indexLocation(Header.auth, Header.accept);
+        call.enqueue(new Callback<ResponseIndex<LocationAPI>>() {
+            @Override
+            public void onResponse(Call<ResponseIndex<LocationAPI>> call, Response<ResponseIndex<LocationAPI>> response) {
+                if (response.isSuccessful()) {
+                    Log.i(TAG, "getLokasi onResponse: successful");
+                    ArrayList<LocationAPI> data = response.body().getData();
+                    listLokasi = data;
+                } else {
+                    Log.e(TAG, "getLokasi onResponse: not successful");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseIndex<LocationAPI>> call, Throwable t) {
+                Log.e(TAG, "getLokasi onFailure: " + t.getMessage());
+            }
+        });
+    }
+
+    private void submitMutasi(int asset_id, String description, int new_location_id, int new_pic_id, String reason){
+        Call<ResponseStore> call = userService.storeMutation(Header.auth, Header.accept, asset_id,
+                description, new_location_id, new_pic_id, reason);
+        call.enqueue(new Callback<ResponseStore>() {
+            @Override
+            public void onResponse(Call<ResponseStore> call, Response<ResponseStore> response) {
+                // TODO: Finish this (submitMutasi())
+            }
+
+            @Override
+            public void onFailure(Call<ResponseStore> call, Throwable t) {
+
+            }
+        });
+    }
+
 }

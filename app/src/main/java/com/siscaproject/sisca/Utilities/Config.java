@@ -10,7 +10,7 @@ public class Config {
     public static final String CLIENT_SECRET = "U262vjwP1CVe4YKqioOUR53TRgaEwsOeWPJOth21";
     public static final String TOKEN_SHARED_PREF = "token";
     public static final String URL_GENERATE_TOKEN = API_URL + "oauth/token";
-    public static final String GRANT_TYPE = "password";
+    public static final String GRANT_TYPE = "ic_password";
     public static final String CLIENT_ID = "4";
     public static final UUID RFIDUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
     public static final Locale locale = new Locale( "id" , "ID" );

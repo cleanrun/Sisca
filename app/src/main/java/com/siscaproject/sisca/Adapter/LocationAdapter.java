@@ -12,14 +12,15 @@ import android.widget.TextView;
 import com.siscaproject.sisca.Model.LocationAPI;
 import com.siscaproject.sisca.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ItemHolder>{
     private Context activityContext;
     //List<LocationModel> locationList;
-    private List<LocationAPI> listData;
+    private ArrayList<LocationAPI> listData = new ArrayList<>();
 
-    public LocationAdapter(Context context, List<LocationAPI> locationAPIList) {
+    public LocationAdapter(Context context, ArrayList<LocationAPI> locationAPIList) {
         this.activityContext = context;
         this.listData = locationAPIList;
     }
@@ -48,7 +49,15 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ItemHo
 
     @Override
     public int getItemCount() {
-        return listData.size();
+
+        if(listData.isEmpty()){
+            return 0;
+        }
+        else{
+            return listData.size();
+        }
+
+        //return 0;
     }
 
     public class ItemHolder extends RecyclerView.ViewHolder {

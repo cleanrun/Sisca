@@ -19,10 +19,12 @@ public class AssetAdapter extends RecyclerView.Adapter<AssetAdapter.ItemHolder>{
 
     private Context activityContext;
     private List<AssetMutasi> listData;
+    private cardClickListener listener;
 
-    public AssetAdapter(Context context, List<AssetMutasi> assetList) {
+    public AssetAdapter(Context context, List<AssetMutasi> assetList, cardClickListener listener) {
         this.activityContext = context;
         this.listData = assetList;
+        this.listener = listener;
     }
 
     @NonNull
@@ -36,7 +38,7 @@ public class AssetAdapter extends RecyclerView.Adapter<AssetAdapter.ItemHolder>{
     public void onBindViewHolder(@NonNull ItemHolder assetHolder, final int position) {
         //assetHolder.ivPhoto.setImageDrawable(activityContext.getResources().getDrawable(listData.get(position).getPhoto()));
         assetHolder.tvName.setText(listData.get(position).getName());
-        assetHolder.tvId.setText(String.valueOf(listData.get(position).getId()));
+        assetHolder.tvId.setText(listData.get(position).getAsset_id());
         assetHolder.cvItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -50,6 +52,8 @@ public class AssetAdapter extends RecyclerView.Adapter<AssetAdapter.ItemHolder>{
 
                 activityContext.startActivity(intent);
                 */
+
+                listener.onCardClick(listData.get(position).getId());
             }
         });
     }
@@ -79,5 +83,9 @@ public class AssetAdapter extends RecyclerView.Adapter<AssetAdapter.ItemHolder>{
             tvId = itemView.findViewById(R.id.tv_id_asset);
             cvItem = itemView.findViewById(R.id.cv_item_asset);
         }
+    }
+
+    public interface cardClickListener{
+        void onCardClick(final int id);
     }
 }
