@@ -11,38 +11,48 @@ import android.widget.TextView;
 
 import com.siscaproject.sisca.Model.LocationAPI;
 import com.siscaproject.sisca.R;
+import com.siscaproject.sisca.Utilities.Config;
 
 import java.util.List;
 
-public class SearchLocationAdapter extends RecyclerView.Adapter<SearchLocationAdapter.ItemHolder>{
+public class MonitoringAdapter extends RecyclerView.Adapter<MonitoringAdapter.ItemHolder>{
 
     private Context activityContext;
-    //List<LocationModel> locationList;
     private List<LocationAPI> listData;
 
-    public SearchLocationAdapter(Context context, List<LocationAPI> locationList) {
+    public MonitoringAdapter(Context context, List<LocationAPI> locationAPIList) {
         this.activityContext = context;
-        this.listData = locationList;
+        this.listData = locationAPIList;
     }
 
     @NonNull
     @Override
     public ItemHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_location, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_location, null);
         return new ItemHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ItemHolder holder, final int position) {
         holder.tvId.setText(listData.get(position).getName());
-        holder.tvAsetSize.setText("0 aset");
+        holder.tvAsetSize.setText(listData.get(position).getAsset_count()+" aset");
         holder.cvItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*Intent intent = new Intent(activityContext, MonitoringDetailActivity.class);
-                intent.putExtra("ID_LOCATION_EXTRA", locationList.get(position).getId());
 
-                activityContext.startActivity(intent);*/
+                String dateNow = Config.getDateNow();
+                if (listData.get(position).getUpdated_at().substring(5, 7).equals(dateNow.substring(5, 7))){
+                    //Intent intent = new Intent(activityContext, MonitoringReportActivity.class);
+                    //intent.putExtra("ID_LOCATION_EXTRA", listData.get(position).getId());
+
+                    //activityContext.startActivity(intent);
+                }
+                else{
+                    //Intent intent = new Intent(activityContext, MonitoringDetailActivity.class);
+                    //intent.putExtra("ID_LOCATION_EXTRA", listData.get(position).getId());
+
+                    //activityContext.startActivity(intent);
+                }
             }
         });
     }

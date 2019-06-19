@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.MonitoringSearchActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.Toolbar
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@color/color_v3_white_1"
+                    android:contentInsetLeft="0dp"
+                    android:contentInsetStart="0dp"
+                    app:contentInsetLeft="0dp"
+                    app:contentInsetStart="0dp"
+                    android:contentInsetRight="0dp"
+                    android:contentInsetEnd="0dp"
+                    app:contentInsetRight="0dp"
+                    app:contentInsetEnd="0dp">
+
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/cv_back_monitoring_search"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        app:cardElevation="0dp"
+                        app:cardBackgroundColor="@color/color_v3_white_1"
+                        android:foreground="?android:attr/selectableItemBackground">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:padding="12dp"
+                            app:srcCompat="@drawable/ic_arrow_back_gray_24dp"
+                            android:layout_gravity="left"
+                            android:adjustViewBounds="true"
+                            android:cropToPadding="true" />
+
+                    </android.support.v7.widget.CardView>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:layout_weight="1">
+
+                        <EditText
+                            android:id="@+id/et_search_monitoring_search"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:background="@drawable/shape_search"
+                            android:hint="Cari ID aset atau ID lokasi"
+                            android:inputType="text"
+                            android:maxLength="40"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp"
+                            android:textColor="@color/color_v3_black_1"
+                            android:textColorHint="@color/color_v3_gray_1"
+                            android:textSize="12sp" />
+
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/cv_search_submit_monitoring_search"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            app:cardCornerRadius="8dp"
+                            android:layout_margin="8dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerInParent="true"
+                            android:clickable="true"
+                            app:cardElevation="0dp"
+                            android:foreground="?android:attr/selectableItemBackground">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_margin="8dp"
+                                android:src="@drawable/ic_search_black"/>
+
+                        </android.support.v7.widget.CardView>
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.Toolbar>
+
+                <android.support.design.widget.TabLayout
+                    android:id="@+id/tl_monitoring_search"
+                    android:background="@color/color_v3_white_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </android.support.design.widget.TabLayout>
+
+            </LinearLayout>
+
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_monitoring_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v4.view.ViewPager>
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,7 +1,6 @@
 package com.siscaproject.sisca.Utilities;
 
 import com.siscaproject.sisca.Model.Asset;
-import com.siscaproject.sisca.Model.AssetModel;
 import com.siscaproject.sisca.Model.AssetAPI;
 import com.siscaproject.sisca.Model.AssetMutasi;
 import com.siscaproject.sisca.Model.LocationAPI;
@@ -12,11 +11,13 @@ import com.siscaproject.sisca.Model.ResponseStore;
 import com.siscaproject.sisca.Model.User;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface UserService {
@@ -55,4 +56,11 @@ public interface UserService {
                                       @Field("new_location_id") int new_location_id, @Field("new_pic_id") int new_pic_id,
                                       @Field("reason") String reason);
 
+    // put Calls -----------------------------------------------------------------------------------
+
+    @PUT("asset/{asset}")
+    Call<AssetAPI> putAsset(@Header("Authorization") String auth, @Header("Accept") String accept, @Path("asset") int id, @Body AssetAPI assetAPI);
+
+    @PUT("location/{location}")
+    Call<LocationAPI> putLocation(@Header("Authorization") String auth, @Header("Accept") String accept, @Path("location") int id, @Body LocationAPI locationAPI);
 }

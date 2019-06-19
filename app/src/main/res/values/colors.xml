@@ -346,5 +346,7 @@
     <color name="color_v3_gray_1">#737373</color>
     <color name="color_v3_gray_2">#61656b</color>
     <color name="color_v3_gray_3">#595d64</color>
+    <color name="color_v3_gray_4">#bac1cc</color>
+    <color name="color_v3_blue_1">#2699fb</color>
 
 </resources>

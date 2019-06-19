@@ -58,7 +58,9 @@
         <activity android:name=".Activity.DetailMonitoringActivity" />
         <activity android:name=".Activity.DetailMutationActivity" />
         <activity android:name=".Activity.DetailAsetActivity" />
-        <activity android:name=".Activity.SearchActivity"></activity>
+        <activity android:name=".Activity.SearchActivity" />
+        <activity android:name=".Activity.MonitoringSearchActivity" />
+        <activity android:name=".Activity.ReportMonitoringActivity"></activity>
     </application>
 
 </manifest>

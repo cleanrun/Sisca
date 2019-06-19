@@ -56,7 +56,11 @@ public class LocationAPI {
     @Expose
     private String updated_at;
 
-    public LocationAPI(int id, int parent_id, int manager_id, String name, String address, String state, String country, String phone, String zip, String image, String deleted_at, String created_at, String updated_at) {
+    @SerializedName("asset_count")
+    @Expose
+    private int asset_count;
+
+    public LocationAPI(int id, int parent_id, int manager_id, String name, String address, String state, String country, String phone, String zip, String image, String deleted_at, String created_at, String updated_at, int asset_count) {
         this.id = id;
         this.parent_id = parent_id;
         this.manager_id = manager_id;
@@ -70,6 +74,7 @@ public class LocationAPI {
         this.deleted_at = deleted_at;
         this.created_at = created_at;
         this.updated_at = updated_at;
+        this.asset_count = asset_count;
     }
 
     public int getId() {
@@ -122,5 +127,13 @@ public class LocationAPI {
 
     public String getUpdated_at() {
         return updated_at;
+    }
+
+    public int getAsset_count() {
+        return asset_count;
+    }
+
+    public void setUpdated_at(String updated_at) {
+        this.updated_at = updated_at;
     }
 }

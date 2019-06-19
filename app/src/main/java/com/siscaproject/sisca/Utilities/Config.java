@@ -1,5 +1,8 @@
 package com.siscaproject.sisca.Utilities;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 import java.util.UUID;
 
@@ -16,4 +19,10 @@ public class Config {
     public static final Locale locale = new Locale( "id" , "ID" );
 
     public static final String LOGIN_PREFS = "LoginPrefs";
+
+    public static String getDateNow(){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
 }

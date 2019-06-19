@@ -1,28 +1,21 @@
 package com.siscaproject.sisca.Activity;
 
+import android.content.Intent;
 import android.support.constraint.Constraints;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.rey.material.widget.ProgressView;
-import com.siscaproject.sisca.Adapter.MonitoringDetailAdapter;
 import com.siscaproject.sisca.Model.AssetAPI;
 import com.siscaproject.sisca.Model.LocationAPI;
 import com.siscaproject.sisca.Model.ResponseIndex;
 import com.siscaproject.sisca.Model.User;
 import com.siscaproject.sisca.R;
 import com.siscaproject.sisca.Utilities.APIProperties;
-import com.siscaproject.sisca.Utilities.Config;
 import com.siscaproject.sisca.Utilities.Header;
 import com.siscaproject.sisca.Utilities.UserService;
 
@@ -38,56 +31,47 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DetailMonitoringActivity extends AppCompatActivity {
+public class ReportMonitoringActivity extends AppCompatActivity {
 
-    @BindView(R.id.pv_report_detail)
+    @BindView(R.id.pv_report_report)
     ProgressView progressView;
-    @BindView(R.id.tv_title_report_detail)
+    @BindView(R.id.tv_title_report_report)
     TextView tvTitle;
-    @BindView(R.id.tv_date_report_detail)
+    @BindView(R.id.tv_date_report_report)
     TextView tvDate;
-    @BindView(R.id.tv_time_report_detail)
+    @BindView(R.id.tv_time_report_report)
     TextView tvTime;
-    @BindView(R.id.tv_pic_report_detail)
+    @BindView(R.id.tv_pic_report_report)
     TextView tvPic;
-    @BindView(R.id.rv_report_detail)
-    RecyclerView recyclerView;
+    @BindView(R.id.tv_asset_size_report_report)
+    TextView tvAssetSize;
+    @BindView(R.id.tv_bagus_report_report)
+    TextView tvBagus;
+    @BindView(R.id.tv_rusak_report_report)
+    TextView tvRusak;
+    @BindView(R.id.tv_hilang_report_report)
+    TextView tvHilang;
 
-    /*List<AssetModel> assetList;
-    List<MonitoringAssetModel> reportAssetList;*/
     private UserService userService;
     private List<AssetAPI> assetAPIList;
     private String idLocation;
-    private boolean isFromReportActivity;
-    private MonitoringDetailAdapter adapter;
-    private int indexUpdate;
     private LocationAPI locationAPI;
-    private ReportMonitoringActivity monitoringReportActivity;
-
-    public void setMonitoringReportActivity(ReportMonitoringActivity monitoringReportActivity) {
-        this.monitoringReportActivity = monitoringReportActivity;
-    }
+    private int bagusSize=0, rusakSize=0, hilangSize=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_monitoring_detail);
+        setContentView(R.layout.activity_report_monitoring);
 
         ButterKnife.bind(this);
 
         progressView.bringToFront();
         progressView.setVisibility(View.VISIBLE);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(linearLayoutManager);
-
         idLocation = getIntent().getIntExtra("ID_LOCATION_EXTRA", 0)+"";
-        isFromReportActivity = getIntent().getBooleanExtra("FROM_REPORT_EXTRA", false);
 
         userService = APIProperties.getUserService();
         getLocation();
-
     }
 
     private void getLocation() {
@@ -107,6 +91,7 @@ public class DetailMonitoringActivity extends AppCompatActivity {
                             tvTitle.setText(locationAPI.getName());
                             tvDate.setText(locationAPI.getUpdated_at().substring(0, 10));
                             tvTime.setText(locationAPI.getUpdated_at().substring(11));
+                            tvAssetSize.setText(locationAPI.getAsset_count()+"");
 
                             getPicName(locationAPI.getManager_id());
                         }
@@ -178,17 +163,27 @@ public class DetailMonitoringActivity extends AppCompatActivity {
                     for (int i=0; i<assetAPIList.size(); i++){
                         if (assetAPIList.get(i).getLocation_id().equals(idLocation)){
                             tmpList.add(assetAPIList.get(i));
+                            if (assetAPIList.get(i).getCondition().equals("bagus"))
+                                bagusSize++;
+                            else if (assetAPIList.get(i).getCondition().equals("rusak"))
+                                rusakSize++;
+                            else if (assetAPIList.get(i).getCondition().equals("hilang"))
+                                hilangSize++;
                         }
                     }
 
                     assetAPIList.clear();
                     assetAPIList = tmpList;
 
-                    showData();
+                    tvBagus.setText(bagusSize+"");
+                    tvRusak.setText(rusakSize+"");
+                    tvHilang.setText(hilangSize+"");
+
+                    progressView.setVisibility(View.INVISIBLE);
                 } else {
                     Log.i(Constraints.TAG, "onResponse: else");
                     errorToast();
-                    showData();
+                    progressView.setVisibility(View.INVISIBLE);
                 }
             }
 
@@ -196,114 +191,30 @@ public class DetailMonitoringActivity extends AppCompatActivity {
             public void onFailure(Call<ResponseIndex<AssetAPI>> call, Throwable throwable) {
                 Log.i(Constraints.TAG, "onResponse: else");
                 errorToast();
-                showData();
+                progressView.setVisibility(View.INVISIBLE);
             }
         });
 
 
     }
 
-    private void showData() {
-        adapter = new MonitoringDetailAdapter(this, assetAPIList);
-        recyclerView.setAdapter(adapter);
-
-        progressView.setVisibility(View.INVISIBLE);
+    @OnClick(R.id.cv_back_report_report) void cvBackOnClick(){
+        onBackPressed();
     }
 
-    @OnClick(R.id.cv_back_report_detail) void cvBackClick() {
-        if (isFromReportActivity){
-            //monitoringReportActivity.load();
-            onBackPressed();
-        }
-        else{
-            onBackPressed();
-        }
+    @OnClick(R.id.btn_edit_report_report) void btnEditOnClick(){
+        DetailMonitoringActivity activity = new DetailMonitoringActivity();
+        activity.setMonitoringReportActivity(ReportMonitoringActivity.this);
+        Intent intent = new Intent(this, activity.getClass());
+        intent.putExtra("ID_LOCATION_EXTRA", locationAPI.getId());
+        intent.putExtra("FROM_REPORT_EXTRA", true);
+
+        startActivity(intent);
     }
 
-    @OnClick(R.id.btn_submit_report_detail) void btnSubmitClick() {
+    public void load(){
         progressView.setVisibility(View.VISIBLE);
-        assetAPIList = adapter.getList();
-        /*for (int i=0; i<assetAPIList.size(); i++){
-            Log.d("astaga", assetAPIList.get(i).getCondition());
-        }*/
-
-        //Call<Asset> call = userService.storeFixed(auth, accept, asset);
-        indexUpdate=0;
-        updateData();
-
-    }
-
-    private void updateData() {
-        String dateNow = Config.getDateNow();
-        for (int i=0; i<assetAPIList.size(); i++){
-            assetAPIList.get(i).setUpdated_at(dateNow);
-        }
-
-        if (indexUpdate<assetAPIList.size()){
-            Call<AssetAPI> call = userService.putAsset(Header.auth, Header.accept, assetAPIList.get(indexUpdate).getId(), assetAPIList.get(indexUpdate));
-            call.enqueue(new Callback<AssetAPI>() {
-                @Override
-                public void onResponse(Call<AssetAPI> call, Response<AssetAPI> response) {
-                    if(response.isSuccessful()){
-                        Log.d("hmm", "sukses "+indexUpdate);
-                        indexUpdate++;
-                        updateData();
-                    }else{
-                        try {
-                            Log.d("hmm", "gagal "+indexUpdate);
-                            Log.d("hmm", "gagal "+response.errorBody().string());
-                            Toast.makeText(DetailMonitoringActivity.this, "Something wrong just happened :(", Toast.LENGTH_SHORT).show();
-                        }catch(Exception e){
-                            //Log.e(TAG, "onResponse: exception");
-                        }
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<AssetAPI> call, Throwable throwable) {
-
-                }
-            });
-        }
-        else {
-            locationAPI.setUpdated_at(dateNow);
-            updateDataLocation();
-        }
-    }
-
-    private void updateDataLocation() {
-        Call<LocationAPI> call = userService.putLocation(Header.auth, Header.accept, locationAPI.getId(), locationAPI);
-        call.enqueue(new Callback<LocationAPI>() {
-            @Override
-            public void onResponse(Call<LocationAPI> call, Response<LocationAPI> response) {
-                if (response.isSuccessful()){
-                    showToast("Data successfully inputted!");
-                    Log.d("Finall", "sukses "+locationAPI.getUpdated_at());
-                    //load ulang
-                    assetAPIList.clear();
-                    getLocation();
-                }
-                else{
-                    Log.i(Constraints.TAG, "onResponse: else");
-                    Log.d("Finall", "ga sukses "+locationAPI.getUpdated_at());
-                    errorToast();
-                    assetAPIList.clear();
-                    getLocation();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<LocationAPI> call, Throwable throwable) {
-                Log.i(Constraints.TAG, "onResponse: else");
-                Log.d("Finall", "ga sukses "+locationAPI.getUpdated_at());
-                errorToast();
-                assetAPIList.clear();
-                getLocation();
-            }
-        });
-
-
-
+        getLocation();
     }
 
     private void showToast(String s) {

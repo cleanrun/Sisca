@@ -5,10 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.DetailMonitoringActivity">
+    tools:context=".Activity.ReportMonitoringActivity">
 
     <com.rey.material.widget.ProgressView
-        android:id="@+id/pv_report_detail"
+        android:id="@+id/pv_report_report"
         android:layout_width="48dp"
         android:layout_height="48dp"
         app:pv_autostart="true"
@@ -67,7 +67,7 @@
                         android:orientation="horizontal">
 
                         <android.support.v7.widget.CardView
-                            android:id="@+id/cv_back_report_detail"
+                            android:id="@+id/cv_back_report_report"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
@@ -89,7 +89,7 @@
                         </android.support.v7.widget.CardView>
 
                         <TextView
-                            android:id="@+id/tv_title_report_detail"
+                            android:id="@+id/tv_title_report_report"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
@@ -130,8 +130,161 @@
 
         <LinearLayout
             android:orientation="vertical"
+            android:padding="16dp"
+            android:background="@color/color_v3_white_2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/color_v3_black_1"
+                android:text="Kondisi Barang"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                android:background="@color/color_v3_gray_4">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/color_v3_black_1"
+                    android:text="Jumlah aset"/>
+
+                <TextView
+                    android:id="@+id/tv_asset_size_report_report"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/color_v3_black_1"
+                    android:text="-"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:elevation="2dp"
+            app:cardElevation="2dp"
+            app:cardMaxElevation="2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Bagus"/>
+
+                    <TextView
+                        android:id="@+id/tv_bagus_report_report"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.2dp"
+                    android:background="@color/color_v3_gray_4"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Rusak"/>
+
+                    <TextView
+                        android:id="@+id/tv_rusak_report_report"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.2dp"
+                    android:background="@color/color_v3_gray_4"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Hilang"/>
+
+                    <TextView
+                        android:id="@+id/tv_hilang_report_report"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:elevation="8dp"
+        app:cardElevation="8dp"
+        app:cardMaxElevation="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_margin="16dp"
@@ -154,7 +307,7 @@
                         android:text="Terakhir dimonitoring"/>
 
                     <TextView
-                        android:id="@+id/tv_date_report_detail"
+                        android:id="@+id/tv_date_report_report"
                         android:layout_marginTop="4dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -163,7 +316,7 @@
                         android:text="tanggal"/>
 
                     <TextView
-                        android:id="@+id/tv_time_report_detail"
+                        android:id="@+id/tv_time_report_report"
                         android:layout_marginTop="4dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -190,7 +343,7 @@
                         android:text="Oleh :"/>
 
                     <TextView
-                        android:id="@+id/tv_pic_report_detail"
+                        android:id="@+id/tv_pic_report_report"
                         android:textAlignment="viewEnd"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -202,46 +355,18 @@
 
             </LinearLayout>
 
-            <View
+            <Button
+                android:id="@+id/btn_edit_report_report"
                 android:layout_width="match_parent"
-                android:layout_height="0.5dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:background="@color/color_v3_gray_1"/>
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_report_detail"
-                android:layout_margin="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingTop="6dp">
-
-            </android.support.v7.widget.RecyclerView>
+                android:layout_marginBottom="16dp"
+                android:textColor="@color/color_v3_red_2"
+                android:text="EDIT"
+                android:background="@drawable/shape_button_stroke"/>
 
         </LinearLayout>
-
-    </LinearLayout>
-
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:elevation="8dp"
-        app:cardElevation="8dp"
-        app:cardMaxElevation="8dp">
-
-        <Button
-            android:id="@+id/btn_submit_report_detail"
-            android:layout_margin="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="@drawable/shape_button_red"
-            android:text="SIMPAN"
-            android:textAlignment="center"
-            android:gravity="center_vertical"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="@color/color_v3_white_1" />
 
     </android.support.v7.widget.CardView>
 

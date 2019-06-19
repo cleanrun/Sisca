@@ -141,4 +141,64 @@ public class AssetAPI {
     public String getUpdated_at() {
         return updated_at;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setAsset_id(String asset_id) {
+        this.asset_id = asset_id;
+    }
+
+    public void setCategory_id(String category_id) {
+        this.category_id = category_id;
+    }
+
+    public void setLocation_id(String location_id) {
+        this.location_id = location_id;
+    }
+
+    public void setPic_id(String pic_id) {
+        this.pic_id = pic_id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setDate_purchase(String date_purchase) {
+        this.date_purchase = date_purchase;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public void setCondition(String condition) {
+        this.condition = condition;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public void setHistory(String history) {
+        this.history = history;
+    }
+
+    public void setDeleted_at(String deleted_at) {
+        this.deleted_at = deleted_at;
+    }
+
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
+    }
+
+    public void setUpdated_at(String updated_at) {
+        this.updated_at = updated_at;
+    }
 }
