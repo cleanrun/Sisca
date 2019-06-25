@@ -123,7 +123,6 @@ public class LoginActivity extends AppCompatActivity{
         call.enqueue(new Callback<LoginAuth>() {
             @Override
             public void onResponse(Call<LoginAuth> call, Response<LoginAuth> response) {
-
                 try {
                     if (response.body().getToken_type().equals("Bearer")) {
                         Log.i(TAG, "getLogin, Authorized access");

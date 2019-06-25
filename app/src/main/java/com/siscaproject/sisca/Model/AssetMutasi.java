@@ -90,6 +90,22 @@ public class AssetMutasi {
         this.pic = pic;
     }
 
+    public AssetMutasi(int id, String asset_id, String asset_rfid, int category_id, int location_id, int pic_id, String name, String description, String date_purchase, String price, String condition, String created_at, String updated_at) {
+        this.id = id;
+        this.asset_id = asset_id;
+        this.asset_rfid = asset_rfid;
+        this.category_id = category_id;
+        this.location_id = location_id;
+        this.pic_id = pic_id;
+        this.name = name;
+        this.description = description;
+        this.date_purchase = date_purchase;
+        this.price = price;
+        this.condition = condition;
+        this.created_at = created_at;
+        this.updated_at = updated_at;
+    }
+
     public int getId() {
         return id;
     }

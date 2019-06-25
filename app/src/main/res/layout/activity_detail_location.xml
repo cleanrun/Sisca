@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activity.DetailLocationActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="68dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bg_gradient"/>
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:popupTheme="@style/AppTheme.PopupOverlay"
+                app:contentInsetStartWithNavigation="0dp"
+                android:contentInsetLeft="0dp"
+                android:contentInsetStart="0dp"
+                app:contentInsetLeft="0dp"
+                app:contentInsetStart="0dp"
+                android:contentInsetRight="0dp"
+                android:contentInsetEnd="0dp"
+                app:contentInsetRight="0dp"
+                app:contentInsetEnd="0dp"
+                app:elevation="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="16dp"
+                    android:descendantFocusability="beforeDescendants"
+                    android:focusableInTouchMode="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/cv_back"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:clickable="true"
+                        android:elevation="0dp"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:cardBackgroundColor="@color/transparent"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="0dp"
+                        app:cardMaxElevation="0dp">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_margin="8dp"
+                            app:srcCompat="@drawable/ic_arrow_back" />
+
+                    </android.support.v7.widget.CardView>
+
+                    <TextView
+                        android:id="@+id/tv_title_location"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="C102"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:textColor="@color/color_v3_white_1"/>
+
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/cv_search_report"
+                        android:layout_width="40dp"
+                        android:layout_height="match_parent"
+                        app:cardBackgroundColor="@color/transparent"
+                        app:cardElevation="0dp"
+                        app:cardMaxElevation="0dp"
+                        android:elevation="0dp"
+                        app:cardCornerRadius="8dp"
+                        android:clickable="true"
+                        android:layout_gravity="center"
+                        android:foreground="?android:attr/selectableItemBackground"/>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.Toolbar>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="10">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:text="Alamat"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:text=":"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/tv_alamat"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6.7"
+                    android:text="Jl. Telekomunikasi No. 1 RT,RW,Kel.\nDayeuh Kolot"
+                    android:maxLines="2"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="5dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="10">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:text="Manager"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:text=":"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/tv_manager"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6.7"
+                    android:text="Pablo Picasso"
+                    android:maxLines="1"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="5dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="10">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:text="Jumlah Aset"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:text=":"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/tv_jumlah_aset"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6.7"
+                    android:text="11"
+                    android:maxLines="1"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_list_aset"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_above="@id/ll_btn_monitoring"/>
+
+        <LinearLayout
+            android:id="@+id/ll_btn_monitoring"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:paddingLeft="13dp"
+            android:paddingRight="13dp"
+            android:layout_alignParentBottom="true">
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_monitoring"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="MONITORING"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:background="@drawable/shape_button_red"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

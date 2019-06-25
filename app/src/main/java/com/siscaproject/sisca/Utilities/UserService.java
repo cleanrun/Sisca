@@ -62,5 +62,5 @@ public interface UserService {
     Call<AssetAPI> putAsset(@Header("Authorization") String auth, @Header("Accept") String accept, @Path("asset") int id, @Body AssetAPI assetAPI);
 
     @PUT("location/{location}")
-    Call<LocationAPI> putLocation(@Header("Authorization") String auth, @Header("Accept") String accept, @Path("location") int id, @Body LocationAPI locationAPI);
+    Call<LocationAPI> putLocation(@Header("Authorization") String auth, @Header("Accept") String accept, @Path("location") int id, @Body LocationAPI locationAPI);;
 }

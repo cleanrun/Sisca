@@ -1,6 +1,7 @@
 package com.siscaproject.sisca.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -18,6 +19,7 @@ import com.afollestad.materialdialogs.GravityEnum;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.pixplicity.easyprefs.library.Prefs;
+import com.siscaproject.sisca.Activity.DetailLocationActivity;
 import com.siscaproject.sisca.R;
 import com.siscaproject.sisca.Utilities.Header;
 
@@ -72,6 +74,7 @@ public class ProfileFragment extends Fragment {
                 break;
             case R.id.ll_nama:
                 showToast("Nama");
+                //startActivity(new Intent(getActivity(), DetailLocationActivity.class));
                 break;
             case R.id.ll_email:
                 showToast("Email");

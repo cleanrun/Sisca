@@ -60,7 +60,8 @@
         <activity android:name=".Activity.DetailAsetActivity" />
         <activity android:name=".Activity.SearchActivity" />
         <activity android:name=".Activity.MonitoringSearchActivity" />
-        <activity android:name=".Activity.ReportMonitoringActivity"></activity>
+        <activity android:name=".Activity.ReportMonitoringActivity" />
+        <activity android:name=".Activity.DetailLocationActivity"></activity>
     </application>
 
 </manifest>

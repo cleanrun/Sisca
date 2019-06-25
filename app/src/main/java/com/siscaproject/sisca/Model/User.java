@@ -8,7 +8,7 @@ public class User {
     @Expose
     private int id;
 
-    @SerializedName("name")
+    @SerializedName("username")
     @Expose
     private String name;
 

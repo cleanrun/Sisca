@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,8 +22,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.GravityEnum;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.rey.material.widget.ProgressView;
+import com.siscaproject.sisca.Activity.BluetoothActivity;
 import com.siscaproject.sisca.Activity.DetailAsetActivity;
+import com.siscaproject.sisca.Activity.QRActivity;
 import com.siscaproject.sisca.Activity.SearchActivity;
 import com.siscaproject.sisca.Adapter.LocationAdapter;
 import com.siscaproject.sisca.Adapter.LocationBoxAdapter;
@@ -66,6 +72,8 @@ public class HomeFragment extends Fragment{
 
     private UserService userService;
     private ArrayList<LocationAPI> locationAPIList;
+
+    private MaterialDialog scannerDialog;
 
     private OnFragmentInteractionListener mListener;
 
@@ -245,11 +253,35 @@ public class HomeFragment extends Fragment{
         Toast.makeText(getContext(), msg, Toast.LENGTH_LONG).show();
     }
 
-    @OnClick(R.id.cv_scan_qr_home) void cvScanQrOnClick() {
-        Intent intent = new Intent(getContext(), DetailAsetActivity.class);
-        intent.putExtra("ID_ASSET_EXTRA", 31);
+    private void showScannerDialog() {
+        Log.i(TAG, "showScannerDialog: called");
 
-        getContext().startActivity(intent);
+        MaterialDialog.Builder builder = new MaterialDialog.Builder(getActivity())
+                .content("Silahkan pilih scanner yang ingin digunakan")
+                .contentGravity(GravityEnum.CENTER)
+                .autoDismiss(true)
+                .positiveText("Bluetooth")
+                .negativeText("QR")
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        startActivity(new Intent(getActivity(), BluetoothActivity.class));
+                    }
+                })
+                .onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        startActivity(new Intent(getActivity(), QRActivity.class));
+                    }
+                })
+                .canceledOnTouchOutside(true);
+
+        scannerDialog = builder.build();
+        scannerDialog.show();
+    }
+
+    @OnClick(R.id.cv_scan_qr_home) void cvScanQrOnClick() {
+        showScannerDialog();
     }
 
     @OnClick(R.id.cv_search_submit_home) void cvSearchOnClick() {
