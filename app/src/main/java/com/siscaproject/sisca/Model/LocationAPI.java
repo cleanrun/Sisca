@@ -60,6 +60,10 @@ public class LocationAPI {
     @Expose
     private int asset_count;
 
+    @SerializedName("manager")
+    @Expose
+    private User manager;
+
     public LocationAPI(int id, int parent_id, int manager_id, String name, String address, String state, String country, String phone, String zip, String image, String deleted_at, String created_at, String updated_at, int asset_count) {
         this.id = id;
         this.parent_id = parent_id;
@@ -135,5 +139,13 @@ public class LocationAPI {
 
     public void setUpdated_at(String updated_at) {
         this.updated_at = updated_at;
+    }
+
+    public User getManager() {
+        return manager;
+    }
+
+    public void setManager(User manager) {
+        this.manager = manager;
     }
 }

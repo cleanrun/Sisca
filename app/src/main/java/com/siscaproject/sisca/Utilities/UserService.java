@@ -47,6 +47,9 @@ public interface UserService {
     @GET("asset/{asset}")
     Call<ResponseShow<AssetMutasi>> showAset(@Path("asset") String id, @Header("Authorization") String auth, @Header("Accept") String accept);
 
+    @GET("location/{location}")
+    Call<ResponseShow<LocationAPI>> showLocation(@Path("location") String id, @Header("Authorization") String auth, @Header("Accept") String accept);
+
     // store Calls ---------------------------------------------------------------------------------
 
     @FormUrlEncoded

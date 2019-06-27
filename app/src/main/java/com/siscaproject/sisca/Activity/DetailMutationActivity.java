@@ -301,11 +301,21 @@ public class DetailMutationActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ResponseStore> call, Response<ResponseStore> response) {
                 // TODO: Finish this (submitMutasi())
+                if(response.isSuccessful()){
+                    Log.i(TAG, "submitMutasi onResponse: message " + response.body().getMessage());
+                    Log.i(TAG, "submitMutasi onResponse: status " + response.body().getStatus());
+                    showToast("Mutasi berhasil");
+                    //finish();
+                }else{
+                    Log.e(TAG, "submitMutasi onResponse: not successful ");
+                    showToast("Gagal melakukan mutasi data");
+                }
             }
 
             @Override
             public void onFailure(Call<ResponseStore> call, Throwable t) {
-
+                Log.e(TAG, "submitMutasi onFailure: " + t.getMessage() );
+                showToast("Gagal melakukan mutasi data");
             }
         });
     }

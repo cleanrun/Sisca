@@ -146,6 +146,7 @@ public class DetailAsetActivity extends AppCompatActivity {
             public void onFailure(Call<ResponseShow<AssetMutasi>> call, Throwable t) {
                 Log.e(TAG, "onFailure: " + t.getMessage() );
                 showToast("Failed to get asset data");
+                //finish();
             }
         });
     }
