@@ -54,7 +54,9 @@ public class DetailLocationActivity extends AppCompatActivity {
     private AssetAdapter.cardClickListener listener = new AssetAdapter.cardClickListener() {
         @Override
         public void onCardClick(int id) {
-            // do nothing
+            Intent intent = new Intent(DetailLocationActivity.this, DetailAssetActivity.class);
+            intent.putExtra("ID_ASSET_EXTRA", id);
+            startActivity(intent);
         }
     };
 
