@@ -16,6 +16,7 @@ import com.siscaproject.sisca.Fragment.MonitoringFragment;
 import com.siscaproject.sisca.Fragment.MutasiFragment;
 import com.siscaproject.sisca.Fragment.ProfileFragment;
 import com.siscaproject.sisca.R;
+import com.siscaproject.sisca.Utilities.BottomNavigationViewHelper;
 
 public class DashboardActivity extends AppCompatActivity implements MonitoringFragment.OnFragmentInteractionListener,
         MutasiFragment.OnFragmentInteractionListener, ProfileFragment.OnFragmentInteractionListener, HomeFragment.OnFragmentInteractionListener{
@@ -39,6 +40,7 @@ public class DashboardActivity extends AppCompatActivity implements MonitoringFr
 
     private void initNavigation(){
         navigationView = findViewById(R.id.btm_navigation);
+        BottomNavigationViewHelper.disableShiftMode(navigationView);
         navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

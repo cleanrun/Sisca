@@ -80,7 +80,8 @@ public class LoginActivity extends AppCompatActivity{
                 //startActivity(new Intent(LoginActivity.this, HomeNavigationActivity.class));
                 break;
             case R.id.textview_forgot_password:
-                Snackbar.make(parent_view, "Forgot Password", Snackbar.LENGTH_SHORT).show();
+                //Snackbar.make(parent_view, "Forgot Password", Snackbar.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "Forgot Password", Toast.LENGTH_SHORT).show();
                 break;
             default:
                 Snackbar.make(parent_view, "???", Snackbar.LENGTH_SHORT).show();
