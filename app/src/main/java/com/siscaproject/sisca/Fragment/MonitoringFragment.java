@@ -134,39 +134,6 @@ public class MonitoringFragment extends Fragment {
         });
     }
 
-    /*private void getAsset() {
-     *//*Call<ResponseIndex<Location>> call = userService.indexLocation(Header.auth, Header.accept);
-        call.enqueue(new Callback<ResponseIndex<Location>>() {
-            @Override
-            public void onResponse(Call<ResponseIndex<Location>> call, Response<ResponseIndex<Location>> response) {
-                int index = 0;
-                if (response.isSuccessful()) {
-                    int total = response.body().getTotal();
-                    Log.i(TAG, "onResponse: total " + total);
-
-                    locations = response.body().getRows();
-                    Log.d("TOTAL_MSG", total+"");
-                    Log.d("INDEX_MSG", index+"");
-                    Log.d("ROWS_MSG", locations.get(0).getId());
-                    Log.d("ROWS_MSG", locations.get(1).getId());
-                    Log.d("ROWS_MSG", locations.get(2).getId());
-                    Log.d("MSG_MSG", response.message());
-                    index++;
-
-                } else {
-                    Log.i(TAG, "onResponse: else");
-                }
-
-                getData();
-            }
-
-            @Override
-            public void onFailure(Call<ResponseIndex<Location>> call, Throwable t) {
-                Log.e(TAG, "onFailure: " + t.getMessage());
-            }
-        });*//*
-    }
-*/
     private void showData() {
         /*if (!locationList.isEmpty()){
             LocationAdapter adapter = new LocationAdapter(getContext(), locationList);

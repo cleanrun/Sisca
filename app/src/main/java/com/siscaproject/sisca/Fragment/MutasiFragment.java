@@ -1,7 +1,10 @@
 package com.siscaproject.sisca.Fragment;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,6 +17,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
@@ -26,6 +32,7 @@ import com.siscaproject.sisca.Activity.QRActivity;
 import com.siscaproject.sisca.Activity.SearchActivity;
 import com.siscaproject.sisca.Adapter.AssetAdapter;
 import com.siscaproject.sisca.Model.AssetMutasi;
+import com.siscaproject.sisca.Model.LocationAPI;
 import com.siscaproject.sisca.Model.ResponseIndex;
 import com.siscaproject.sisca.R;
 import com.siscaproject.sisca.Utilities.APIProperties;
@@ -33,6 +40,8 @@ import com.siscaproject.sisca.Utilities.Header;
 import com.siscaproject.sisca.Utilities.UserService;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -47,6 +56,8 @@ public class MutasiFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
 
     private ArrayList<AssetMutasi> listAsset; // List terakhir mutasi
+
+    private int sortNumber = 3;
 
     @BindView(R.id.cv_scanner) CardView cvScanner;
     @BindView(R.id.cv_search) CardView cvSearch;
@@ -100,11 +111,138 @@ public class MutasiFragment extends Fragment {
                 startActivity(searchIntent);
                 break;
             case R.id.btn_filter:
-                showToast("Filter");
+                //showToast("Filter");
+                filterData();
                 break;
             default:
                 break;
         }
+    }
+
+    private void filterData(){
+        final Dialog dialog = new Dialog(getContext());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_sort_view);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.show();
+
+        TextView tvTerbaru = (TextView) dialog.findViewById(R.id.tv_terbaru);
+        TextView tvTerlama = (TextView) dialog.findViewById(R.id.tv_terlama);
+        TextView tvAtoZ = (TextView) dialog.findViewById(R.id.tv_az);
+        TextView tvZtoA = (TextView) dialog.findViewById(R.id.tv_za);
+        final ImageView ivTerbaru = (ImageView) dialog.findViewById(R.id.iv_terbaru);
+        final ImageView ivTerlama = (ImageView) dialog.findViewById(R.id.iv_terlama);
+        final ImageView ivAtoZ = (ImageView) dialog.findViewById(R.id.iv_az);
+        final ImageView ivZtoA = (ImageView) dialog.findViewById(R.id.iv_za);
+
+        ivTerbaru.setVisibility(View.INVISIBLE);
+        ivTerlama.setVisibility(View.INVISIBLE);
+        ivAtoZ.setVisibility(View.INVISIBLE);
+        ivZtoA.setVisibility(View.INVISIBLE);
+
+        switch (sortNumber){
+            case 1 :
+                ivTerbaru.setVisibility(View.VISIBLE);
+                break;
+            case 2 :
+                ivTerlama.setVisibility(View.VISIBLE);
+                break;
+            case 3 :
+                ivAtoZ.setVisibility(View.VISIBLE);
+                break;
+            case 4 :
+                ivZtoA.setVisibility(View.VISIBLE);
+                break;
+        }
+
+        tvTerbaru.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                progressView.setVisibility(View.VISIBLE);
+                Collections.sort(listAsset, new Comparator<AssetMutasi>() {
+                    @Override
+                    public int compare(AssetMutasi locationAPI1, AssetMutasi locationAPI2) {
+                        return locationAPI2.getUpdated_at().compareTo(locationAPI1.getUpdated_at());
+                    }
+                });
+
+                sortNumber = 1;
+                ivTerbaru.setVisibility(View.VISIBLE);
+                ivTerlama.setVisibility(View.INVISIBLE);
+                ivAtoZ.setVisibility(View.INVISIBLE);
+                ivZtoA.setVisibility(View.INVISIBLE);
+                showData();
+
+                dialog.dismiss();
+            }
+        });
+
+        tvTerlama.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                progressView.setVisibility(View.VISIBLE);
+                Collections.sort(listAsset, new Comparator<AssetMutasi>() {
+                    @Override
+                    public int compare(AssetMutasi locationAPI1, AssetMutasi locationAPI2) {
+                        return locationAPI1.getUpdated_at().compareTo(locationAPI2.getUpdated_at());
+                    }
+                });
+
+                sortNumber = 2;
+                ivTerbaru.setVisibility(View.INVISIBLE);
+                ivTerlama.setVisibility(View.VISIBLE);
+                ivAtoZ.setVisibility(View.INVISIBLE);
+                ivZtoA.setVisibility(View.INVISIBLE);
+                showData();
+
+                dialog.dismiss();
+            }
+        });
+
+        tvAtoZ.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                progressView.setVisibility(View.VISIBLE);
+                Collections.sort(listAsset, new Comparator<AssetMutasi>() {
+                    @Override
+                    public int compare(AssetMutasi locationAPI1, AssetMutasi locationAPI2) {
+                        return locationAPI1.getName().compareTo(locationAPI2.getName());
+                    }
+                });
+
+                sortNumber = 3;
+                ivTerbaru.setVisibility(View.INVISIBLE);
+                ivTerlama.setVisibility(View.INVISIBLE);
+                ivAtoZ.setVisibility(View.VISIBLE);
+                ivZtoA.setVisibility(View.INVISIBLE);
+                showData();
+
+                dialog.dismiss();
+            }
+        });
+
+        tvZtoA.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                progressView.setVisibility(View.VISIBLE);
+                Collections.sort(listAsset, new Comparator<AssetMutasi>() {
+                    @Override
+                    public int compare(AssetMutasi locationAPI1, AssetMutasi locationAPI2) {
+                        return locationAPI2.getName().compareTo(locationAPI1.getName());
+                    }
+                });
+
+                sortNumber = 4;
+                ivTerbaru.setVisibility(View.INVISIBLE);
+                ivTerlama.setVisibility(View.INVISIBLE);
+                ivAtoZ.setVisibility(View.INVISIBLE);
+                ivZtoA.setVisibility(View.VISIBLE);
+                showData();
+
+                dialog.dismiss();
+            }
+        });
     }
 
     public void getDataAsset(){

@@ -4,11 +4,13 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.pixplicity.easyprefs.library.Prefs;
 import com.siscaproject.sisca.Model.LocationAPI;
 import com.siscaproject.sisca.R;
 
@@ -19,10 +21,15 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ItemHo
     private Context activityContext;
     //List<LocationModel> locationList;
     private ArrayList<LocationAPI> listData = new ArrayList<>();
+    private ExceptionHandler exceptionHandler;
 
     public LocationAdapter(Context context, ArrayList<LocationAPI> locationAPIList) {
         this.activityContext = context;
         this.listData = locationAPIList;
+    }
+
+    public void setExceptionHandler(ExceptionHandler handler){
+        this.exceptionHandler = handler;
     }
 
     @NonNull
@@ -49,15 +56,18 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ItemHo
 
     @Override
     public int getItemCount() {
-
-        if(listData.isEmpty()){
-            return 0;
+        try {
+            if (listData.isEmpty()) {
+                return 0;
+            } else {
+                return listData.size();
+            }
+        }catch(Exception e){
+            Log.e("LocationAdapter", "getItemCount: " + e.getMessage() );
+            exceptionHandler.onException();
         }
-        else{
-            return listData.size();
-        }
+        return 0;
 
-        //return 0;
     }
 
     public class ItemHolder extends RecyclerView.ViewHolder {
@@ -73,6 +83,10 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ItemHo
             tvAsetSize = itemView.findViewById(R.id.tv_jumlah_aset_location);
             cvItem = itemView.findViewById(R.id.cv_item_location);
         }
+    }
+
+    public interface ExceptionHandler{
+        void onException();
     }
 
 }

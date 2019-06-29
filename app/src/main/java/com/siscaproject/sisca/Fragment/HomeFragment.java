@@ -25,10 +25,12 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.GravityEnum;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.pixplicity.easyprefs.library.Prefs;
 import com.rey.material.widget.ProgressView;
 import com.siscaproject.sisca.Activity.BluetoothActivity;
 import com.siscaproject.sisca.Activity.QRActivity;
 import com.siscaproject.sisca.Activity.SearchActivity;
+import com.siscaproject.sisca.Activity.SplashScreenActivity;
 import com.siscaproject.sisca.Adapter.LocationAdapter;
 import com.siscaproject.sisca.Adapter.LocationBoxAdapter;
 import com.siscaproject.sisca.Model.AssetAPI;
@@ -73,6 +75,16 @@ public class HomeFragment extends Fragment{
     private ArrayList<LocationAPI> locationAPIList;
 
     private MaterialDialog scannerDialog;
+
+    // Handling the NullPointerException bug right after installing the app
+    private LocationAdapter.ExceptionHandler exceptionHandler = new LocationAdapter.ExceptionHandler() {
+        @Override
+        public void onException() {
+            Prefs.clear();
+            getActivity().finish();
+            startActivity(new Intent(getActivity(), SplashScreenActivity.class));
+        }
+    };
 
     private OnFragmentInteractionListener mListener;
 
@@ -233,6 +245,7 @@ public class HomeFragment extends Fragment{
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(linearLayoutManager);
         LocationAdapter adapter = new LocationAdapter(getContext(), locationAPIList);
+        adapter.setExceptionHandler(exceptionHandler);
         recyclerView.setAdapter(adapter);
 
         progressView.setVisibility(View.INVISIBLE);
