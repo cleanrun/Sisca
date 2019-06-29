@@ -1,6 +1,7 @@
 package com.siscaproject.sisca.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.pixplicity.easyprefs.library.Prefs;
+import com.siscaproject.sisca.Activity.DetailMonitoringActivity;
 import com.siscaproject.sisca.Model.LocationAPI;
 import com.siscaproject.sisca.R;
 
@@ -42,14 +44,14 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ItemHo
     @Override
     public void onBindViewHolder(@NonNull ItemHolder holder, final int position) {
         holder.tvId.setText(listData.get(position).getName());
-        holder.tvAsetSize.setText("0 aset");
+        holder.tvAsetSize.setText(listData.get(position).getAsset_count()+" aset");
         holder.cvItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*Intent intent = new Intent(activityContext, MonitoringDetailActivity.class);
-                intent.putExtra("ID_LOCATION_EXTRA", locationList.get(position).getId());
+                Intent intent = new Intent(activityContext, DetailMonitoringActivity.class);
+                intent.putExtra("ID_LOCATION_EXTRA", listData.get(position).getId());
 
-                activityContext.startActivity(intent);*/
+                activityContext.startActivity(intent);
             }
         });
     }

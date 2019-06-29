@@ -210,6 +210,13 @@ public class HomeFragment extends Fragment{
                         }
                     });
 
+                    //cuma menampilkan 5 lokasi terbaru
+                    ArrayList<LocationAPI> listTmp = new ArrayList<>();
+                    for (int i=0; i<5; i++){
+                        listTmp.add(locationAPIList.get(i));
+                    }
+                    locationAPIList = listTmp;
+
                     showData();
                     /*adapter = new AssetsAdapter(rows, getApplicationContext(), userService, listener);
                     recyclerView.setAdapter(adapter);*/
@@ -350,10 +357,6 @@ public class HomeFragment extends Fragment{
             @Override
             public void onClick(View view) {
                 progressView.setVisibility(View.VISIBLE);
-                /*locationList.clear();
-                locationList.add(new LocationModel("Ruang kerja 1", "K101", 6));
-                locationList.add(new LocationModel("Ruang istirahat", "I203", 6));
-                locationList.add(new LocationModel("Ruang kerja 2", "K102", 6));*/
                 Collections.sort(locationAPIList, new Comparator<LocationAPI>() {
                     @Override
                     public int compare(LocationAPI locationAPI1, LocationAPI locationAPI2) {
@@ -378,10 +381,6 @@ public class HomeFragment extends Fragment{
             @Override
             public void onClick(View view) {
                 progressView.setVisibility(View.VISIBLE);
-                /*locationList.clear();
-                locationList.add(new LocationModel("Ruang kerja 2", "K102", 6));
-                locationList.add(new LocationModel("Ruang istirahat", "I203", 6));
-                locationList.add(new LocationModel("Ruang kerja 1", "K101", 6));*/
                 Collections.sort(locationAPIList, new Comparator<LocationAPI>() {
                     @Override
                     public int compare(LocationAPI locationAPI1, LocationAPI locationAPI2) {

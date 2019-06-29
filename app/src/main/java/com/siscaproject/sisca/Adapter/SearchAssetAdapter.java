@@ -38,7 +38,7 @@ public class SearchAssetAdapter extends RecyclerView.Adapter<SearchAssetAdapter.
     public void onBindViewHolder(@NonNull ItemHolder holder, final int position) {
         //holder.ivPhoto.setImageDrawable(activityContext.getResources().getDrawable(listData.get(position).getPhoto()));
         holder.tvName.setText(listData.get(position).getName());
-        holder.tvId.setText(listData.get(position).getId());
+        holder.tvId.setText(listData.get(position).getId()+"");
         holder.cvItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

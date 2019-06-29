@@ -37,7 +37,7 @@ public class SearchLocationAdapter extends RecyclerView.Adapter<SearchLocationAd
     @Override
     public void onBindViewHolder(@NonNull ItemHolder holder, final int position) {
         holder.tvId.setText(listData.get(position).getName());
-        holder.tvAsetSize.setText("0 aset");
+        holder.tvAsetSize.setText(listData.get(position).getAsset_count()+" aset");
         holder.cvItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
