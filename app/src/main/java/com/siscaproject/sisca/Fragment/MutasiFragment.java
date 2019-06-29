@@ -62,7 +62,7 @@ public class MutasiFragment extends Fragment {
         @Override
         public void onCardClick(final int id) {
             Intent intent = new Intent(getActivity(), DetailMutationActivity.class);
-            intent.putExtra("assetID", id);
+            intent.putExtra("ID_ASSET_EXTRA", id);
             startActivity(intent);
         }
     };

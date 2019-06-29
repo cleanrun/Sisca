@@ -27,7 +27,6 @@ import com.afollestad.materialdialogs.GravityEnum;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.rey.material.widget.ProgressView;
 import com.siscaproject.sisca.Activity.BluetoothActivity;
-import com.siscaproject.sisca.Activity.DetailAsetActivity;
 import com.siscaproject.sisca.Activity.QRActivity;
 import com.siscaproject.sisca.Activity.SearchActivity;
 import com.siscaproject.sisca.Adapter.LocationAdapter;
@@ -466,7 +465,7 @@ public class HomeFragment extends Fragment{
     }
 
     private void errorToast() {
-        Toast.makeText(getContext(), "Something went wrong :(", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "Something went wrong :(", Toast.LENGTH_SHORT).show();
     }
 
     @Override

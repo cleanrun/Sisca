@@ -74,7 +74,9 @@ public class ProfileFragment extends Fragment {
                 break;
             case R.id.ll_nama:
                 showToast("Nama");
-                //startActivity(new Intent(getActivity(), DetailLocationActivity.class));
+                //Intent locationIntent = new Intent(getActivity(), DetailLocationActivity.class);
+                //locationIntent.putExtra("ID_EXTRA", 1);
+                //startActivity(locationIntent);
                 break;
             case R.id.ll_email:
                 showToast("Email");

@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/color_v3_red_2"
     tools:context=".Activity.SplashScreenActivity">
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
         android:layout_centerInParent="true"
-        android:src="@drawable/splash"
-        android:scaleType="centerCrop"/>
+        android:src="@drawable/sisca_logo_white"
+        android:scaleType="fitCenter"/>
 
 </RelativeLayout>

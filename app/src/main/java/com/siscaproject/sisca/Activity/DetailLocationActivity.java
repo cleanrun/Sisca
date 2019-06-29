@@ -1,5 +1,6 @@
 package com.siscaproject.sisca.Activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
@@ -11,10 +12,10 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.rey.material.widget.ProgressView;
 import com.siscaproject.sisca.Adapter.AssetAdapter;
 import com.siscaproject.sisca.Model.AssetMutasi;
 import com.siscaproject.sisca.Model.LocationAPI;
-import com.siscaproject.sisca.Model.ResponseIndex;
 import com.siscaproject.sisca.Model.ResponseShow;
 import com.siscaproject.sisca.R;
 import com.siscaproject.sisca.Utilities.APIProperties;
@@ -22,8 +23,6 @@ import com.siscaproject.sisca.Utilities.Header;
 import com.siscaproject.sisca.Utilities.UserService;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import butterknife.BindView;
@@ -41,6 +40,7 @@ public class DetailLocationActivity extends AppCompatActivity {
     @BindView(R.id.tv_alamat) TextView tvAlamat;
     @BindView(R.id.tv_manager) TextView tvManager;
     @BindView(R.id.tv_jumlah_aset) TextView tvJumlahAset;
+    @BindView(R.id.pv_location) ProgressView progressView;
     @BindView(R.id.rv_list_aset) RecyclerView recyclerView;
     @BindView(R.id.btn_monitoring) AppCompatButton btnMonitoring;
 
@@ -68,7 +68,7 @@ public class DetailLocationActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         try{
-            ID_EXTRA = getIntent().getIntExtra("ID_EXTRA", 0);
+            ID_EXTRA = getIntent().getIntExtra("ID_LOCATION_EXTRA", 0);
             if(ID_EXTRA != 0){
                 getData(ID_EXTRA);
             }else{
@@ -90,7 +90,10 @@ public class DetailLocationActivity extends AppCompatActivity {
                 onBackPressed();
                 break;
             case R.id.btn_monitoring:
-                showToast("Monitoring");
+                //showToast("Monitoring");
+                Intent monitoringIntent = new Intent(this, ReportMonitoringActivity.class);
+                monitoringIntent.putExtra("ID_LOCATION_EXTRA", ID_EXTRA);
+                startActivity(monitoringIntent);
                 break;
             default:
                 break;
@@ -117,16 +120,19 @@ public class DetailLocationActivity extends AppCompatActivity {
 
     private void getData(int id){
         String idString = String.valueOf(id);
+        showProgress();
         Call<ResponseShow<LocationAPI>> call = userService.showLocation(idString, Header.auth, Header.accept);
         call.enqueue(new Callback<ResponseShow<LocationAPI>>() {
             @Override
             public void onResponse(Call<ResponseShow<LocationAPI>> call, Response<ResponseShow<LocationAPI>> response) {
+                hideProgress();
                 if(response.isSuccessful()){
                     Log.i(TAG, "getData onResponse: successful");
                     data = response.body().getData();
                     setFields();
 
-                    getAsset();
+                    ArrayList<AssetMutasi> listAsset = data.getAsset();
+                    setRecyclerView(listAsset);
                 }else{
                     Log.e(TAG, "getData onResponse: is not successful = " + response.message());
                     showToast("Failed to get asset data");
@@ -136,6 +142,7 @@ public class DetailLocationActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ResponseShow<LocationAPI>> call, Throwable t) {
+                hideProgress();
                 Log.e(TAG, "getData onFailure: " + t.getMessage() );
                 showToast("Failed to get location data");
                 //finish();
@@ -144,45 +151,14 @@ public class DetailLocationActivity extends AppCompatActivity {
 
     }
 
-    private void getAsset(){
-        Call<ResponseIndex<AssetMutasi>> call = userService.indexAssetMutasi(Header.auth, Header.accept);
-        call.enqueue(new Callback<ResponseIndex<AssetMutasi>>() {
-            @Override
-            public void onResponse(Call<ResponseIndex<AssetMutasi>> call, Response<ResponseIndex<AssetMutasi>> response) {
-                if(response.isSuccessful()){
-                    Log.i(TAG, "getAsset onResponse: total " + response.body().getTotal());
-                    listAsset = response.body().getData();
+    private void showProgress(){
+        progressView.setVisibility(View.VISIBLE);
+        recyclerView.setVisibility(View.INVISIBLE);
+    }
 
-                    Collections.sort(listAsset, new Comparator<AssetMutasi>() {
-                        @Override
-                        public int compare(AssetMutasi assetAPI1, AssetMutasi assetAPI2) {
-                            return assetAPI1.getName().compareTo(assetAPI2.getName());
-                        }
-                    });
-
-                    List<AssetMutasi> tmpList = new ArrayList<>();
-                    for(AssetMutasi a : listAsset){
-                        if(a.getLocation_id() == ID_EXTRA){
-                            tmpList.add(a);
-                        }
-                    }
-
-                    listAsset.clear();
-                    listAsset = tmpList;
-
-                    setRecyclerView(listAsset);
-                }else{
-                    Log.e(TAG, "getAsset onResponse: not successful");
-                    showToast("Unable to get asset list");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseIndex<AssetMutasi>> call, Throwable t) {
-                Log.e(TAG, "getAsset onFailure: " + t.getMessage() );
-                showToast("Unable to get asset list");
-            }
-        });
+    private void hideProgress(){
+        progressView.setVisibility(View.GONE);
+        recyclerView.setVisibility(View.VISIBLE);
     }
 
     private ArrayList<AssetMutasi> dummyData(){

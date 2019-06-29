@@ -18,7 +18,6 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.google.zxing.Result;
 import com.siscaproject.sisca.Model.AssetMutasi;
 import com.siscaproject.sisca.Model.ResponseIndex;
-import com.siscaproject.sisca.R;
 import com.siscaproject.sisca.Utilities.APIProperties;
 import com.siscaproject.sisca.Utilities.Header;
 import com.siscaproject.sisca.Utilities.UserService;
@@ -161,8 +160,8 @@ public class QRActivity extends AppCompatActivity implements ZXingScannerView.Re
         try{
             if(exist != 0){
                 //showToast("Exist");
-                Intent detailIntent = new Intent(this, DetailAsetActivity.class);
-                detailIntent.putExtra("ID_EXTRA", exist);
+                Intent detailIntent = new Intent(this, DetailAssetActivity.class);
+                detailIntent.putExtra("ID_ASSET_EXTRA", exist);
                 startActivity(detailIntent);
             }
             else{

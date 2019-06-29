@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.siscaproject.sisca.Activity.DetailLocationActivity;
 import com.siscaproject.sisca.Activity.DetailMonitoringActivity;
 import com.siscaproject.sisca.Activity.ReportMonitoringActivity;
 import com.siscaproject.sisca.Model.LocationAPI;
@@ -44,7 +45,7 @@ public class MonitoringSearchLocationAdapter extends RecyclerView.Adapter<Monito
             public void onClick(View view) {
                 String dateNow = Config.getDateNow();
                 if (locationAPIList.get(position).getUpdated_at().substring(5, 7).equals(dateNow.substring(5, 7))){
-                    Intent intent = new Intent(context, ReportMonitoringActivity.class);
+                    Intent intent = new Intent(context, DetailLocationActivity.class);
                     intent.putExtra("ID_LOCATION_EXTRA", locationAPIList.get(position).getId());
                     context.startActivity(intent);
                 }

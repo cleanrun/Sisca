@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.siscaproject.sisca.Activity.DetailAsetActivity;
+import com.siscaproject.sisca.Activity.DetailAssetActivity;
 import com.siscaproject.sisca.Model.AssetAPI;
 import com.siscaproject.sisca.R;
 
@@ -42,7 +42,7 @@ public class SearchAssetAdapter extends RecyclerView.Adapter<SearchAssetAdapter.
         holder.cvItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(activityContext, DetailAsetActivity.class);
+                Intent intent = new Intent(activityContext, DetailAssetActivity.class);
                 intent.putExtra("ID_ASSET_EXTRA", listData.get(position).getId());
 
                 activityContext.startActivity(intent);

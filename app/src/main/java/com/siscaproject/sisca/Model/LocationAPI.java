@@ -3,6 +3,8 @@ package com.siscaproject.sisca.Model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+
 public class LocationAPI {
     @SerializedName("id")
     @Expose
@@ -59,6 +61,10 @@ public class LocationAPI {
     @SerializedName("asset_count")
     @Expose
     private int asset_count;
+
+    @SerializedName("asset")
+    @Expose
+    private ArrayList<AssetMutasi> asset;
 
     @SerializedName("manager")
     @Expose
@@ -139,6 +145,14 @@ public class LocationAPI {
 
     public void setUpdated_at(String updated_at) {
         this.updated_at = updated_at;
+    }
+
+    public ArrayList<AssetMutasi> getAsset() {
+        return asset;
+    }
+
+    public void setAsset(ArrayList<AssetMutasi> asset) {
+        this.asset = asset;
     }
 
     public User getManager() {

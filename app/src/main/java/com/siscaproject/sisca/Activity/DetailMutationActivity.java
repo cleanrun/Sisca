@@ -75,7 +75,7 @@ public class DetailMutationActivity extends AppCompatActivity {
 
         userService = APIProperties.getUserService();
         Intent intent = getIntent();
-        int id = intent.getIntExtra("assetID", 0);
+        int id = intent.getIntExtra("ID_ASSET_EXTRA", 0);
 
         getAssetData(id);
         getLokasi();
