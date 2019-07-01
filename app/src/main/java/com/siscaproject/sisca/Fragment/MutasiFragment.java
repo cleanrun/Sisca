@@ -259,6 +259,13 @@ public class MutasiFragment extends Fragment {
 
                     listAsset = response.body().getData();
 
+                    Collections.sort(listAsset, new Comparator<AssetMutasi>() {
+                        @Override
+                        public int compare(AssetMutasi locationAPI1, AssetMutasi locationAPI2) {
+                            return locationAPI1.getName().compareTo(locationAPI2.getName());
+                        }
+                    });
+
                     showData();
                 }
                 else{

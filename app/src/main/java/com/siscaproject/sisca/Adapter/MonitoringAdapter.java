@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.siscaproject.sisca.Activity.DetailMonitoringActivity;
 import com.siscaproject.sisca.Activity.ReportMonitoringActivity;
 import com.siscaproject.sisca.Model.LocationAPI;
 import com.siscaproject.sisca.R;
@@ -50,7 +51,7 @@ public class MonitoringAdapter extends RecyclerView.Adapter<MonitoringAdapter.It
                     activityContext.startActivity(intent);
                 }
                 else{
-                    Intent intent = new Intent(activityContext, ReportMonitoringActivity.class);
+                    Intent intent = new Intent(activityContext, DetailMonitoringActivity.class);
                     intent.putExtra("ID_LOCATION_EXTRA", listData.get(position).getId());
 
                     activityContext.startActivity(intent);

@@ -210,12 +210,16 @@ public class HomeFragment extends Fragment{
                         }
                     });
 
-                    //cuma menampilkan 5 lokasi terbaru
-                    ArrayList<LocationAPI> listTmp = new ArrayList<>();
-                    for (int i=0; i<5; i++){
-                        listTmp.add(locationAPIList.get(i));
+                    if (locationAPIList!=null){
+                        if (locationAPIList.size()>=4){
+                            //cuma menampilkan 5 lokasi terbaru
+                            ArrayList<LocationAPI> listTmp = new ArrayList<>();
+                            for (int i=0; i<4; i++){
+                                listTmp.add(locationAPIList.get(i));
+                            }
+                            locationAPIList = listTmp;
+                        }
                     }
-                    locationAPIList = listTmp;
 
                     showData();
                     /*adapter = new AssetsAdapter(rows, getApplicationContext(), userService, listener);

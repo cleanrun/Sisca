@@ -66,6 +66,10 @@ public class AssetMutasi {
     @Expose
     private User pic;
 
+    @SerializedName("image")
+    @Expose
+    private String image;
+
     /*
     @SerializedName("category")
     @Expose
@@ -224,5 +228,13 @@ public class AssetMutasi {
 
     public void setPic(User pic) {
         this.pic = pic;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

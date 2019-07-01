@@ -13,8 +13,10 @@ import android.widget.TextView;
 
 import com.pixplicity.easyprefs.library.Prefs;
 import com.siscaproject.sisca.Activity.DetailMonitoringActivity;
+import com.siscaproject.sisca.Activity.ReportMonitoringActivity;
 import com.siscaproject.sisca.Model.LocationAPI;
 import com.siscaproject.sisca.R;
+import com.siscaproject.sisca.Utilities.Config;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,10 +50,19 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ItemHo
         holder.cvItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(activityContext, DetailMonitoringActivity.class);
-                intent.putExtra("ID_LOCATION_EXTRA", listData.get(position).getId());
+                String dateNow = Config.getDateNow();
+                if (listData.get(position).getUpdated_at().substring(5, 7).equals(dateNow.substring(5, 7))){
+                    Intent intent = new Intent(activityContext, ReportMonitoringActivity.class);
+                    intent.putExtra("ID_LOCATION_EXTRA", listData.get(position).getId());
 
-                activityContext.startActivity(intent);
+                    activityContext.startActivity(intent);
+                }
+                else{
+                    Intent intent = new Intent(activityContext, DetailMonitoringActivity.class);
+                    intent.putExtra("ID_LOCATION_EXTRA", listData.get(position).getId());
+
+                    activityContext.startActivity(intent);
+                }
             }
         });
     }

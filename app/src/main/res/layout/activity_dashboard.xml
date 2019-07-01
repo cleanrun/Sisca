@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,23 +8,13 @@
     android:orientation="vertical"
     tools:context=".Activity.DashboardActivity">
 
-    <LinearLayout
-        android:id="@+id/lyt_nsv"
+    <FrameLayout
+        android:id="@+id/fl_dashboard"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_above="@id/cv_navigation">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-        <android.support.v4.widget.NestedScrollView
-            android:id="@+id/nsv_container_home"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="none"
-            android:scrollingCache="true">
-
-        </android.support.v4.widget.NestedScrollView>
-
-    </LinearLayout>
+    </FrameLayout>
 
     <android.support.v7.widget.CardView
         android:id="@+id/cv_navigation"
@@ -52,4 +42,4 @@
 
     </android.support.v7.widget.CardView>
 
-</RelativeLayout>
+</LinearLayout>

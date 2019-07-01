@@ -7,6 +7,7 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +21,7 @@ import com.siscaproject.sisca.Utilities.APIProperties;
 import com.siscaproject.sisca.Utilities.DummyData;
 import com.siscaproject.sisca.Utilities.Header;
 import com.siscaproject.sisca.Utilities.UserService;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -48,6 +50,8 @@ public class DetailAssetActivity extends AppCompatActivity {
     @BindView(R.id.tv_harga) TextView tvHarga;
     @BindView(R.id.tv_value) TextView tvValue;
     @BindView(R.id.tv_depresiasi) TextView tvDepresiasi;
+    @BindView(R.id.iv_image_aset_detail)
+    ImageView ivImage;
 
     private MenuItem monitoringMenu;
     private MenuItem mutationMenu;
@@ -124,6 +128,10 @@ public class DetailAssetActivity extends AppCompatActivity {
         tvHarga.setText(data.getPrice());
         //tvValue.setText();
         //tvDepresiasi.setText();
+        if (data.getImage()==null)
+            Picasso.get().load(R.drawable.image_null).into(ivImage);
+        else
+            Picasso.get().load(data.getImage()).into(ivImage);
     }
 
     private void showToast(String message){

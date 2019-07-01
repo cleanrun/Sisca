@@ -11,59 +11,58 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="68dp">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/bg_gradient" />
-
             <android.support.design.widget.AppBarLayout
                 android:id="@+id/appbar"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/transparent">
+                android:layout_height="wrap_content"
+                android:background="@color/color_v3_red_2">
 
-                <android.support.v7.widget.Toolbar
-                    android:id="@+id/toolbar"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="68dp"
-                    android:contentInsetEnd="0dp"
-                    android:contentInsetLeft="0dp"
-                    android:contentInsetRight="0dp"
-                    android:contentInsetStart="0dp"
-                    app:contentInsetEnd="0dp"
-                    app:contentInsetLeft="0dp"
-                    app:contentInsetRight="0dp"
-                    app:contentInsetStart="0dp"
-                    app:contentInsetStartWithNavigation="0dp"
-                    app:elevation="4dp"
-                    app:popupTheme="@style/AppTheme.PopupOverlay">
+                    android:layout_height="68dp">
 
-                    <RelativeLayout
+                    <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="center">
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/bg_gradient" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Pengaturan"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp"
-                            android:textStyle="bold" />
+                    <android.support.v7.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="68dp"
+                        android:contentInsetEnd="0dp"
+                        android:contentInsetLeft="0dp"
+                        android:contentInsetRight="0dp"
+                        android:contentInsetStart="0dp"
+                        app:contentInsetEnd="0dp"
+                        app:contentInsetLeft="0dp"
+                        app:contentInsetRight="0dp"
+                        app:contentInsetStart="0dp"
+                        app:contentInsetStartWithNavigation="0dp"
+                        app:elevation="4dp"
+                        app:popupTheme="@style/AppTheme.PopupOverlay">
 
-                    </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center">
 
-                </android.support.v7.widget.Toolbar>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Pengaturan"
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+                                android:textColor="@android:color/white"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                        </RelativeLayout>
+
+                    </android.support.v7.widget.Toolbar>
+                </RelativeLayout>
 
             </android.support.design.widget.AppBarLayout>
-
-        </RelativeLayout>
 
         <ScrollView
             android:layout_width="match_parent"

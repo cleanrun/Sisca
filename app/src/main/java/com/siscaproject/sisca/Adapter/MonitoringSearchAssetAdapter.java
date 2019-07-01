@@ -64,7 +64,7 @@ public class MonitoringSearchAssetAdapter extends RecyclerView.Adapter<Monitorin
             holder.tvCondition.setTextColor(activityContext.getResources().getColor(R.color.color_v3_gray_4));
 
         if (listData.get(position).getImage()==null)
-            Picasso.get().load(R.drawable.photo_male_1).into(holder.ivImage);
+            Picasso.get().load(R.drawable.image_null).into(holder.ivImage);
         else
             Picasso.get().load(listData.get(position).getImage()).into(holder.ivImage);
 

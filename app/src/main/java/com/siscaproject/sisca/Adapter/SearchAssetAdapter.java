@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.siscaproject.sisca.Activity.DetailAssetActivity;
 import com.siscaproject.sisca.Model.AssetAPI;
 import com.siscaproject.sisca.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -39,6 +40,10 @@ public class SearchAssetAdapter extends RecyclerView.Adapter<SearchAssetAdapter.
         //holder.ivPhoto.setImageDrawable(activityContext.getResources().getDrawable(listData.get(position).getPhoto()));
         holder.tvName.setText(listData.get(position).getName());
         holder.tvId.setText(listData.get(position).getId()+"");
+        if (listData.get(position).getImage()==null)
+            Picasso.get().load(R.drawable.image_null).into(holder.ivPhoto);
+        else
+            Picasso.get().load(listData.get(position).getImage()).into(holder.ivPhoto);
         holder.cvItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

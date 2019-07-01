@@ -50,25 +50,25 @@ public class DashboardActivity extends AppCompatActivity implements MonitoringFr
                     case R.id.nav_home:
                         selectedFragment = HomeFragment.newInstance();
                         getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.nsv_container_home, selectedFragment).commit();
+                                .replace(R.id.fl_dashboard, selectedFragment).commit();
                         setTitle("Dashboard");
                         break;
                     case R.id.nav_monitoring:
                         selectedFragment = MonitoringFragment.newInstance();
                         getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.nsv_container_home, selectedFragment).commit();
+                                .replace(R.id.fl_dashboard, selectedFragment).commit();
                         setTitle("Monitoring");
                         break;
                     case R.id.nav_pindah_aset:
                         selectedFragment = MutasiFragment.newInstance();
                         getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.nsv_container_home, selectedFragment).commit();
+                                .replace(R.id.fl_dashboard, selectedFragment).commit();
                         setTitle("Pindah Aset");
                         break;
                     case R.id.nav_profil:
                         selectedFragment = ProfileFragment.newInstance();
                         getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.nsv_container_home, selectedFragment).commit();
+                                .replace(R.id.fl_dashboard, selectedFragment).commit();
                         setTitle("Profil");
                         break;
                 }
