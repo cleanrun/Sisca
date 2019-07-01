@@ -216,9 +216,9 @@ public class QRActivity extends AppCompatActivity implements ZXingScannerView.Re
                     Log.i(TAG, "onResponse success: total " + response.body().getTotal());
                     listAsset = response.body().getData();
                     Log.i(TAG, "onResponse: listAsset size " + listAsset.size());
-                    Log.i(TAG, "onResponse: listAsset rfid random index == " + listAsset.get(4).getAsset_rfid());
-                    Log.i(TAG, "onResponse: listAsset assetid random index == " + listAsset.get(4).getAsset_id());
-                    Log.i(TAG, "onResponse: listAsset name random index == " + listAsset.get(4).getName());
+                    //Log.i(TAG, "onResponse: listAsset rfid random index == " + listAsset.get(4).getAsset_rfid());
+                    //Log.i(TAG, "onResponse: listAsset assetid random index == " + listAsset.get(4).getAsset_id());
+                    //Log.i(TAG, "onResponse: listAsset name random index == " + listAsset.get(4).getName());
                 }
                 else{
                     Log.e(TAG, "getAsset onResponse: not successful");
