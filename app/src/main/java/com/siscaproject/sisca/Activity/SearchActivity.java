@@ -28,7 +28,6 @@ public class SearchActivity extends AppCompatActivity{
 
     private SearchAssetFragment homeSearchAssetFragment;
     private SearchLocationFragment homeSeachLocationFragment;
-    private String searchIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,13 +35,13 @@ public class SearchActivity extends AppCompatActivity{
         setContentView(R.layout.activity_search);
         ButterKnife.bind(this);
 
-        searchIntent = getIntent().getStringExtra("EXTRA_SEARCH");
-        etSearch.setText(searchIntent);
+        //searchIntent = getIntent().getStringExtra("EXTRA_SEARCH");
+        //etSearch.setText(searchIntent);
         homeSearchAssetFragment = new SearchAssetFragment();
         homeSeachLocationFragment = new SearchLocationFragment();
         viewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager()));
-        homeSearchAssetFragment.setTextSearch(searchIntent);
-        homeSeachLocationFragment.setTextSearch(searchIntent);
+        //homeSearchAssetFragment.setTextSearch(searchIntent);
+        //homeSeachLocationFragment.setTextSearch(searchIntent);
 
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.getTabAt(0).setText("Aset");

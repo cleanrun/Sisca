@@ -23,6 +23,12 @@ public class Config {
     public static String getDateNow(){
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
-        return dateFormat.format(date);
+        String dateNow = dateFormat.format(date);
+
+        return dateNow;
+    }
+
+    public static String getLinkImage(){
+        return "http://dev.sisca.id/images/asset/";
     }
 }

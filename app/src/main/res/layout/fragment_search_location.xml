@@ -26,15 +26,29 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_home_search_location"
             android:paddingTop="8dp"
+            android:layout_margin="12dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
-        <TextView
-            android:id="@+id/tv_empty_home_search_location"
+        <LinearLayout
+            android:id="@+id/ll_empty_home_search_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="Lokasi tidak ditemukan"/>
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/no_asset"/>
+            <TextView
+                android:layout_marginTop="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textColor="@color/color_gray_595D64_50"
+                android:text="Lokasi tidak ditemukan"/>
+        </LinearLayout>
 
     </RelativeLayout>
 

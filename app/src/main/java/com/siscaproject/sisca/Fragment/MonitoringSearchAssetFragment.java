@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,8 +37,8 @@ public class MonitoringSearchAssetFragment extends Fragment {
     ProgressView progressView;
     @BindView(R.id.rv_monitoring_search_aset)
     RecyclerView recyclerView;
-    @BindView(R.id.tv_empty_monitoring_search_aset)
-    TextView tvEmpty;
+    @BindView(R.id.ll_empty_monitoring_search_aset)
+    LinearLayout llEmpty;
 
     //private List<AssetModel> assetModelList, assetFoundList;
     private String search;
@@ -81,12 +82,12 @@ public class MonitoringSearchAssetFragment extends Fragment {
 
             if (assetAPIFoundList.isEmpty()){
                 recyclerView.setVisibility(View.INVISIBLE);
-                tvEmpty.setVisibility(View.VISIBLE);
+                llEmpty.setVisibility(View.VISIBLE);
             }
             else{
                 recyclerView.removeAllViews();
                 recyclerView.setVisibility(View.VISIBLE);
-                tvEmpty.setVisibility(View.INVISIBLE);
+                llEmpty.setVisibility(View.INVISIBLE);
                 MonitoringSearchAssetAdapter adapter = new MonitoringSearchAssetAdapter(getContext(), assetAPIFoundList, this);
                 recyclerView.setAdapter(adapter);
             }

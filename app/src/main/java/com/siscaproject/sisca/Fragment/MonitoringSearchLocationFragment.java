@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,8 +39,8 @@ public class MonitoringSearchLocationFragment extends Fragment {
     ProgressView progressView;
     @BindView(R.id.rv_monitoring_search_location)
     RecyclerView recyclerView;
-    @BindView(R.id.tv_empty_monitoring_search_location)
-    TextView tvEmpty;
+    @BindView(R.id.ll_empty_monitoring_search_location)
+    LinearLayout llEmpty;
 
     private List<LocationModel> locationModelList, locationFoundList;
     private String search;
@@ -117,12 +118,12 @@ public class MonitoringSearchLocationFragment extends Fragment {
 
             if (locationAPIFoundList.isEmpty()){
                 recyclerView.setVisibility(View.INVISIBLE);
-                tvEmpty.setVisibility(View.VISIBLE);
+                llEmpty.setVisibility(View.VISIBLE);
             }
             else{
                 recyclerView.removeAllViews();
                 recyclerView.setVisibility(View.VISIBLE);
-                tvEmpty.setVisibility(View.INVISIBLE);
+                llEmpty.setVisibility(View.INVISIBLE);
                 MonitoringSearchLocationAdapter adapter = new MonitoringSearchLocationAdapter(getContext(), locationAPIFoundList);
                 recyclerView.setAdapter(adapter);
             }

@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.siscaproject.sisca.Model.AssetMutasi;
 import com.siscaproject.sisca.R;
+import com.siscaproject.sisca.Utilities.Config;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -40,10 +41,9 @@ public class AssetAdapter extends RecyclerView.Adapter<AssetAdapter.ItemHolder>{
         //assetHolder.ivPhoto.setImageDrawable(activityContext.getResources().getDrawable(listData.get(position).getPhoto()));
         assetHolder.tvName.setText(listData.get(position).getName());
         assetHolder.tvId.setText(listData.get(position).getAsset_id());
-        if (listData.get(position).getImage()==null)
-            Picasso.get().load(R.drawable.image_null).into(assetHolder.ivPhoto);
-        else
-            Picasso.get().load(listData.get(position).getImage()).into(assetHolder.ivPhoto);
+
+        if (listData.get(position).getImage()!=null)
+            Picasso.get().load(Config.getLinkImage()+listData.get(position).getImage()).into(assetHolder.ivPhoto);
         assetHolder.cvItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="250dp"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@drawable/shape_dialog_dark"
-    >
+    android:background="@drawable/shape_dialog_dark">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"
         android:text="URUTKAN"
-        android:background="@color/color_v3_gray_3"
-        android:textColor="@color/color_v3_white_1"
+        android:background="@color/color_gray_595D64_100"
+        android:textColor="@color/color_white_FFFFFF_100"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="16dp"/>
     <LinearLayout
@@ -20,15 +19,28 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:orientation="horizontal">
-        <TextView
-            android:id="@+id/tv_terbaru"
+        <android.support.v7.widget.CardView
+            android:id="@+id/cv_terbaru"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Terbaru"
-            android:textSize="12sp"
-            android:textColor="@color/color_v3_white_1"
-            />
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="8dp"
+            android:layout_marginRight="16dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            app:cardBackgroundColor="@color/transparent"
+            android:clickable="true"
+            app:cardElevation="0dp"
+            android:foreground="?android:attr/selectableItemBackground">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Terbaru"
+                android:textSize="12sp"
+                android:layout_margin="4dp"
+                android:textColor="@color/color_v3_white_1"
+                />
+        </android.support.v7.widget.CardView>
         <ImageView
             android:id="@+id/iv_terbaru"
             android:layout_width="wrap_content"
@@ -40,15 +52,28 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:orientation="horizontal">
-        <TextView
-            android:id="@+id/tv_terlama"
+        <android.support.v7.widget.CardView
+            android:id="@+id/cv_terlama"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Terlama"
-            android:textSize="12sp"
-            android:textColor="@color/color_v3_white_1"
-            />
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="8dp"
+            android:layout_marginRight="16dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            app:cardBackgroundColor="@color/transparent"
+            android:clickable="true"
+            app:cardElevation="0dp"
+            android:foreground="?android:attr/selectableItemBackground">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Terlama"
+                android:textSize="12sp"
+                android:layout_margin="4dp"
+                android:textColor="@color/color_v3_white_1"
+                />
+        </android.support.v7.widget.CardView>
         <ImageView
             android:id="@+id/iv_terlama"
             android:layout_width="wrap_content"
@@ -60,15 +85,28 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:orientation="horizontal">
-        <TextView
-            android:id="@+id/tv_az"
+        <android.support.v7.widget.CardView
+            android:id="@+id/cv_az"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="A - Z"
-            android:textSize="12sp"
-            android:textColor="@color/color_v3_white_1"
-            />
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="8dp"
+            android:layout_marginRight="16dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            app:cardBackgroundColor="@color/transparent"
+            android:clickable="true"
+            app:cardElevation="0dp"
+            android:foreground="?android:attr/selectableItemBackground">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="A - Z"
+                android:textSize="12sp"
+                android:layout_margin="4dp"
+                android:textColor="@color/color_v3_white_1"
+                />
+        </android.support.v7.widget.CardView>
         <ImageView
             android:id="@+id/iv_az"
             android:layout_width="wrap_content"
@@ -80,15 +118,28 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:orientation="horizontal">
-        <TextView
-            android:id="@+id/tv_za"
+        <android.support.v7.widget.CardView
+            android:id="@+id/cv_za"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Z - A"
-            android:textSize="12sp"
-            android:textColor="@color/color_v3_white_1"
-            />
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="8dp"
+            android:layout_marginRight="16dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            app:cardBackgroundColor="@color/transparent"
+            android:clickable="true"
+            app:cardElevation="0dp"
+            android:foreground="?android:attr/selectableItemBackground">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Z - A"
+                android:textSize="12sp"
+                android:layout_margin="4dp"
+                android:textColor="@color/color_v3_white_1"
+                />
+        </android.support.v7.widget.CardView>
         <ImageView
             android:id="@+id/iv_za"
             android:layout_width="wrap_content"

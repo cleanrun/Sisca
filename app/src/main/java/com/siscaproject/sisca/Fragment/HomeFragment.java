@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,6 +20,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,6 +54,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnFocusChange;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -64,8 +67,9 @@ public class HomeFragment extends Fragment{
     @BindView(R.id.tv_number_assets_home) TextView tv_number_assets;
     @BindView(R.id.pv_home) ProgressView progressView;
     @BindView(R.id.rv_home) RecyclerView recyclerView;
-    @BindView(R.id.et_search_home) EditText et_search;
     @BindView(R.id.iv_icon_list_home) ImageView iv_icon_list;
+    @BindView(R.id.ll_empty_home)
+    LinearLayout llEmpty;
 
     private boolean isIconBoxList = false;
     private int sortNumber = 1;
@@ -211,6 +215,7 @@ public class HomeFragment extends Fragment{
                     });
 
                     if (locationAPIList!=null){
+                        llEmpty.setVisibility(View.INVISIBLE);
                         if (locationAPIList.size()>=4){
                             //cuma menampilkan 5 lokasi terbaru
                             ArrayList<LocationAPI> listTmp = new ArrayList<>();
@@ -220,6 +225,8 @@ public class HomeFragment extends Fragment{
                             locationAPIList = listTmp;
                         }
                     }
+                    else
+                        llEmpty.setVisibility(View.VISIBLE);
 
                     showData();
                     /*adapter = new AssetsAdapter(rows, getApplicationContext(), userService, listener);
@@ -308,16 +315,23 @@ public class HomeFragment extends Fragment{
     }
 
     @OnClick(R.id.cv_search_submit_home) void cvSearchOnClick() {
-        if (!et_search.getText().toString().isEmpty()){
-            progressView.setVisibility(View.VISIBLE);
-            Intent intent = new Intent(getContext(), SearchActivity.class);
-            intent.putExtra("EXTRA_SEARCH", et_search.getText().toString());
-            getContext().startActivity(intent);
-            progressView.setVisibility(View.INVISIBLE);
+        /*if (!et_search.getText().toString().isEmpty()){
+
         }
         else
-            Toast.makeText(getContext(), "Harap isi kolom pencarian", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Harap isi kolom pencarian", Toast.LENGTH_SHORT).show();*/
+        progressView.setVisibility(View.VISIBLE);
+        Intent intent = new Intent(getContext(), SearchActivity.class);
+        //intent.putExtra("EXTRA_SEARCH", et_search.getText().toString());
+        getContext().startActivity(intent);
+        progressView.setVisibility(View.INVISIBLE);
+    }
 
+    @OnClick(R.id.et_search_home) void etSearchOnClick(){
+        progressView.setVisibility(View.VISIBLE);
+        Intent intent = new Intent(getContext(), SearchActivity.class);
+        getContext().startActivity(intent);
+        progressView.setVisibility(View.INVISIBLE);
     }
 
     @OnClick(R.id.cv_filter_home) void cvFilterOnClick() {
@@ -328,10 +342,10 @@ public class HomeFragment extends Fragment{
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
 
-        TextView tvTerbaru = (TextView) dialog.findViewById(R.id.tv_terbaru);
-        TextView tvTerlama = (TextView) dialog.findViewById(R.id.tv_terlama);
-        TextView tvAtoZ = (TextView) dialog.findViewById(R.id.tv_az);
-        TextView tvZtoA = (TextView) dialog.findViewById(R.id.tv_za);
+        CardView cvTerbaru = dialog.findViewById(R.id.cv_terbaru);
+        CardView cvTerlama = dialog.findViewById(R.id.cv_terlama);
+        CardView cvAtoZ = dialog.findViewById(R.id.cv_az);
+        CardView cvZtoA = dialog.findViewById(R.id.cv_za);
         final ImageView ivTerbaru = (ImageView) dialog.findViewById(R.id.iv_terbaru);
         final ImageView ivTerlama = (ImageView) dialog.findViewById(R.id.iv_terlama);
         final ImageView ivAtoZ = (ImageView) dialog.findViewById(R.id.iv_az);
@@ -357,7 +371,7 @@ public class HomeFragment extends Fragment{
                 break;
         }
 
-        tvTerbaru.setOnClickListener(new View.OnClickListener() {
+        cvTerbaru.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 progressView.setVisibility(View.VISIBLE);
@@ -381,7 +395,7 @@ public class HomeFragment extends Fragment{
             }
         });
 
-        tvTerlama.setOnClickListener(new View.OnClickListener() {
+        cvTerlama.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 progressView.setVisibility(View.VISIBLE);
@@ -405,7 +419,7 @@ public class HomeFragment extends Fragment{
             }
         });
 
-        tvAtoZ.setOnClickListener(new View.OnClickListener() {
+        cvAtoZ.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 progressView.setVisibility(View.VISIBLE);
@@ -435,7 +449,7 @@ public class HomeFragment extends Fragment{
             }
         });
 
-        tvZtoA.setOnClickListener(new View.OnClickListener() {
+        cvZtoA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 progressView.setVisibility(View.VISIBLE);

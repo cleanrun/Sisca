@@ -7,11 +7,10 @@
 
     <android.support.v7.widget.CardView
         android:id="@+id/cv_item_asset"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="6dp"
+        android:layout_margin="4dp"
         android:clickable="true"
-        android:elevation="8dp"
-        app:cardCornerRadius="4dp"
+        android:elevation="2dp"
+        app:cardCornerRadius="2dp"
         app:cardBackgroundColor="@color/color_v3_white_1"
         android:foreground="?android:attr/selectableItemBackground"
         android:layout_width="match_parent"
@@ -26,7 +25,8 @@
                 android:id="@+id/iv_photo_item_asset"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                app:srcCompat="@drawable/img_chair"/>
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/no_image"/>
 
             <LinearLayout
                 android:layout_marginLeft="16dp"
@@ -42,7 +42,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:textColor="@color/color_v3_black_1"
+                    android:textColor="@color/color_black_30373D_100"
                     android:textSize="14sp"
                     android:text="Nama aset"/>
 
@@ -50,7 +50,7 @@
                     android:id="@+id/tv_id_asset"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/color_v3_gray_1"
+                    android:textColor="@color/color_gray_9EA7B1_100"
                     android:textSize="12sp"
                     android:text="ID aset"/>
 

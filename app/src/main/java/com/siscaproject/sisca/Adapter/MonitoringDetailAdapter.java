@@ -45,21 +45,22 @@ public class MonitoringDetailAdapter extends RecyclerView.Adapter<MonitoringDeta
         holder.tvId.setText(listData.get(position).getAsset_id());
         holder.tvCondition.setText(listData.get(position).getCondition());
 
+        String dateNow = Config.getDateNow();
+        if (listData.get(position).getUpdated_at().substring(5, 7).equals(dateNow.substring(5, 7)))
+            Picasso.get().load(R.drawable.ic_check_ada).into(holder.ivChecklist);
+
         if (listData.get(position).getCondition().equals("bagus"))
             holder.tvCondition.setTextColor(activityContext.getResources().getColor(R.color.color_v3_blue_1));
         else if (listData.get(position).getCondition().equals("rusak"))
             holder.tvCondition.setTextColor(activityContext.getResources().getColor(R.color.color_v3_red_2));
-        else
+        else{
             holder.tvCondition.setTextColor(activityContext.getResources().getColor(R.color.color_v3_gray_4));
+            Picasso.get().load(R.drawable.ic_check_tidak_ada).into(holder.ivChecklist);
+        }
 
-        if (listData.get(position).getImage()==null)
-            Picasso.get().load(R.drawable.image_null).into(holder.ivImage);
-        else
-            Picasso.get().load(listData.get(position).getImage()).into(holder.ivImage);
 
-        String dateNow = Config.getDateNow();
-        if (listData.get(position).getUpdated_at().substring(5, 7).equals(dateNow.substring(5, 7)))
-            Picasso.get().load(R.drawable.ic_check_ada).into(holder.ivChecklist);
+        if (listData.get(position).getImage()!=null)
+            Picasso.get().load(Config.getLinkImage()+listData.get(position).getImage()).into(holder.ivImage);
 
         holder.cvChecklist.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,7 +110,7 @@ public class MonitoringDetailAdapter extends RecyclerView.Adapter<MonitoringDeta
                         listData.get(position).setCondition("hilang");
                         holder.tvCondition.setText("hilang");
                         holder.tvCondition.setTextColor(activityContext.getResources().getColor(R.color.color_v3_gray_4));
-                        Picasso.get().load(R.drawable.ic_check_ada).into(holder.ivChecklist);
+                        Picasso.get().load(R.drawable.ic_check_tidak_ada).into(holder.ivChecklist);
                         dialog.dismiss();
                     }
                 });

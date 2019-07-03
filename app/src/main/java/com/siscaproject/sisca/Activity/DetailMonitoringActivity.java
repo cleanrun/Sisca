@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,6 +53,10 @@ public class DetailMonitoringActivity extends AppCompatActivity {
     TextView tvPic;
     @BindView(R.id.rv_report_detail)
     RecyclerView recyclerView;
+    @BindView(R.id.ll_empty_report_detail)
+    LinearLayout llEmpty;
+    @BindView(R.id.btn_submit_report_detail)
+    Button btnSubmit;
 
     /*List<AssetModel> assetList;
     List<MonitoringAssetModel> reportAssetList;*/
@@ -199,11 +204,17 @@ public class DetailMonitoringActivity extends AppCompatActivity {
                 showData();
             }
         });
-
-
     }
 
     private void showData() {
+        if (assetAPIList.isEmpty()){
+            llEmpty.setVisibility(View.VISIBLE);
+            btnSubmit.setBackground(getResources().getDrawable(R.drawable.shape_button_grey));
+            btnSubmit.setEnabled(false);
+        }
+        else
+            llEmpty.setVisibility(View.INVISIBLE);
+
         adapter = new MonitoringDetailAdapter(this, assetAPIList);
         recyclerView.setAdapter(adapter);
 
@@ -235,6 +246,7 @@ public class DetailMonitoringActivity extends AppCompatActivity {
 
     private void updateData() {
         String dateNow = Config.getDateNow();
+        //Toast.makeText(this, dateNow, Toast.LENGTH_LONG).show();
         for (int i=0; i<assetAPIList.size(); i++){
             assetAPIList.get(i).setUpdated_at(dateNow);
         }

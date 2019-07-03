@@ -116,6 +116,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
+                    android:textColor="@color/color_gray_595D64_100"
                     android:text="Alamat"
                     android:textStyle="bold"/>
 
@@ -124,6 +125,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.3"
                     android:text=":"
+                    android:textColor="@color/color_gray_595D64_100"
                     android:textStyle="bold"/>
 
                 <TextView
@@ -131,6 +133,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="6.7"
+                    android:textColor="@color/color_gray_595D64_100"
                     android:maxLines="2"/>
 
             </LinearLayout>
@@ -149,6 +152,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:text="Manager"
+                    android:textColor="@color/color_gray_595D64_100"
                     android:textStyle="bold"/>
 
                 <TextView
@@ -156,11 +160,13 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.3"
                     android:text=":"
+                    android:textColor="@color/color_gray_595D64_100"
                     android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/tv_manager"
                     android:layout_width="0dp"
+                    android:textColor="@color/color_gray_595D64_100"
                     android:layout_height="wrap_content"
                     android:layout_weight="6.7"
                     android:maxLines="1"/>
@@ -174,6 +180,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/color_gray_595D64_100"
                 android:weightSum="10">
 
                 <TextView
@@ -181,6 +188,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:text="Jumlah Aset"
+                    android:textColor="@color/color_gray_595D64_100"
                     android:textStyle="bold"/>
 
                 <TextView
@@ -188,6 +196,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.3"
                     android:text=":"
+                    android:textColor="@color/color_gray_595D64_100"
                     android:textStyle="bold"/>
 
                 <TextView
@@ -195,6 +204,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="6.7"
+                    android:textColor="@color/color_gray_595D64_100"
                     android:maxLines="1"/>
 
             </LinearLayout>
@@ -223,25 +233,22 @@
             android:id="@+id/rv_list_aset"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="12dp"
             android:layout_above="@id/ll_btn_monitoring"/>
 
         <LinearLayout
             android:id="@+id/ll_btn_monitoring"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:paddingTop="6dp"
-            android:paddingBottom="6dp"
-            android:paddingLeft="13dp"
-            android:paddingRight="13dp"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
             android:layout_alignParentBottom="true">
 
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/btn_monitoring"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:text="MONITORING"
                 android:textColor="@android:color/white"
                 android:textStyle="bold"

@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -61,9 +62,11 @@ public class MutasiFragment extends Fragment {
 
     @BindView(R.id.cv_scanner) CardView cvScanner;
     @BindView(R.id.cv_search) CardView cvSearch;
-    @BindView(R.id.btn_filter) AppCompatImageButton btnFilter;
+    @BindView(R.id.btn_filter) CardView btnFilter;
     @BindView(R.id.rv_mutasi_terakhir) RecyclerView recyclerView;
     @BindView(R.id.pv_mutasi) ProgressView progressView;
+    @BindView(R.id.ll_empty_mutasi)
+    LinearLayout llEmpty;
 
     private UserService userService;
 
@@ -127,10 +130,10 @@ public class MutasiFragment extends Fragment {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
 
-        TextView tvTerbaru = (TextView) dialog.findViewById(R.id.tv_terbaru);
-        TextView tvTerlama = (TextView) dialog.findViewById(R.id.tv_terlama);
-        TextView tvAtoZ = (TextView) dialog.findViewById(R.id.tv_az);
-        TextView tvZtoA = (TextView) dialog.findViewById(R.id.tv_za);
+        CardView cvTerbaru = dialog.findViewById(R.id.cv_terbaru);
+        CardView cvTerlama = dialog.findViewById(R.id.cv_terlama);
+        CardView cvAtoZ = dialog.findViewById(R.id.cv_az);
+        CardView cvZtoA = dialog.findViewById(R.id.cv_za);
         final ImageView ivTerbaru = (ImageView) dialog.findViewById(R.id.iv_terbaru);
         final ImageView ivTerlama = (ImageView) dialog.findViewById(R.id.iv_terlama);
         final ImageView ivAtoZ = (ImageView) dialog.findViewById(R.id.iv_az);
@@ -156,7 +159,7 @@ public class MutasiFragment extends Fragment {
                 break;
         }
 
-        tvTerbaru.setOnClickListener(new View.OnClickListener() {
+        cvTerbaru.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 progressView.setVisibility(View.VISIBLE);
@@ -178,7 +181,7 @@ public class MutasiFragment extends Fragment {
             }
         });
 
-        tvTerlama.setOnClickListener(new View.OnClickListener() {
+        cvTerlama.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 progressView.setVisibility(View.VISIBLE);
@@ -200,7 +203,7 @@ public class MutasiFragment extends Fragment {
             }
         });
 
-        tvAtoZ.setOnClickListener(new View.OnClickListener() {
+        cvAtoZ.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 progressView.setVisibility(View.VISIBLE);
@@ -222,7 +225,7 @@ public class MutasiFragment extends Fragment {
             }
         });
 
-        tvZtoA.setOnClickListener(new View.OnClickListener() {
+        cvZtoA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 progressView.setVisibility(View.VISIBLE);
@@ -284,6 +287,11 @@ public class MutasiFragment extends Fragment {
     }
 
     private void showData() {
+
+        if (listAsset.isEmpty())
+            llEmpty.setVisibility(View.VISIBLE);
+        else
+            llEmpty.setVisibility(View.INVISIBLE);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setHasFixedSize(true);

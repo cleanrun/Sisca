@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,8 +39,8 @@ public class SearchLocationFragment extends Fragment {
     ProgressView progressView;
     @BindView(R.id.rv_home_search_location)
     RecyclerView recyclerView;
-    @BindView(R.id.tv_empty_home_search_location)
-    TextView tvEmpty;
+    @BindView(R.id.ll_empty_home_search_location)
+    LinearLayout llEmpty;
 
     private List<LocationModel> locationModelList, locationFoundList;
     private String search;
@@ -59,11 +60,12 @@ public class SearchLocationFragment extends Fragment {
         ButterKnife.bind(this, view);
 
         progressView.bringToFront();
+        progressView.setVisibility(View.INVISIBLE);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        onLoadData();
+        //onLoadData();
 
         return view;
     }
@@ -116,12 +118,12 @@ public class SearchLocationFragment extends Fragment {
 
             if (locationAPIFoundList.isEmpty()){
                 recyclerView.setVisibility(View.INVISIBLE);
-                tvEmpty.setVisibility(View.VISIBLE);
+                llEmpty.setVisibility(View.VISIBLE);
             }
             else{
                 recyclerView.removeAllViews();
                 recyclerView.setVisibility(View.VISIBLE);
-                tvEmpty.setVisibility(View.INVISIBLE);
+                llEmpty.setVisibility(View.INVISIBLE);
                 SearchLocationAdapter adapter = new SearchLocationAdapter(getContext(), locationAPIFoundList);
                 recyclerView.setAdapter(adapter);
             }

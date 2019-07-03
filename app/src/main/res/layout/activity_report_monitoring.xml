@@ -84,7 +84,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_gravity="center"
                                 android:layout_margin="8dp"
-                                app:srcCompat="@drawable/ic_arrow_back" />
+                                app:srcCompat="@drawable/back_white" />
 
                         </android.support.v7.widget.CardView>
 
@@ -140,7 +140,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:textColor="@color/color_v3_black_1"
+                android:textColor="@color/color_gray_595D64_100"
                 android:text="Kondisi Barang"/>
 
             <LinearLayout
@@ -164,7 +164,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:textColor="@color/color_v3_black_1"
+                    android:textColor="@color/color_gray_595D64_100"
                     android:text="Jumlah aset"/>
 
                 <TextView
@@ -173,7 +173,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:textColor="@color/color_v3_black_1"
+                    android:textColor="@color/color_gray_595D64_100"
                     android:text="-"/>
 
             </LinearLayout>
@@ -203,20 +203,22 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:textColor="@color/color_gray_595D64_100"
                         android:text="Bagus"/>
 
                     <TextView
                         android:id="@+id/tv_bagus_report_report"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/color_gray_595D64_100"
                         android:text="-"/>
 
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="0.2dp"
-                    android:background="@color/color_v3_gray_4"
+                    android:layout_height="1dp"
+                    android:background="@color/color_gray_BAC1CC_25"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"/>
 
@@ -230,20 +232,22 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:textColor="@color/color_gray_595D64_100"
                         android:text="Rusak"/>
 
                     <TextView
                         android:id="@+id/tv_rusak_report_report"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/color_gray_595D64_100"
                         android:text="-"/>
 
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="0.2dp"
-                    android:background="@color/color_v3_gray_4"
+                    android:layout_height="1dp"
+                    android:background="@color/color_gray_BAC1CC_25"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"/>
 
@@ -257,12 +261,14 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:textColor="@color/color_gray_595D64_100"
                         android:text="Hilang"/>
 
                     <TextView
                         android:id="@+id/tv_hilang_report_report"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/color_gray_595D64_100"
                         android:text="-"/>
 
                 </LinearLayout>
@@ -303,7 +309,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
                         android:textStyle="bold"
-                        android:textColor="@color/color_v3_black_1"
+                        android:textColor="@color/color_gray_595D64_100"
                         android:text="Terakhir dimonitoring"/>
 
                     <TextView
@@ -312,7 +318,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
-                        android:textColor="@color/color_v3_gray_1"
+                        android:textColor="@color/color_gray_BAC1CC_100"
                         android:text="tanggal"/>
 
                     <TextView
@@ -321,7 +327,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
-                        android:textColor="@color/color_v3_gray_1"
+                        android:textColor="@color/color_gray_BAC1CC_100"
                         android:text="jam"/>
 
                 </LinearLayout>
@@ -339,7 +345,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
                         android:textStyle="bold"
-                        android:textColor="@color/color_v3_black_1"
+                        android:textColor="@color/color_gray_595D64_100"
                         android:text="Oleh :"/>
 
                     <TextView
@@ -348,7 +354,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="16sp"
-                        android:textColor="@color/color_v3_black_1"
+                        android:textColor="@color/color_gray_595D64_100"
                         android:text="Nama PIC"/>
 
                 </LinearLayout>
@@ -362,7 +368,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="16dp"
-                android:textColor="@color/color_v3_red_2"
+                android:textColor="@color/color_red_F12A32_100"
                 android:text="EDIT"
                 android:background="@drawable/shape_button_stroke"/>
 

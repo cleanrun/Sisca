@@ -18,6 +18,7 @@ import com.siscaproject.sisca.Model.AssetMutasi;
 import com.siscaproject.sisca.Model.ResponseShow;
 import com.siscaproject.sisca.R;
 import com.siscaproject.sisca.Utilities.APIProperties;
+import com.siscaproject.sisca.Utilities.Config;
 import com.siscaproject.sisca.Utilities.DummyData;
 import com.siscaproject.sisca.Utilities.Header;
 import com.siscaproject.sisca.Utilities.UserService;
@@ -124,14 +125,19 @@ public class DetailAssetActivity extends AppCompatActivity {
         tvPic.setText(data.getPic().getName());
         tvDesc.setText(data.getDescription());
         //tvBulan.setText();
-        tvTglBeli.setText(data.getDate_purchase());
-        tvHarga.setText(data.getPrice());
+        //tvTglBeli.setText(data.getDate_purchase());
+        //tvHarga.setText(data.getPrice());
         //tvValue.setText();
         //tvDepresiasi.setText();
-        if (data.getImage()==null)
-            Picasso.get().load(R.drawable.image_null).into(ivImage);
-        else
-            Picasso.get().load(data.getImage()).into(ivImage);
+
+        if (data.getImage()!=null)
+            Picasso.get().load(Config.getLinkImage()+data.getImage()).into(ivImage);
+
+        getDataDepre(ID_EXTRA);
+    }
+
+    private void getDataDepre(int id_extra) {
+
     }
 
     private void showToast(String message){

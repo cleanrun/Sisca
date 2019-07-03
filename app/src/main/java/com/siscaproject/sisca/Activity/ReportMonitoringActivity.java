@@ -210,6 +210,7 @@ public class ReportMonitoringActivity extends AppCompatActivity {
         intent.putExtra("FROM_REPORT_EXTRA", true);
 
         startActivity(intent);
+        finish();
     }
 
     public void load(){

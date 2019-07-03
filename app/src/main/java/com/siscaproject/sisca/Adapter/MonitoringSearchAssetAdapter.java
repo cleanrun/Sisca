@@ -56,6 +56,10 @@ public class MonitoringSearchAssetAdapter extends RecyclerView.Adapter<Monitorin
         holder.tvId.setText(listData.get(position).getAsset_id());
         holder.tvCondition.setText(listData.get(position).getCondition());
 
+        String dateNow = Config.getDateNow();
+        if (listData.get(position).getUpdated_at().substring(5, 7).equals(dateNow.substring(5, 7)))
+            Picasso.get().load(R.drawable.ic_check_ada).into(holder.ivChecklist);
+
         if (listData.get(position).getCondition().equals("bagus"))
             holder.tvCondition.setTextColor(activityContext.getResources().getColor(R.color.color_v3_blue_1));
         else if (listData.get(position).getCondition().equals("rusak"))
@@ -63,14 +67,11 @@ public class MonitoringSearchAssetAdapter extends RecyclerView.Adapter<Monitorin
         else
             holder.tvCondition.setTextColor(activityContext.getResources().getColor(R.color.color_v3_gray_4));
 
-        if (listData.get(position).getImage()==null)
-            Picasso.get().load(R.drawable.image_null).into(holder.ivImage);
-        else
-            Picasso.get().load(listData.get(position).getImage()).into(holder.ivImage);
 
-        String dateNow = Config.getDateNow();
-        if (listData.get(position).getUpdated_at().substring(5, 7).equals(dateNow.substring(5, 7)))
-            Picasso.get().load(R.drawable.ic_check_ada).into(holder.ivChecklist);
+        if (listData.get(position).getImage()!=null){
+            Picasso.get().load(Config.getLinkImage()+listData.get(position).getImage()).into(holder.ivImage);
+            Picasso.get().load(R.drawable.ic_check_tidak_ada).into(holder.ivChecklist);
+        }
 
         holder.cvChecklist.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,7 +127,7 @@ public class MonitoringSearchAssetAdapter extends RecyclerView.Adapter<Monitorin
                         listData.get(position).setCondition("hilang");
                         holder.tvCondition.setText("hilang");
                         holder.tvCondition.setTextColor(activityContext.getResources().getColor(R.color.color_v3_gray_4));
-                        Picasso.get().load(R.drawable.ic_check_ada).into(holder.ivChecklist);
+                        Picasso.get().load(R.drawable.ic_check_tidak_ada).into(holder.ivChecklist);
                         dialog.dismiss();
                     }
                 });
@@ -151,7 +152,8 @@ public class MonitoringSearchAssetAdapter extends RecyclerView.Adapter<Monitorin
     private void putData(AssetAPI assetAPI, String condition){
         fragment.showProgressView();
         String dateNow = Config.getDateNow();
-        assetAPI.setUpdated_at(dateNow);
+        Toast.makeText(activityContext, dateNow, Toast.LENGTH_LONG).show();
+        //assetAPI.setUpdated_at(dateNow);
         assetAPI.setCondition(condition);
 
         UserService userService = APIProperties.getUserService();

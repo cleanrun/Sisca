@@ -19,6 +19,7 @@ import com.afollestad.materialdialogs.GravityEnum;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.pixplicity.easyprefs.library.Prefs;
+import com.siscaproject.sisca.Activity.DashboardActivity;
 import com.siscaproject.sisca.Activity.DetailLocationActivity;
 import com.siscaproject.sisca.R;
 import com.siscaproject.sisca.Utilities.Header;
@@ -100,8 +101,9 @@ public class ProfileFragment extends Fragment {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         Prefs.clear();
+                        getContext().startActivity(new Intent(getContext(), DashboardActivity.class));
                         getActivity().finish();
-                        getActivity().moveTaskToBack(true);
+                        //getActivity().moveTaskToBack(true);
                     }
                 })
                 .onNegative(new MaterialDialog.SingleButtonCallback() {

@@ -84,7 +84,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_gravity="center"
                                 android:layout_margin="8dp"
-                                app:srcCompat="@drawable/ic_arrow_back" />
+                                app:srcCompat="@drawable/back_white" />
 
                         </android.support.v7.widget.CardView>
 
@@ -150,7 +150,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
                         android:textStyle="bold"
-                        android:textColor="@color/color_v3_black_1"
+                        android:textColor="@color/color_gray_595D64_100"
                         android:text="Terakhir dimonitoring"/>
 
                     <TextView
@@ -159,7 +159,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
-                        android:textColor="@color/color_v3_gray_1"
+                        android:textColor="@color/color_gray_BAC1CC_100"
                         android:text="tanggal"/>
 
                     <TextView
@@ -168,7 +168,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
-                        android:textColor="@color/color_v3_gray_1"
+                        android:textColor="@color/color_gray_BAC1CC_100"
                         android:text="jam"/>
 
                 </LinearLayout>
@@ -181,13 +181,13 @@
                     android:layout_weight="1">
 
                     <TextView
-                        android:textAlignment="viewEnd"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:text="Oleh :"
+                        android:textAlignment="viewEnd"
+                        android:textColor="@color/color_gray_595D64_100"
                         android:textSize="12sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/color_v3_black_1"
-                        android:text="Oleh :"/>
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tv_pic_report_detail"
@@ -195,7 +195,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="16sp"
-                        android:textColor="@color/color_v3_black_1"
+                        android:textColor="@color/color_gray_595D64_100"
                         android:text="Nama PIC"/>
 
                 </LinearLayout>
@@ -204,20 +204,42 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="0.5dp"
+                android:layout_height="1dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:background="@color/color_v3_gray_1"/>
+                android:background="@color/color_gray_BAC1CC_25"/>
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_report_detail"
-                android:layout_margin="16dp"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingTop="6dp">
+                android:layout_height="match_parent">
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_report_detail"
+                    android:layout_margin="12dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingTop="8dp">
+                </android.support.v7.widget.RecyclerView>
 
-            </android.support.v7.widget.RecyclerView>
-
+                <LinearLayout
+                    android:id="@+id/ll_empty_report_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/no_asset"/>
+                    <TextView
+                        android:layout_marginTop="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:textColor="@color/color_gray_595D64_50"
+                        android:text="Belum ada aset di lokasi ini"/>
+                </LinearLayout>
+            </RelativeLayout>
         </LinearLayout>
 
     </LinearLayout>
@@ -234,14 +256,14 @@
             android:id="@+id/btn_submit_report_detail"
             android:layout_margin="16dp"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
             android:background="@drawable/shape_button_red"
             android:text="SIMPAN"
             android:textAlignment="center"
             android:gravity="center_vertical"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:textColor="@color/color_v3_white_1" />
+            android:textColor="@color/color_white_FFFFFF_100" />
 
     </android.support.v7.widget.CardView>
 

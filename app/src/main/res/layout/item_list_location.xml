@@ -7,10 +7,7 @@
 
     <android.support.v7.widget.CardView
         android:id="@+id/cv_item_location"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="6dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_margin="4dp"
         android:clickable="true"
         android:elevation="2dp"
         app:cardCornerRadius="2dp"
@@ -38,7 +35,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textColor="@color/color_v3_black_1"
+                    android:textColor="@color/color_gray_595D64_100"
                     android:textSize="16sp"
                     android:text="ID lokasi"/>
 
@@ -46,7 +43,7 @@
                     android:id="@+id/tv_jumlah_aset_location"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textColor="@color/color_v3_gray_1"
+                    android:textColor="@color/color_gray_9EA7B1_100"
                     android:textSize="12sp"
                     android:gravity="center_vertical"
                     android:text="xx aset"/>

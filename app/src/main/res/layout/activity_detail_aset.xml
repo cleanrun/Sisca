@@ -33,8 +33,20 @@
                 android:id="@+id/iv_image_aset_detail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/photo_male_1"/>
+                android:src="@drawable/no_image" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bg_layer" />
 
             <android.support.design.widget.AppBarLayout
                 android:layout_alignParentTop="true"
@@ -136,7 +148,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:text="Nama Aset"
-                    android:textColor="@color/color_v3_white_1"
+                    android:textColor="@color/color_white_FFFFFF_100"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -145,7 +157,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Kode aset"
-                    android:textColor="@color/color_v3_white_2"
+                    android:textColor="@color/color_white_FFFFFF_50"
                     android:textSize="16sp"/>
 
             </LinearLayout>
@@ -188,7 +200,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="8dp"
                             android:text="Lokasi : "
-                            android:textColor="@color/color_v3_gray_3"
+                            android:textColor="@color/color_gray_595D64_100"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
@@ -197,7 +209,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="KODE"
-                            android:textColor="@color/color_v3_black_1"
+                            android:textColor="@color/color_gray_595D64_100"
                             android:textSize="16sp"
                             android:maxLines="1"/>
 
@@ -223,7 +235,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="8dp"
                             android:text="PIC : "
-                            android:textColor="@color/color_v3_gray_3"
+                            android:textColor="@color/color_gray_595D64_100"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
@@ -232,7 +244,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="KODE"
-                            android:textColor="@color/color_v3_black_1"
+                            android:textColor="@color/color_gray_595D64_100"
                             android:textSize="16sp"
                             android:maxLines="1"/>
                     </LinearLayout>
@@ -246,7 +258,7 @@
                 android:layout_height="wrap_content"
                 android:text="Deskripsi"
                 android:layout_margin="16dp"
-                android:textColor="@color/color_v3_gray_3"
+                android:textColor="@color/color_gray_595D64_100"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -259,15 +271,23 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="16dp"
-                android:textColor="@color/color_v3_gray_3"
+                android:textColor="@color/color_gray_595D64_100"
                 android:textSize="14sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@color/color_gray_BAC1CC_25"/>
 
             <LinearLayout
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/color_v3_gray_1"
+                android:background="@color/color_gray_61656B_100"
                 android:orientation="horizontal">
 
                 <TextView
@@ -287,7 +307,7 @@
                 <View
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
-                    android:background="@color/color_v3_gray_3"/>
+                    android:background="@color/color_gray_595D64_100"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -306,7 +326,7 @@
                 <View
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
-                    android:background="@color/color_v3_gray_3"/>
+                    android:background="@color/color_gray_595D64_100"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -325,7 +345,7 @@
                 <View
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
-                    android:background="@color/color_v3_gray_3"/>
+                    android:background="@color/color_gray_595D64_100"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -344,7 +364,7 @@
                 <View
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
-                    android:background="@color/color_v3_gray_3"/>
+                    android:background="@color/color_gray_595D64_100"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -361,14 +381,13 @@
                     android:text="Depresiasi"/>
 
             </LinearLayout>
-
             <LinearLayout
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:background="@color/color_v3_white_3"
+                android:background="@color/color_white_EFF1F5_100"
                 android:orientation="horizontal">
 
                 <TextView
@@ -376,7 +395,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textColor="@color/color_v3_gray_1"
+                    android:textColor="@color/color_gray_595D64_100"
                     android:textAlignment="center"
                     android:textStyle="bold"
                     android:paddingTop="8dp"
@@ -384,19 +403,19 @@
                     android:paddingLeft="2dp"
                     android:paddingRight="2dp"
                     android:textSize="12sp"
-                    android:text="10 Bulan"/>
+                    android:text="-"/>
 
                 <View
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
-                    android:background="@color/color_v3_gray_3"/>
+                    android:background="@color/color_gray_E0E4EB_100"/>
 
                 <TextView
                     android:id="@+id/tv_tgl_beli"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textColor="@color/color_v3_gray_1"
+                    android:textColor="@color/color_gray_595D64_100"
                     android:textAlignment="center"
                     android:textStyle="bold"
                     android:paddingTop="8dp"
@@ -404,19 +423,19 @@
                     android:paddingLeft="2dp"
                     android:paddingRight="2dp"
                     android:textSize="12sp"
-                    android:text="01/12/2019"/>
+                    android:text="-"/>
 
                 <View
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
-                    android:background="@color/color_v3_gray_3"/>
+                    android:background="@color/color_gray_E0E4EB_100"/>
 
                 <TextView
                     android:id="@+id/tv_harga"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textColor="@color/color_v3_gray_1"
+                    android:textColor="@color/color_gray_595D64_100"
                     android:textAlignment="center"
                     android:textStyle="bold"
                     android:paddingTop="8dp"
@@ -424,19 +443,19 @@
                     android:paddingLeft="2dp"
                     android:paddingRight="2dp"
                     android:textSize="12sp"
-                    android:text="1,000,000"/>
+                    android:text="-"/>
 
                 <View
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
-                    android:background="@color/color_v3_gray_3"/>
+                    android:background="@color/color_gray_E0E4EB_100"/>
 
                 <TextView
                     android:id="@+id/tv_value"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textColor="@color/color_v3_gray_1"
+                    android:textColor="@color/color_gray_595D64_100"
                     android:textAlignment="center"
                     android:textStyle="bold"
                     android:paddingTop="8dp"
@@ -444,19 +463,19 @@
                     android:paddingLeft="2dp"
                     android:paddingRight="2dp"
                     android:textSize="12sp"
-                    android:text="600,000"/>
+                    android:text="-"/>
 
                 <View
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
-                    android:background="@color/color_v3_gray_3"/>
+                    android:background="@color/color_gray_E0E4EB_100"/>
 
                 <TextView
                     android:id="@+id/tv_depresiasi"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textColor="@color/color_v3_gray_1"
+                    android:textColor="@color/color_gray_595D64_100"
                     android:textAlignment="center"
                     android:textStyle="bold"
                     android:paddingTop="8dp"
@@ -464,7 +483,7 @@
                     android:paddingLeft="2dp"
                     android:paddingRight="2dp"
                     android:textSize="12sp"
-                    android:text="400,000"/>
+                    android:text="-"/>
 
             </LinearLayout>
 

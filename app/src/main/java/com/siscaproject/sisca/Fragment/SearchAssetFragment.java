@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,7 +37,8 @@ public class SearchAssetFragment extends Fragment {
 
     @BindView(R.id.pv_home_search_asset) ProgressView progressView;
     @BindView(R.id.rv_home_search_aset) RecyclerView recyclerView;
-    @BindView(R.id.tv_empty_home_search_aset) TextView tvEmpty;
+    @BindView(R.id.ll_empty_home_search_aset)
+    LinearLayout llEmpty;
 
     private String search;
     private List<AssetAPI> assetAPIList, assetAPIFoundList;
@@ -64,11 +66,12 @@ public class SearchAssetFragment extends Fragment {
         ButterKnife.bind(this, view);
 
         progressView.bringToFront();
+        progressView.setVisibility(View.INVISIBLE);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        onLoadData();
+        //onLoadData();
 
         return view;
     }
@@ -119,12 +122,12 @@ public class SearchAssetFragment extends Fragment {
 
             if (assetAPIFoundList.isEmpty()){
                 recyclerView.setVisibility(View.INVISIBLE);
-                tvEmpty.setVisibility(View.VISIBLE);
+                llEmpty.setVisibility(View.VISIBLE);
             }
             else{
                 recyclerView.removeAllViews();
                 recyclerView.setVisibility(View.VISIBLE);
-                tvEmpty.setVisibility(View.INVISIBLE);
+                llEmpty.setVisibility(View.INVISIBLE);
                 SearchAssetAdapter adapter = new SearchAssetAdapter(getContext(), assetAPIFoundList);
                 recyclerView.setAdapter(adapter);
             }

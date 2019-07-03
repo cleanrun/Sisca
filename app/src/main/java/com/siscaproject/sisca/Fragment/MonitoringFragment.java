@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.constraint.Constraints;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -18,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,6 +60,8 @@ public class MonitoringFragment extends Fragment {
     ProgressView progressView;
     @BindView(R.id.rv_report)
     RecyclerView recyclerView;
+    @BindView(R.id.ll_empty_report)
+    LinearLayout llEmpty;
 
     private MaterialDialog scannerDialog;
 
@@ -146,6 +150,10 @@ public class MonitoringFragment extends Fragment {
             ll_empty.setVisibility(View.VISIBLE);
             progressView.setVisibility(View.INVISIBLE);
         }*/
+        if (locationAPIList.isEmpty())
+            llEmpty.setVisibility(View.VISIBLE);
+        else
+            llEmpty.setVisibility(View.INVISIBLE);
 
         MonitoringAdapter adapter = new MonitoringAdapter(getContext(), locationAPIList);
         recyclerView.removeAllViews();
@@ -170,10 +178,10 @@ public class MonitoringFragment extends Fragment {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
 
-        TextView tvTerbaru = (TextView) dialog.findViewById(R.id.tv_terbaru);
-        TextView tvTerlama = (TextView) dialog.findViewById(R.id.tv_terlama);
-        TextView tvAtoZ = (TextView) dialog.findViewById(R.id.tv_az);
-        TextView tvZtoA = (TextView) dialog.findViewById(R.id.tv_za);
+        CardView cvTerbaru = dialog.findViewById(R.id.cv_terbaru);
+        CardView cvTerlama = dialog.findViewById(R.id.cv_terlama);
+        CardView cvAtoZ = dialog.findViewById(R.id.cv_az);
+        CardView cvZtoA = dialog.findViewById(R.id.cv_za);
         final ImageView ivTerbaru = (ImageView) dialog.findViewById(R.id.iv_terbaru);
         final ImageView ivTerlama = (ImageView) dialog.findViewById(R.id.iv_terlama);
         final ImageView ivAtoZ = (ImageView) dialog.findViewById(R.id.iv_az);
@@ -199,7 +207,7 @@ public class MonitoringFragment extends Fragment {
                 break;
         }
 
-        tvTerbaru.setOnClickListener(new View.OnClickListener() {
+        cvTerbaru.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 progressView.setVisibility(View.VISIBLE);
@@ -225,7 +233,7 @@ public class MonitoringFragment extends Fragment {
             }
         });
 
-        tvTerlama.setOnClickListener(new View.OnClickListener() {
+        cvTerlama.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 progressView.setVisibility(View.VISIBLE);
@@ -251,7 +259,7 @@ public class MonitoringFragment extends Fragment {
             }
         });
 
-        tvAtoZ.setOnClickListener(new View.OnClickListener() {
+        cvAtoZ.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 progressView.setVisibility(View.VISIBLE);
@@ -279,7 +287,7 @@ public class MonitoringFragment extends Fragment {
             }
         });
 
-        tvZtoA.setOnClickListener(new View.OnClickListener() {
+        cvZtoA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 progressView.setVisibility(View.VISIBLE);

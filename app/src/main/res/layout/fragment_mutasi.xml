@@ -13,6 +13,18 @@
         android:orientation="vertical"
         android:background="@color/color_v3_white_2">
 
+        <com.rey.material.widget.ProgressView
+            android:id="@+id/pv_mutasi"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            app:pv_autostart="true"
+            app:pv_circular="true"
+            app:pv_progressStyle="@style/Material.Drawable.CircularProgress"
+            app:pv_progressMode="indeterminate"
+            android:layout_centerInParent="true"
+            android:theme="@style/progressViewColor"
+            android:indeterminate="false" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -121,68 +133,87 @@
 
             </android.support.design.widget.AppBarLayout>
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp">
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:orientation="horizontal">
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text="Terakhir dimutasi"
+                        android:textSize="14sp"
+                        android:textColor="@color/color_gray_61656B_100" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/btn_filter"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        app:cardBackgroundColor="@color/transparent"
+                        android:clickable="true"
+                        app:cardElevation="0dp"
+                        app:cardMaxElevation="0dp"
+                        android:elevation="0dp"
+                        app:cardCornerRadius="8dp"
+                        android:layout_gravity="center"
+                        android:foreground="?android:attr/selectableItemBackground">
+
+                        <ImageView
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentStart="true"
-                            android:layout_centerVertical="true"
-                            android:text="Terakhir dimutasi"
-                            android:textColor="@color/color_v3_gray_3"
-                            android:textStyle="bold" />
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:src="@drawable/ic_filter" />
 
-                        <android.support.v7.widget.AppCompatImageButton
-                            android:id="@+id/btn_filter"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_marginEnd="5dp"
-                            android:layout_alignParentEnd="true"
-                            android:layout_centerVertical="true"
-                            android:background="@drawable/ic_filter"
-                            android:scaleType="fitCenter"/>
-
-                    </RelativeLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="@color/grey_300" />
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/rv_mutasi_terakhir"
-                        android:paddingTop="6dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
+                    </android.support.v7.widget.CardView>
 
                 </LinearLayout>
 
-                <com.rey.material.widget.ProgressView
-                    android:id="@+id/pv_mutasi"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    app:pv_autostart="true"
-                    app:pv_circular="true"
-                    app:pv_progressStyle="@style/Material.Drawable.CircularProgress"
-                    app:pv_progressMode="indeterminate"
-                    android:layout_centerInParent="true"
-                    android:theme="@style/progressViewColor"
-                    android:indeterminate="false" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:background="@color/color_gray_BAC1CC_25"/>
 
-            </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_mutasi_terakhir"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="12dp"/>
+
+                    <LinearLayout
+                        android:id="@+id/ll_empty_mutasi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:orientation="vertical">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/no_asset"/>
+                        <TextView
+                            android:layout_marginTop="8dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:textColor="@color/color_gray_595D64_50"
+                            android:text="Belum ada aset yang dimutasi"/>
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
 
         </LinearLayout>
 
