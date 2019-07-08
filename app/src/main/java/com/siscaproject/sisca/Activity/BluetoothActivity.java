@@ -370,7 +370,7 @@ public class BluetoothActivity extends TSLBluetoothDeviceActivity{
         }
     }
 
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+    public static class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         private ArrayList<Fragment> fragmentList = new ArrayList<>();
         private ArrayList<String> fragmentTitleList = new ArrayList<>();

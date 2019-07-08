@@ -58,11 +58,13 @@
         <activity android:name=".Activity.DetailMonitoringActivity" />
         <activity android:name=".Activity.DetailMutationActivity" />
         <activity android:name=".Activity.DetailAssetActivity" />
-        <activity android:name=".Activity.SearchActivity"
-            android:theme="@style/AppThemeSub"/>
+        <activity
+            android:name=".Activity.SearchActivity"
+            android:theme="@style/AppThemeSub" />
         <activity android:name=".Activity.MonitoringSearchActivity" />
         <activity android:name=".Activity.ReportMonitoringActivity" />
-        <activity android:name=".Activity.DetailLocationActivity"></activity>
+        <activity android:name=".Activity.DetailLocationActivity" />
+        <activity android:name=".Activity.BluetoothMonitoringActivity"></activity>
     </application>
 
 </manifest>

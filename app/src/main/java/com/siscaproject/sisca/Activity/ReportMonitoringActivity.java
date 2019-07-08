@@ -203,8 +203,9 @@ public class ReportMonitoringActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.btn_edit_report_report) void btnEditOnClick(){
-        DetailMonitoringActivity activity = new DetailMonitoringActivity();
-        activity.setMonitoringReportActivity(ReportMonitoringActivity.this);
+        //DetailMonitoringActivity activity = new DetailMonitoringActivity();
+        BluetoothMonitoringActivity activity = new BluetoothMonitoringActivity();
+        activity.setReportMonitoringActivity(ReportMonitoringActivity.this);
         Intent intent = new Intent(this, activity.getClass());
         intent.putExtra("ID_LOCATION_EXTRA", locationAPI.getId());
         intent.putExtra("FROM_REPORT_EXTRA", true);

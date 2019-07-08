@@ -171,6 +171,9 @@ public class MonitoringDetailAdapter extends RecyclerView.Adapter<MonitoringDeta
         public CardView cvChecklist;
         public ImageView ivChecklist;
 
+        // buat tes doang
+        public ImageView ivReader;
+
         public ItemHolder(View itemView) {
             super(itemView);
 
@@ -180,6 +183,10 @@ public class MonitoringDetailAdapter extends RecyclerView.Adapter<MonitoringDeta
             ivImage = itemView.findViewById(R.id.iv_image_item_asset_report);
             ivChecklist = itemView.findViewById(R.id.iv_checklist_item_asset_report);
             cvChecklist = itemView.findViewById(R.id.cv_checklist_item_asset_report);
+
+            // buat tes doang
+            ivReader = itemView.findViewById(R.id.iv_reader);
         }
     }
+
 }

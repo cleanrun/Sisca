@@ -19,6 +19,7 @@ import com.afollestad.materialdialogs.GravityEnum;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.pixplicity.easyprefs.library.Prefs;
+import com.siscaproject.sisca.Activity.BluetoothMonitoringActivity;
 import com.siscaproject.sisca.Activity.DashboardActivity;
 import com.siscaproject.sisca.Activity.DetailLocationActivity;
 import com.siscaproject.sisca.R;
@@ -74,10 +75,11 @@ public class ProfileFragment extends Fragment {
                 logOut();
                 break;
             case R.id.ll_nama:
-                showToast("Nama");
+                //showToast("Nama");
                 //Intent locationIntent = new Intent(getActivity(), DetailLocationActivity.class);
                 //locationIntent.putExtra("ID_EXTRA", 1);
                 //startActivity(locationIntent);
+                startActivity(new Intent(getActivity(), BluetoothMonitoringActivity.class));
                 break;
             case R.id.ll_email:
                 showToast("Email");
