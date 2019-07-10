@@ -313,9 +313,6 @@ public class DetailMonitoringActivity extends AppCompatActivity {
                 getLocation();
             }
         });
-
-
-
     }
 
     private void showToast(String s) {

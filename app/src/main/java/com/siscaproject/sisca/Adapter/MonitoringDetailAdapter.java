@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 public class MonitoringDetailAdapter extends RecyclerView.Adapter<MonitoringDetailAdapter.ItemHolder>{
+    private static final String TAG = "MonitoringDetailAdapter";
 
     private Context activityContext;
     private List<AssetAPI> listData;
@@ -58,6 +60,10 @@ public class MonitoringDetailAdapter extends RecyclerView.Adapter<MonitoringDeta
             Picasso.get().load(R.drawable.ic_check_tidak_ada).into(holder.ivChecklist);
         }
 
+        if(listData.get(position).getDetected() == 1){
+            holder.ivReader.setBackgroundColor(Color.GREEN);
+            Log.i(TAG, "onBindViewHolder: data detected, turns green " + "(" + listData.get(position).getName() + " " + listData.get(position).getAsset_rfid() + ")");
+        }
 
         if (listData.get(position).getImage()!=null)
             Picasso.get().load(Config.getLinkImage()+listData.get(position).getImage()).into(holder.ivImage);

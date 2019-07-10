@@ -209,6 +209,7 @@ public class ReportMonitoringActivity extends AppCompatActivity {
         Intent intent = new Intent(this, activity.getClass());
         intent.putExtra("ID_LOCATION_EXTRA", locationAPI.getId());
         intent.putExtra("FROM_REPORT_EXTRA", true);
+        intent.putExtra("LOCATION_NAME_EXTRA", locationAPI.getName());
 
         startActivity(intent);
         finish();

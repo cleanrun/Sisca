@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -60,6 +61,10 @@ public class BluetoothMonitoringActivity extends TSLBluetoothDeviceActivity {
     @BindView(R.id.container) ViewPager viewPager;
     @BindView(R.id.cv_back) CardView cvBack;
     @BindView(R.id.cv_menu) CardView cvMenu;
+    @BindView(R.id.tv_reader_state) TextView tvReaderState;
+    @BindView(R.id.tv_title) TextView tvTitle;
+
+    private String locationName;
 
     public AsciiCommander getCommander(){
         return ((TSLBluetoothDeviceApplication) getApplication()).getCommander();
@@ -131,6 +136,8 @@ public class BluetoothMonitoringActivity extends TSLBluetoothDeviceActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bluetooth_monitoring);
+
+        locationName = getIntent().getStringExtra("LOCATION_NAME_EXTRA");
 
         ButterKnife.bind(this);
 
@@ -249,6 +256,8 @@ public class BluetoothMonitoringActivity extends TSLBluetoothDeviceActivity {
         fragment.setReportMonitoringActivity(reportMonitoringActivity);
         adapter.addFragment(fragment, "MAIN");
         viewPager.setAdapter(adapter);
+
+        tvTitle.setText(locationName);
     }
 
     private void showToast(String message){
@@ -262,18 +271,18 @@ public class BluetoothMonitoringActivity extends TSLBluetoothDeviceActivity {
                 isReaderConnected = true;
                 connectionMessage += getCommander().getConnectedDeviceName();
                 //getSupportActionBar().setTitle(connectionMessage);
-                //tvReaderState.setText(connectionMessage);
+                tvReaderState.setText(connectionMessage);
                 break;
             case CONNECTING:
                 connectionMessage += "Connecting..";
                 //getSupportActionBar().setTitle(connectionMessage);
-                //tvReaderState.setText(connectionMessage);
+                tvReaderState.setText(connectionMessage);
                 break;
             default:
                 isReaderConnected= false;
                 connectionMessage += "Disconnected";
                 //getSupportActionBar().setTitle(connectionMessage);
-                //tvReaderState.setText(connectionMessage);
+                tvReaderState.setText(connectionMessage);
         }
     }
 

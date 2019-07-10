@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -150,19 +149,31 @@ public class BluetoothMonitoringFragment extends Fragment{
             showToast("Something wrong happened :(");
         }
 
+        Log.d(TAG, "total data ==> " + detectedData.size());
+        for(String a : detectedData){
+            Log.d(TAG, "data ==> " + a);
+        }
+
         checkData();
     }
 
     public void checkData(){
         for(AssetAPI a : assetAPIList){
-            if(a.getCondition().equals("bagus")){
-                a.setCondition("rusak");
-            }
-            else if(a.getCondition().equals("rusak")){
-                a.setCondition("bagus");
+            for(String b : detectedData){
+                if(a.getAsset_rfid().equals(b)){
+                    Log.i(TAG, "checkData: " + "detected " + a.getName() + b );
+                    //showToast("Data detected = " + b);
+                    a.setDetected(1);
+                }
+                else{
+                    Log.i(TAG, "checkData: " + "undetected" );
+                    a.setDetected(0);
+                }
             }
         }
-        showData();
+        adapter.notifyDataSetChanged();
+
+        //showData();
     }
 
     @OnClick(R.id.btn_submit_report_detail)
@@ -323,7 +334,7 @@ public class BluetoothMonitoringFragment extends Fragment{
                 }
                 @Override
                 public void onFailure(Call<AssetAPI> call, Throwable t) {
-
+                    // do nothing
                 }
             });
 
@@ -359,5 +370,4 @@ public class BluetoothMonitoringFragment extends Fragment{
             }
         });
     }
-
 }

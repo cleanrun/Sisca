@@ -12,6 +12,10 @@ public class AssetAPI {
     @Expose
     private String asset_id;
 
+    @SerializedName("asset_rfid")
+    @Expose
+    private String asset_rfid;
+
     @SerializedName("category_id")
     @Expose
     private String category_id;
@@ -64,6 +68,8 @@ public class AssetAPI {
     @Expose
     private String updated_at;
 
+    private int detected = 0;
+
     public AssetAPI(int id, String asset_id, String category_id, String location_id, String pic_id, String name, String description, String date_purchase, String price, String condition, String image, String history, String deleted_at, String created_at, String updated_at) {
         this.id = id;
         this.asset_id = asset_id;
@@ -82,12 +88,28 @@ public class AssetAPI {
         this.updated_at = updated_at;
     }
 
+    public int getDetected() {
+        return detected;
+    }
+
+    public void setDetected(int detected) {
+        this.detected = detected;
+    }
+
     public int getId() {
         return id;
     }
 
     public String getAsset_id() {
         return asset_id;
+    }
+
+    public String getAsset_rfid() {
+        return asset_rfid;
+    }
+
+    public void setAsset_rfid(String asset_rfid) {
+        this.asset_rfid = asset_rfid;
     }
 
     public String getCategory_id() {
